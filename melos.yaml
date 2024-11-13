@@ -6,3 +6,4 @@ packages:
   - moviedb_service
   - next_app
   - rest_service
+  - next_database_service

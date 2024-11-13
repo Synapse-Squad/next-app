@@ -1,19 +1,54 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:itunes_service/itunes_service.dart';
-import 'package:rest_service/rest_service.dart';
+import 'package:next_database_service/next_database_service.dart';
 
 void main() async {
-  final client = http.Client();
-  final itunesClient = HttpRestClient(
-    client: client,
-    baseUrl: 'itunes.apple.com',
-  );
-  final dataSource = AlbumDataSourceImpl(itunesClient);
-  final repository = ItunesRepositoryImpl(albumDataSource: dataSource);
+  WidgetsFlutterBinding.ensureInitialized();
 
-  final result = await repository.searchForAlbum('Akula');
-  result.forEach(print);
+  final database = NextDatabase();
+
+  // await database.into(database.collectionTypes).insert(
+  //       CollectionTypesCompanion.insert(
+  //         title: 'Movie',
+  //       ),
+  //     );
+
+  List<CollectionType> collectionsTypes =
+      await database.select(database.collectionTypes).get();
+  print('collectionsTypes: $collectionsTypes');
+
+  // await database.into(database.userCollections).insert(
+  //       UserCollectionsCompanion.insert(
+  //         title: '2024 best movie list for me',
+  //         typeId: 1,
+  //       ),
+  //     );
+
+  List<UserCollection> allCollections =
+      await database.select(database.userCollections).get();
+
+  print('allCollections: $allCollections');
+
+  // await database.into(database.movies).insert(
+  //       MoviesCompanion.insert(
+  //         posterPath: 'test',
+  //         overview: 'test',
+  //         title: 'test',
+  //         releaseDate: DateTime.now(),
+  //         voteAverage: 2.5,
+  //         watched: 0,
+  //         userRating: 3,
+  //         collectionId: 1,
+  //       ),
+  //     );
+
+  await (database.delete(database.userCollections)
+        ..where((col) => col.id.equals(1)))
+      .go();
+
+  try {
+    List<Movie> allMovies = await database.select(database.movies).get();
+    print('allMovies: $allMovies');
+  } catch (_) {}
 
   runApp(const MyApp());
 }
