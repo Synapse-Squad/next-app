@@ -1,0 +1,7 @@
+name: next_app
+
+packages:
+  - google_books_service
+  - itunes_service
+  - moviedb_service
+  - next_app
