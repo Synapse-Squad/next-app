@@ -1,9 +1,10 @@
 // ignore_for_file: type=lint
 import 'package:drift/drift.dart' as i0;
 import 'package:next_database_service/src/tables/movies.drift.dart' as i1;
-import 'package:next_database_service/src/tables/movies.dart' as i2;
+import 'package:next_database_service/src/enums/watch_status.dart' as i2;
+import 'package:next_database_service/src/tables/movies.dart' as i3;
 
-class $MoviesTable extends i2.Movies with i0.TableInfo<$MoviesTable, i1.Movie> {
+class $MoviesTable extends i3.Movies with i0.TableInfo<$MoviesTable, i1.Movie> {
   @override
   final i0.GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -21,44 +22,45 @@ class $MoviesTable extends i2.Movies with i0.TableInfo<$MoviesTable, i1.Movie> {
       const i0.VerificationMeta('posterPath');
   @override
   late final i0.GeneratedColumn<String> posterPath = i0.GeneratedColumn<String>(
-      'poster_path', aliasedName, false,
-      type: i0.DriftSqlType.string, requiredDuringInsert: true);
+      'poster_path', aliasedName, true,
+      type: i0.DriftSqlType.string, requiredDuringInsert: false);
   static const i0.VerificationMeta _overviewMeta =
       const i0.VerificationMeta('overview');
   @override
   late final i0.GeneratedColumn<String> overview = i0.GeneratedColumn<String>(
-      'overview', aliasedName, false,
-      type: i0.DriftSqlType.string, requiredDuringInsert: true);
+      'overview', aliasedName, true,
+      type: i0.DriftSqlType.string, requiredDuringInsert: false);
   static const i0.VerificationMeta _titleMeta =
       const i0.VerificationMeta('title');
   @override
   late final i0.GeneratedColumn<String> title = i0.GeneratedColumn<String>(
-      'title', aliasedName, false,
-      type: i0.DriftSqlType.string, requiredDuringInsert: true);
+      'title', aliasedName, true,
+      type: i0.DriftSqlType.string, requiredDuringInsert: false);
   static const i0.VerificationMeta _releaseDateMeta =
       const i0.VerificationMeta('releaseDate');
   @override
   late final i0.GeneratedColumn<DateTime> releaseDate =
-      i0.GeneratedColumn<DateTime>('release_date', aliasedName, false,
-          type: i0.DriftSqlType.dateTime, requiredDuringInsert: true);
+      i0.GeneratedColumn<DateTime>('release_date', aliasedName, true,
+          type: i0.DriftSqlType.dateTime, requiredDuringInsert: false);
   static const i0.VerificationMeta _voteAverageMeta =
       const i0.VerificationMeta('voteAverage');
   @override
   late final i0.GeneratedColumn<double> voteAverage =
-      i0.GeneratedColumn<double>('vote_average', aliasedName, false,
-          type: i0.DriftSqlType.double, requiredDuringInsert: true);
+      i0.GeneratedColumn<double>('vote_average', aliasedName, true,
+          type: i0.DriftSqlType.double, requiredDuringInsert: false);
   static const i0.VerificationMeta _watchedMeta =
       const i0.VerificationMeta('watched');
   @override
-  late final i0.GeneratedColumn<int> watched = i0.GeneratedColumn<int>(
-      'watched', aliasedName, false,
-      type: i0.DriftSqlType.int, requiredDuringInsert: true);
+  late final i0.GeneratedColumnWithTypeConverter<i2.WatchStatus, int> watched =
+      i0.GeneratedColumn<int>('watched', aliasedName, false,
+              type: i0.DriftSqlType.int, requiredDuringInsert: true)
+          .withConverter<i2.WatchStatus>(i1.$MoviesTable.$converterwatched);
   static const i0.VerificationMeta _userRatingMeta =
       const i0.VerificationMeta('userRating');
   @override
   late final i0.GeneratedColumn<int> userRating = i0.GeneratedColumn<int>(
-      'user_rating', aliasedName, false,
-      type: i0.DriftSqlType.int, requiredDuringInsert: true);
+      'user_rating', aliasedName, true,
+      type: i0.DriftSqlType.int, requiredDuringInsert: false);
   static const i0.VerificationMeta _collectionIdMeta =
       const i0.VerificationMeta('collectionId');
   @override
@@ -98,50 +100,33 @@ class $MoviesTable extends i2.Movies with i0.TableInfo<$MoviesTable, i1.Movie> {
           _posterPathMeta,
           posterPath.isAcceptableOrUnknown(
               data['poster_path']!, _posterPathMeta));
-    } else if (isInserting) {
-      context.missing(_posterPathMeta);
     }
     if (data.containsKey('overview')) {
       context.handle(_overviewMeta,
           overview.isAcceptableOrUnknown(data['overview']!, _overviewMeta));
-    } else if (isInserting) {
-      context.missing(_overviewMeta);
     }
     if (data.containsKey('title')) {
       context.handle(
           _titleMeta, title.isAcceptableOrUnknown(data['title']!, _titleMeta));
-    } else if (isInserting) {
-      context.missing(_titleMeta);
     }
     if (data.containsKey('release_date')) {
       context.handle(
           _releaseDateMeta,
           releaseDate.isAcceptableOrUnknown(
               data['release_date']!, _releaseDateMeta));
-    } else if (isInserting) {
-      context.missing(_releaseDateMeta);
     }
     if (data.containsKey('vote_average')) {
       context.handle(
           _voteAverageMeta,
           voteAverage.isAcceptableOrUnknown(
               data['vote_average']!, _voteAverageMeta));
-    } else if (isInserting) {
-      context.missing(_voteAverageMeta);
     }
-    if (data.containsKey('watched')) {
-      context.handle(_watchedMeta,
-          watched.isAcceptableOrUnknown(data['watched']!, _watchedMeta));
-    } else if (isInserting) {
-      context.missing(_watchedMeta);
-    }
+    context.handle(_watchedMeta, const i0.VerificationResult.success());
     if (data.containsKey('user_rating')) {
       context.handle(
           _userRatingMeta,
           userRating.isAcceptableOrUnknown(
               data['user_rating']!, _userRatingMeta));
-    } else if (isInserting) {
-      context.missing(_userRatingMeta);
     }
     if (data.containsKey('collection_id')) {
       context.handle(
@@ -163,19 +148,20 @@ class $MoviesTable extends i2.Movies with i0.TableInfo<$MoviesTable, i1.Movie> {
       id: attachedDatabase.typeMapping
           .read(i0.DriftSqlType.int, data['${effectivePrefix}id'])!,
       posterPath: attachedDatabase.typeMapping
-          .read(i0.DriftSqlType.string, data['${effectivePrefix}poster_path'])!,
+          .read(i0.DriftSqlType.string, data['${effectivePrefix}poster_path']),
       overview: attachedDatabase.typeMapping
-          .read(i0.DriftSqlType.string, data['${effectivePrefix}overview'])!,
+          .read(i0.DriftSqlType.string, data['${effectivePrefix}overview']),
       title: attachedDatabase.typeMapping
-          .read(i0.DriftSqlType.string, data['${effectivePrefix}title'])!,
+          .read(i0.DriftSqlType.string, data['${effectivePrefix}title']),
       releaseDate: attachedDatabase.typeMapping.read(
-          i0.DriftSqlType.dateTime, data['${effectivePrefix}release_date'])!,
-      voteAverage: attachedDatabase.typeMapping.read(
-          i0.DriftSqlType.double, data['${effectivePrefix}vote_average'])!,
-      watched: attachedDatabase.typeMapping
-          .read(i0.DriftSqlType.int, data['${effectivePrefix}watched'])!,
+          i0.DriftSqlType.dateTime, data['${effectivePrefix}release_date']),
+      voteAverage: attachedDatabase.typeMapping
+          .read(i0.DriftSqlType.double, data['${effectivePrefix}vote_average']),
+      watched: i1.$MoviesTable.$converterwatched.fromSql(attachedDatabase
+          .typeMapping
+          .read(i0.DriftSqlType.int, data['${effectivePrefix}watched'])!),
       userRating: attachedDatabase.typeMapping
-          .read(i0.DriftSqlType.int, data['${effectivePrefix}user_rating'])!,
+          .read(i0.DriftSqlType.int, data['${effectivePrefix}user_rating']),
       collectionId: attachedDatabase.typeMapping
           .read(i0.DriftSqlType.int, data['${effectivePrefix}collection_id'])!,
     );
@@ -185,39 +171,57 @@ class $MoviesTable extends i2.Movies with i0.TableInfo<$MoviesTable, i1.Movie> {
   $MoviesTable createAlias(String alias) {
     return $MoviesTable(attachedDatabase, alias);
   }
+
+  static i0.JsonTypeConverter2<i2.WatchStatus, int, int> $converterwatched =
+      const i0.EnumIndexConverter<i2.WatchStatus>(i2.WatchStatus.values);
 }
 
 class Movie extends i0.DataClass implements i0.Insertable<i1.Movie> {
   final int id;
-  final String posterPath;
-  final String overview;
-  final String title;
-  final DateTime releaseDate;
-  final double voteAverage;
-  final int watched;
-  final int userRating;
+  final String? posterPath;
+  final String? overview;
+  final String? title;
+  final DateTime? releaseDate;
+  final double? voteAverage;
+  final i2.WatchStatus watched;
+  final int? userRating;
   final int collectionId;
   const Movie(
       {required this.id,
-      required this.posterPath,
-      required this.overview,
-      required this.title,
-      required this.releaseDate,
-      required this.voteAverage,
+      this.posterPath,
+      this.overview,
+      this.title,
+      this.releaseDate,
+      this.voteAverage,
       required this.watched,
-      required this.userRating,
+      this.userRating,
       required this.collectionId});
   @override
   Map<String, i0.Expression> toColumns(bool nullToAbsent) {
     final map = <String, i0.Expression>{};
     map['id'] = i0.Variable<int>(id);
-    map['poster_path'] = i0.Variable<String>(posterPath);
-    map['overview'] = i0.Variable<String>(overview);
-    map['title'] = i0.Variable<String>(title);
-    map['release_date'] = i0.Variable<DateTime>(releaseDate);
-    map['vote_average'] = i0.Variable<double>(voteAverage);
-    map['watched'] = i0.Variable<int>(watched);
-    map['user_rating'] = i0.Variable<int>(userRating);
+    if (!nullToAbsent || posterPath != null) {
+      map['poster_path'] = i0.Variable<String>(posterPath);
+    }
+    if (!nullToAbsent || overview != null) {
+      map['overview'] = i0.Variable<String>(overview);
+    }
+    if (!nullToAbsent || title != null) {
+      map['title'] = i0.Variable<String>(title);
+    }
+    if (!nullToAbsent || releaseDate != null) {
+      map['release_date'] = i0.Variable<DateTime>(releaseDate);
+    }
+    if (!nullToAbsent || voteAverage != null) {
+      map['vote_average'] = i0.Variable<double>(voteAverage);
+    }
+    {
+      map['watched'] =
+          i0.Variable<int>(i1.$MoviesTable.$converterwatched.toSql(watched));
+    }
+    if (!nullToAbsent || userRating != null) {
+      map['user_rating'] = i0.Variable<int>(userRating);
+    }
     map['collection_id'] = i0.Variable<int>(collectionId);
     return map;
   }
@@ -225,13 +229,25 @@ class Movie extends i0.DataClass implements i0.Insertable<i1.Movie> {
   i1.MoviesCompanion toCompanion(bool nullToAbsent) {
     return i1.MoviesCompanion(
       id: i0.Value(id),
-      posterPath: i0.Value(posterPath),
-      overview: i0.Value(overview),
-      title: i0.Value(title),
-      releaseDate: i0.Value(releaseDate),
-      voteAverage: i0.Value(voteAverage),
+      posterPath: posterPath == null && nullToAbsent
+          ? const i0.Value.absent()
+          : i0.Value(posterPath),
+      overview: overview == null && nullToAbsent
+          ? const i0.Value.absent()
+          : i0.Value(overview),
+      title: title == null && nullToAbsent
+          ? const i0.Value.absent()
+          : i0.Value(title),
+      releaseDate: releaseDate == null && nullToAbsent
+          ? const i0.Value.absent()
+          : i0.Value(releaseDate),
+      voteAverage: voteAverage == null && nullToAbsent
+          ? const i0.Value.absent()
+          : i0.Value(voteAverage),
       watched: i0.Value(watched),
-      userRating: i0.Value(userRating),
+      userRating: userRating == null && nullToAbsent
+          ? const i0.Value.absent()
+          : i0.Value(userRating),
       collectionId: i0.Value(collectionId),
     );
   }
@@ -241,13 +257,14 @@ class Movie extends i0.DataClass implements i0.Insertable<i1.Movie> {
     serializer ??= i0.driftRuntimeOptions.defaultSerializer;
     return Movie(
       id: serializer.fromJson<int>(json['id']),
-      posterPath: serializer.fromJson<String>(json['posterPath']),
-      overview: serializer.fromJson<String>(json['overview']),
-      title: serializer.fromJson<String>(json['title']),
-      releaseDate: serializer.fromJson<DateTime>(json['releaseDate']),
-      voteAverage: serializer.fromJson<double>(json['voteAverage']),
-      watched: serializer.fromJson<int>(json['watched']),
-      userRating: serializer.fromJson<int>(json['userRating']),
+      posterPath: serializer.fromJson<String?>(json['posterPath']),
+      overview: serializer.fromJson<String?>(json['overview']),
+      title: serializer.fromJson<String?>(json['title']),
+      releaseDate: serializer.fromJson<DateTime?>(json['releaseDate']),
+      voteAverage: serializer.fromJson<double?>(json['voteAverage']),
+      watched: i1.$MoviesTable.$converterwatched
+          .fromJson(serializer.fromJson<int>(json['watched'])),
+      userRating: serializer.fromJson<int?>(json['userRating']),
       collectionId: serializer.fromJson<int>(json['collectionId']),
     );
   }
@@ -256,36 +273,37 @@ class Movie extends i0.DataClass implements i0.Insertable<i1.Movie> {
     serializer ??= i0.driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
-      'posterPath': serializer.toJson<String>(posterPath),
-      'overview': serializer.toJson<String>(overview),
-      'title': serializer.toJson<String>(title),
-      'releaseDate': serializer.toJson<DateTime>(releaseDate),
-      'voteAverage': serializer.toJson<double>(voteAverage),
-      'watched': serializer.toJson<int>(watched),
-      'userRating': serializer.toJson<int>(userRating),
+      'posterPath': serializer.toJson<String?>(posterPath),
+      'overview': serializer.toJson<String?>(overview),
+      'title': serializer.toJson<String?>(title),
+      'releaseDate': serializer.toJson<DateTime?>(releaseDate),
+      'voteAverage': serializer.toJson<double?>(voteAverage),
+      'watched': serializer
+          .toJson<int>(i1.$MoviesTable.$converterwatched.toJson(watched)),
+      'userRating': serializer.toJson<int?>(userRating),
       'collectionId': serializer.toJson<int>(collectionId),
     };
   }
 
   i1.Movie copyWith(
           {int? id,
-          String? posterPath,
-          String? overview,
-          String? title,
-          DateTime? releaseDate,
-          double? voteAverage,
-          int? watched,
-          int? userRating,
+          i0.Value<String?> posterPath = const i0.Value.absent(),
+          i0.Value<String?> overview = const i0.Value.absent(),
+          i0.Value<String?> title = const i0.Value.absent(),
+          i0.Value<DateTime?> releaseDate = const i0.Value.absent(),
+          i0.Value<double?> voteAverage = const i0.Value.absent(),
+          i2.WatchStatus? watched,
+          i0.Value<int?> userRating = const i0.Value.absent(),
           int? collectionId}) =>
       i1.Movie(
         id: id ?? this.id,
-        posterPath: posterPath ?? this.posterPath,
-        overview: overview ?? this.overview,
-        title: title ?? this.title,
-        releaseDate: releaseDate ?? this.releaseDate,
-        voteAverage: voteAverage ?? this.voteAverage,
+        posterPath: posterPath.present ? posterPath.value : this.posterPath,
+        overview: overview.present ? overview.value : this.overview,
+        title: title.present ? title.value : this.title,
+        releaseDate: releaseDate.present ? releaseDate.value : this.releaseDate,
+        voteAverage: voteAverage.present ? voteAverage.value : this.voteAverage,
         watched: watched ?? this.watched,
-        userRating: userRating ?? this.userRating,
+        userRating: userRating.present ? userRating.value : this.userRating,
         collectionId: collectionId ?? this.collectionId,
       );
   Movie copyWithCompanion(i1.MoviesCompanion data) {
@@ -344,13 +362,13 @@ class Movie extends i0.DataClass implements i0.Insertable<i1.Movie> {
 
 class MoviesCompanion extends i0.UpdateCompanion<i1.Movie> {
   final i0.Value<int> id;
-  final i0.Value<String> posterPath;
-  final i0.Value<String> overview;
-  final i0.Value<String> title;
-  final i0.Value<DateTime> releaseDate;
-  final i0.Value<double> voteAverage;
-  final i0.Value<int> watched;
-  final i0.Value<int> userRating;
+  final i0.Value<String?> posterPath;
+  final i0.Value<String?> overview;
+  final i0.Value<String?> title;
+  final i0.Value<DateTime?> releaseDate;
+  final i0.Value<double?> voteAverage;
+  final i0.Value<i2.WatchStatus> watched;
+  final i0.Value<int?> userRating;
   final i0.Value<int> collectionId;
   const MoviesCompanion({
     this.id = const i0.Value.absent(),
@@ -365,21 +383,15 @@ class MoviesCompanion extends i0.UpdateCompanion<i1.Movie> {
   });
   MoviesCompanion.insert({
     this.id = const i0.Value.absent(),
-    required String posterPath,
-    required String overview,
-    required String title,
-    required DateTime releaseDate,
-    required double voteAverage,
-    required int watched,
-    required int userRating,
+    this.posterPath = const i0.Value.absent(),
+    this.overview = const i0.Value.absent(),
+    this.title = const i0.Value.absent(),
+    this.releaseDate = const i0.Value.absent(),
+    this.voteAverage = const i0.Value.absent(),
+    required i2.WatchStatus watched,
+    this.userRating = const i0.Value.absent(),
     required int collectionId,
-  })  : posterPath = i0.Value(posterPath),
-        overview = i0.Value(overview),
-        title = i0.Value(title),
-        releaseDate = i0.Value(releaseDate),
-        voteAverage = i0.Value(voteAverage),
-        watched = i0.Value(watched),
-        userRating = i0.Value(userRating),
+  })  : watched = i0.Value(watched),
         collectionId = i0.Value(collectionId);
   static i0.Insertable<i1.Movie> custom({
     i0.Expression<int>? id,
@@ -407,13 +419,13 @@ class MoviesCompanion extends i0.UpdateCompanion<i1.Movie> {
 
   i1.MoviesCompanion copyWith(
       {i0.Value<int>? id,
-      i0.Value<String>? posterPath,
-      i0.Value<String>? overview,
-      i0.Value<String>? title,
-      i0.Value<DateTime>? releaseDate,
-      i0.Value<double>? voteAverage,
-      i0.Value<int>? watched,
-      i0.Value<int>? userRating,
+      i0.Value<String?>? posterPath,
+      i0.Value<String?>? overview,
+      i0.Value<String?>? title,
+      i0.Value<DateTime?>? releaseDate,
+      i0.Value<double?>? voteAverage,
+      i0.Value<i2.WatchStatus>? watched,
+      i0.Value<int?>? userRating,
       i0.Value<int>? collectionId}) {
     return i1.MoviesCompanion(
       id: id ?? this.id,
@@ -450,7 +462,8 @@ class MoviesCompanion extends i0.UpdateCompanion<i1.Movie> {
       map['vote_average'] = i0.Variable<double>(voteAverage.value);
     }
     if (watched.present) {
-      map['watched'] = i0.Variable<int>(watched.value);
+      map['watched'] = i0.Variable<int>(
+          i1.$MoviesTable.$converterwatched.toSql(watched.value));
     }
     if (userRating.present) {
       map['user_rating'] = i0.Variable<int>(userRating.value);

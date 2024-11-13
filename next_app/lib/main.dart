@@ -28,25 +28,16 @@ void main() async {
 
   print('allCollections: $allCollections');
 
-  // await database.into(database.movies).insert(
-  //       MoviesCompanion.insert(
-  //         posterPath: 'test',
-  //         overview: 'test',
-  //         title: 'test',
-  //         releaseDate: DateTime.now(),
-  //         voteAverage: 2.5,
-  //         watched: 0,
-  //         userRating: 3,
-  //         collectionId: 1,
+  // await database.into(database.podcasts).insert(
+  //       PodcastsCompanion.insert(
+  //         listened: ListenStatus.notListened,
+  //         collectionId: 2,
+  //         genres: drift.Value([GenreDto(id: 1, name: 'Hip-hop')]),
   //       ),
   //     );
 
-  await (database.delete(database.userCollections)
-        ..where((col) => col.id.equals(1)))
-      .go();
-
   try {
-    List<Movie> allMovies = await database.select(database.movies).get();
+    List<Podcast> allMovies = await database.select(database.podcasts).get();
     print('allMovies: $allMovies');
   } catch (_) {}
 

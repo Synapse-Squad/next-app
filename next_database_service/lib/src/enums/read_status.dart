@@ -1,0 +1,1 @@
+enum ReadStatus { read, notRead }

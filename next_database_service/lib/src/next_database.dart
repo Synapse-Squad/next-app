@@ -3,12 +3,14 @@ import 'package:drift_flutter/drift_flutter.dart';
 
 import 'daos/collection_types_dao.dart';
 import 'next_database.drift.dart';
+import 'tables/albums.dart';
 import 'tables/collection_types.dart';
 import 'tables/movies.dart';
+import 'tables/podcasts.dart';
 import 'tables/user_collections.dart';
 
 @DriftDatabase(
-  tables: [UserCollections, CollectionTypes, Movies],
+  tables: [UserCollections, CollectionTypes, Movies, Albums, Podcasts],
   daos: [CollectionTypesDao],
 )
 class NextDatabase extends $NextDatabase {

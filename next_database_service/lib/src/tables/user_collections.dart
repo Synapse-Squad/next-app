@@ -6,4 +6,7 @@ class UserCollections extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get title => text().withLength()();
   IntColumn get typeId => integer().references(CollectionTypes, #id)();
+
+  @override
+  List<Set<Column>>? get uniqueKeys => [{title, typeId}];
 }

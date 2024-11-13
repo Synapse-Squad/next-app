@@ -1,0 +1,1 @@
+enum WatchStatus { watched, notWatched }

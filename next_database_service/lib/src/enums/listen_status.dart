@@ -1,0 +1,1 @@
+enum ListenStatus { listened, notListened }
