@@ -5,3 +5,4 @@ packages:
   - itunes_service
   - moviedb_service
   - next_app
+  - rest_service

@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:itunes_service/itunes_service.dart';
+import 'package:rest_service/rest_service.dart';
 
-void main() {
+void main() async {
+  final client = http.Client();
+  final itunesClient = HttpRestClient(
+    client: client,
+    baseUrl: 'itunes.apple.com',
+  );
+  final dataSource = AlbumDataSourceImpl(itunesClient);
+  final repository = ItunesRepositoryImpl(albumDataSource: dataSource);
+
+  final result = await repository.searchForAlbum('Akula');
+  result.forEach(print);
+
   runApp(const MyApp());
 }
 

@@ -1,3 +1,6 @@
 .idea
 .dart_tool
 melos_next_app.iml
+.DS_Store
+itunes_service/pubspec_overrides.yaml
+next_app/pubspec_overrides.yaml

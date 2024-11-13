@@ -148,7 +148,7 @@ packages:
     source: hosted
     version: "2.3.2"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       sha256: b9c29a161230ee03d3ccf545097fccd9b87a5264228c5d348202e0f0c28f9010
@@ -179,6 +179,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  itunes_service:
+    dependency: "direct main"
+    description:
+      path: "../itunes_service"
+      relative: true
+    source: path
+    version: "0.0.1"
   json_annotation:
     dependency: transitive
     description:
@@ -331,6 +338,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.2"
+  rest_service:
+    dependency: "direct main"
+    description:
+      path: "../rest_service"
+      relative: true
+    source: path
+    version: "0.0.1"
   sky_engine:
     dependency: transitive
     description: flutter
