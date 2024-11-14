@@ -17,6 +17,7 @@ final class AlbumDataSourceImpl implements AlbumDataSource {
       queryParameters: {
         'term': query,
         'entity': 'album',
+        'limit': 10,
       },
     );
 

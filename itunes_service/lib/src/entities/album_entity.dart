@@ -28,4 +28,29 @@ class AlbumEntity {
     primaryGenreName: $primaryGenreName,
     )''';
   }
+
+  @override
+  int get hashCode => Object.hashAll([
+        artistName,
+        collectionName,
+        collectionViewUrl,
+        artworkUrl60,
+        trackCount,
+        copyright,
+        releaseDate,
+        primaryGenreName,
+      ]);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AlbumEntity &&
+          artistName == other.artistName &&
+          collectionName == other.collectionName &&
+          collectionViewUrl == other.collectionViewUrl &&
+          artworkUrl60 == other.artworkUrl60 &&
+          trackCount == other.trackCount &&
+          copyright == other.copyright &&
+          releaseDate == other.releaseDate &&
+          primaryGenreName == other.primaryGenreName;
 }
