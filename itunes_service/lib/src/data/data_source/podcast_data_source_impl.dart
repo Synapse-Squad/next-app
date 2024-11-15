@@ -1,12 +1,12 @@
-import 'package:itunes_service/src/data_source/podcast_data_source.dart';
-import 'package:itunes_service/src/dtos/podcast_dto.dart';
-import 'package:itunes_service/src/exceptions/podcast_not_found_exception.dart';
 import 'package:rest_service/rest_service.dart';
 
-final class PodcastDataSourceImpl implements PodcastDataSource {
-  final HttpRestClient client;
+import '../../../itunes_service.dart';
+import '../dtos/podcast_dto.dart';
 
-  PodcastDataSourceImpl({required this.client});
+final class PodcastDataSourceImpl implements PodcastDataSource {
+  PodcastDataSourceImpl(this.client);
+
+  final HttpRestClient client;
 
   @override
   Future<List<PodcastDto>> searchForPodcast(String query) async {

@@ -1,5 +1,5 @@
+import '../../../itunes_service.dart';
 import '../dtos/album_dto.dart';
-import '../entities/album_entity.dart';
 
 class AlbumMapper {
   static List<AlbumEntity> toEntity(List<AlbumDto> dto) {

@@ -4,10 +4,10 @@ import 'package:rest_service/rest_service.dart';
 import '../config.dart';
 import '../factories.dart';
 import '../global/dependencies_container.dart';
-import 'itunes_dependencies_container.dart';
+import 'album_dependencies_container.dart';
 
-class ItunesDependenciesFactory extends Factory<ItunesDependenciesContainer> {
-  ItunesDependenciesFactory({
+class AlbumDependenciesFactory extends Factory<AlbumDependenciesContainer> {
+  AlbumDependenciesFactory({
     required this.dependenciesContainer,
     required this.config,
   });
@@ -16,21 +16,19 @@ class ItunesDependenciesFactory extends Factory<ItunesDependenciesContainer> {
   final Config config;
 
   @override
-  ItunesDependenciesContainer create() {
+  AlbumDependenciesContainer create() {
     final client = HttpRestClient(
       client: dependenciesContainer.httpClient,
       baseUrl: config.itunesApiBaseUrl,
     );
     final albumDataSource = AlbumDataSourceImpl(client);
-    final podcastDataSource = PodcastDataSourceImpl(client: client);
-    final itunesRepository = ItunesRepositoryImpl(
+    final albumRepository = AlbumRepositoryImpl(
       albumDataSource: albumDataSource,
-      podcastDataSource: podcastDataSource,
     );
 
-    return ItunesDependenciesContainer(
+    return AlbumDependenciesContainer(
       albumDataSource: albumDataSource,
-      itunesRepository: itunesRepository,
+      albumRepository: albumRepository,
     );
   }
 }

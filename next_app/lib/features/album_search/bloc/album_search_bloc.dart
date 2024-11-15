@@ -6,14 +6,14 @@ part 'album_search_event.dart';
 part 'album_search_state.dart';
 
 class AlbumSearchBloc extends Bloc<AlbumSearchEvent, AlbumSearchState> {
-  AlbumSearchBloc(this.itunesRepository) : super(AlbumSearchInitial()) {
+  AlbumSearchBloc(this.albumRepository) : super(AlbumSearchInitial()) {
     on<AlbumQueried>(
       _onAlbumQueried,
       transformer: restartable(),
     );
   }
 
-  final ItunesRepository itunesRepository;
+  final IAlbumRepository albumRepository;
 
   void _onAlbumQueried(
     AlbumQueried event,
@@ -21,7 +21,7 @@ class AlbumSearchBloc extends Bloc<AlbumSearchEvent, AlbumSearchState> {
   ) async {
     try {
       emit(AlbumInProgress());
-      final albums = await itunesRepository.searchForAlbum(event.query);
+      final albums = await albumRepository.search(event.query);
       emit(AlbumSearchSuccess(albums));
     } on AlbumNotFoundException {
       emit(AlbumNotFound());

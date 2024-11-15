@@ -1,10 +1,9 @@
 import 'package:rest_service/rest_service.dart';
 
+import '../../core/exceptions/album_not_found_exception.dart';
 import '../dtos/album_dto.dart';
-import '../exceptions/album_not_found_exception.dart';
 import 'album_data_source.dart';
 
-/// base-url: https://itunes.apple.com
 final class AlbumDataSourceImpl implements AlbumDataSource {
   const AlbumDataSourceImpl(this.client);
 

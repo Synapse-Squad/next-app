@@ -1,5 +1,5 @@
-import 'package:itunes_service/src/dtos/podcast_dto.dart';
-import 'package:itunes_service/src/entities/podcast_entity.dart';
+import '../../domain/entities/podcast_entity.dart';
+import '../dtos/podcast_dto.dart';
 
 class PodcastMapper {
   static List<PodcastEntity> toEntity(List<PodcastDto> dtoList) {
