@@ -1,7 +1,6 @@
 import 'package:drift/drift.dart';
 
 import '../../next_database_service.dart';
-import '../enums/read_status.dart';
 import '../type_converters/list_converter.dart';
 
 @DataClassName('Book')
@@ -16,7 +15,8 @@ class Books extends Table {
   TextColumn get language => text().nullable()();
   TextColumn get authors => text().map(const ListConverter()).nullable()();
   TextColumn get categories => text().map(const ListConverter()).nullable()();
-  IntColumn get read => intEnum<ReadStatus>()();
+  IntColumn get read =>
+      intEnum<ReadStatus>().withDefault(Constant(ReadStatus.notRead.index))();
   IntColumn get userRating => integer().nullable()();
   IntColumn get collectionId => integer().references(
         UserCollections,

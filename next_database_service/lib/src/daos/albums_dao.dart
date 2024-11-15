@@ -1,7 +1,6 @@
 import 'package:drift/drift.dart';
 
 import '../../next_database_service.dart';
-import '../enums/order_options.dart';
 import '../tables/albums.dart';
 import '../tables/albums.drift.dart';
 import 'albums_dao.drift.dart';
@@ -67,4 +66,6 @@ class AlbumsDao extends DatabaseAccessor<NextDatabase> with $AlbumsDaoMixin {
       (update(albums)..where((a) => a.id.equals(id))).write(
         const AlbumsCompanion(listened: Value(ListenStatus.notListened)),
       );
+
+  Future<int> add(AlbumsCompanion companion) => into(albums).insert(companion);
 }

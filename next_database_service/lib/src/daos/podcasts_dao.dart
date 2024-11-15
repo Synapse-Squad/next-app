@@ -1,13 +1,13 @@
 import 'package:drift/drift.dart';
 
 import '../../next_database_service.dart';
-import '../enums/order_options.dart';
-import 'podcasts_dto.drift.dart';
+import '../tables/podcasts.drift.dart';
+import 'podcasts_dao.drift.dart';
 
 @DriftAccessor(tables: [Podcasts])
-class PodcastsDto extends DatabaseAccessor<NextDatabase>
-    with $PodcastsDtoMixin {
-  PodcastsDto(super.attachedDatabase);
+class PodcastsDao extends DatabaseAccessor<NextDatabase>
+    with $PodcastsDaoMixin {
+  PodcastsDao(super.attachedDatabase);
 
   Future<List<Podcast>> search(String query) =>
       (select(podcasts)..where((p) => p.collectionName.contains(query))).get();

@@ -82,7 +82,9 @@ class $BooksTable extends i3.Books with i0.TableInfo<$BooksTable, i1.Book> {
   @override
   late final i0.GeneratedColumnWithTypeConverter<i2.ReadStatus, int> read =
       i0.GeneratedColumn<int>('read', aliasedName, false,
-              type: i0.DriftSqlType.int, requiredDuringInsert: true)
+              type: i0.DriftSqlType.int,
+              requiredDuringInsert: false,
+              defaultValue: i4.Constant(i2.ReadStatus.notRead.index))
           .withConverter<i2.ReadStatus>(i1.$BooksTable.$converterread);
   static const i0.VerificationMeta _userRatingMeta =
       const i0.VerificationMeta('userRating');
@@ -570,12 +572,11 @@ class BooksCompanion extends i0.UpdateCompanion<i1.Book> {
     this.language = const i0.Value.absent(),
     this.authors = const i0.Value.absent(),
     this.categories = const i0.Value.absent(),
-    required i2.ReadStatus read,
+    this.read = const i0.Value.absent(),
     this.userRating = const i0.Value.absent(),
     required int collectionId,
     this.createdAt = const i0.Value.absent(),
-  })  : read = i0.Value(read),
-        collectionId = i0.Value(collectionId);
+  }) : collectionId = i0.Value(collectionId);
   static i0.Insertable<i1.Book> custom({
     i0.Expression<int>? id,
     i0.Expression<String>? title,

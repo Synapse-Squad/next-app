@@ -28,14 +28,6 @@ final class CompositionRoot {
     final dependencies = GlobalDependenciesFactory().create();
     logger.finest('Global dependencies initialized');
 
-    // /// itunes feature dependencies
-    // logger.info('Initializing itunes dependencies...');
-    // final itunesDependencies = ItunesDependenciesFactory(
-    //   dependenciesContainer: dependencies,
-    //   config: config,
-    // ).create();
-    // logger.finest('Itunes dependencies initialized');
-
     stopwatch.stop();
     logger.finest('consumed time: ${stopwatch.elapsed}');
 

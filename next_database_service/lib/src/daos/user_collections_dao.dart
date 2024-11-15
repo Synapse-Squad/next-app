@@ -1,8 +1,8 @@
 import 'package:drift/drift.dart';
-import 'package:next_database_service/src/enums/order_options.dart';
 
 import '../../next_database_service.dart';
 import '../enums/collection_types.dart';
+import '../enums/order_options.dart';
 import 'user_collections_dao.drift.dart';
 
 @DriftAccessor(tables: [UserCollections])

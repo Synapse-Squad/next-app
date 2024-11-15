@@ -1,7 +1,6 @@
 import 'package:drift/drift.dart';
 
 import '../../next_database_service.dart';
-import '../enums/watch_status.dart';
 
 @DataClassName('Movie')
 class Movies extends Table {
@@ -11,7 +10,8 @@ class Movies extends Table {
   TextColumn get title => text().nullable()();
   DateTimeColumn get releaseDate => dateTime().nullable()();
   RealColumn get voteAverage => real().nullable()();
-  IntColumn get watched => intEnum<WatchStatus>()();
+  IntColumn get watched => intEnum<WatchStatus>()
+      .withDefault(Constant(WatchStatus.notWatched.index))();
   IntColumn get userRating => integer().nullable()();
   IntColumn get collectionId => integer().references(
         UserCollections,
