@@ -54,7 +54,9 @@ class $MoviesTable extends i3.Movies with i0.TableInfo<$MoviesTable, i1.Movie> {
   @override
   late final i0.GeneratedColumnWithTypeConverter<i2.WatchStatus, int> watched =
       i0.GeneratedColumn<int>('watched', aliasedName, false,
-              type: i0.DriftSqlType.int, requiredDuringInsert: true)
+              type: i0.DriftSqlType.int,
+              requiredDuringInsert: false,
+              defaultValue: i4.Constant(i2.WatchStatus.notWatched.index))
           .withConverter<i2.WatchStatus>(i1.$MoviesTable.$converterwatched);
   static const i0.VerificationMeta _userRatingMeta =
       const i0.VerificationMeta('userRating');
@@ -417,12 +419,11 @@ class MoviesCompanion extends i0.UpdateCompanion<i1.Movie> {
     this.title = const i0.Value.absent(),
     this.releaseDate = const i0.Value.absent(),
     this.voteAverage = const i0.Value.absent(),
-    required i2.WatchStatus watched,
+    this.watched = const i0.Value.absent(),
     this.userRating = const i0.Value.absent(),
     required int collectionId,
     this.createdAt = const i0.Value.absent(),
-  })  : watched = i0.Value(watched),
-        collectionId = i0.Value(collectionId);
+  }) : collectionId = i0.Value(collectionId);
   static i0.Insertable<i1.Movie> custom({
     i0.Expression<int>? id,
     i0.Expression<String>? posterPath,

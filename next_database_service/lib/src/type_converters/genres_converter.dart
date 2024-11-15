@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:drift/drift.dart';
 
-import '../../dtos/genre_dto.dart';
+import '../dtos/genre_dto.dart';
 
 class GenresConverter extends TypeConverter<List<GenreDto>, String> {
   const GenresConverter();

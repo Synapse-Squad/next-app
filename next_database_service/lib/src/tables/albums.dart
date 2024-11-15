@@ -13,7 +13,8 @@ class Albums extends Table {
   TextColumn get copyright => text().nullable()();
   DateTimeColumn get releaseDate => dateTime().nullable()();
   TextColumn get primaryGenreName => text().nullable()();
-  IntColumn get listened => intEnum<ListenStatus>()();
+  IntColumn get listened => intEnum<ListenStatus>()
+      .withDefault(Constant(ListenStatus.notListened.index))();
   IntColumn get userRating => integer().nullable()();
   IntColumn get collectionId => integer().references(
         UserCollections,

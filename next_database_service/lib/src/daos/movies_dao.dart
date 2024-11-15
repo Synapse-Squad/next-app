@@ -1,13 +1,11 @@
 import 'package:drift/drift.dart';
-import 'package:next_database_service/src/enums/watch_status.dart';
 
 import '../../next_database_service.dart';
-import '../enums/order_options.dart';
-import 'movies_dto.drift.dart';
+import 'movies_dao.drift.dart';
 
 @DriftAccessor(tables: [Movies])
-class MoviesDto extends DatabaseAccessor<NextDatabase> with $MoviesDtoMixin {
-  MoviesDto(super.attachedDatabase);
+class MoviesDao extends DatabaseAccessor<NextDatabase> with $MoviesDaoMixin {
+  MoviesDao(super.attachedDatabase);
 
   Future<List<Movie>> search(String query) =>
       (select(movies)..where((m) => m.title.contains(query))).get();
@@ -66,4 +64,6 @@ class MoviesDto extends DatabaseAccessor<NextDatabase> with $MoviesDtoMixin {
       (update(movies)..where((m) => m.id.equals(id))).write(
         const MoviesCompanion(watched: Value(WatchStatus.notWatched)),
       );
+
+  Future<int> add(MoviesCompanion companion) => into(movies).insert(companion);
 }

@@ -14,7 +14,8 @@ class Podcasts extends Table {
   TextColumn get trackViewUrl => text().nullable()();
   IntColumn get trackTimeMillis => integer().nullable()();
   TextColumn get collectionName => text().nullable()();
-  IntColumn get listened => intEnum<ListenStatus>()();
+  IntColumn get listened => intEnum<ListenStatus>()
+      .withDefault(Constant(ListenStatus.notListened.index))();
   IntColumn get userRating => integer().nullable()();
   TextColumn get genres => text().map(const GenresConverter()).nullable()();
   IntColumn get collectionId => integer().references(

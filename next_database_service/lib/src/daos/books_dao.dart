@@ -5,11 +5,11 @@ import '../enums/order_options.dart';
 import '../enums/read_status.dart';
 import '../tables/books.dart';
 import '../tables/books.drift.dart';
-import 'books_dto.drift.dart';
+import 'books_dao.drift.dart';
 
 @DriftAccessor(tables: [Books])
-class BooksDto extends DatabaseAccessor<NextDatabase> with $BooksDtoMixin {
-  BooksDto(super.attachedDatabase);
+class BooksDao extends DatabaseAccessor<NextDatabase> with $BooksDaoMixin {
+  BooksDao(super.attachedDatabase);
 
   Future<List<Book>> search(String query) =>
       (select(books)..where((b) => b.title.contains(query))).get();
