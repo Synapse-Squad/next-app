@@ -3,8 +3,9 @@ import 'package:drift/drift.dart' as i0;
 import 'package:next_database_service/src/tables/books.drift.dart' as i1;
 import 'package:next_database_service/src/enums/read_status.dart' as i2;
 import 'package:next_database_service/src/tables/books.dart' as i3;
+import 'package:drift/src/runtime/query_builder/query_builder.dart' as i4;
 import 'package:next_database_service/src/type_converters/list_converter.dart'
-    as i4;
+    as i5;
 
 class $BooksTable extends i3.Books with i0.TableInfo<$BooksTable, i1.Book> {
   @override
@@ -98,6 +99,14 @@ class $BooksTable extends i3.Books with i0.TableInfo<$BooksTable, i1.Book> {
       requiredDuringInsert: true,
       defaultConstraints: i0.GeneratedColumn.constraintIsAlways(
           'REFERENCES user_collections (id) ON DELETE CASCADE'));
+  static const i0.VerificationMeta _createdAtMeta =
+      const i0.VerificationMeta('createdAt');
+  @override
+  late final i0.GeneratedColumn<DateTime> createdAt =
+      i0.GeneratedColumn<DateTime>('created_at', aliasedName, false,
+          type: i0.DriftSqlType.dateTime,
+          requiredDuringInsert: false,
+          defaultValue: i4.currentDateAndTime);
   @override
   List<i0.GeneratedColumn> get $columns => [
         id,
@@ -112,7 +121,8 @@ class $BooksTable extends i3.Books with i0.TableInfo<$BooksTable, i1.Book> {
         categories,
         read,
         userRating,
-        collectionId
+        collectionId,
+        createdAt
       ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -180,6 +190,10 @@ class $BooksTable extends i3.Books with i0.TableInfo<$BooksTable, i1.Book> {
     } else if (isInserting) {
       context.missing(_collectionIdMeta);
     }
+    if (data.containsKey('created_at')) {
+      context.handle(_createdAtMeta,
+          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
+    }
     return context;
   }
 
@@ -217,6 +231,8 @@ class $BooksTable extends i3.Books with i0.TableInfo<$BooksTable, i1.Book> {
           .read(i0.DriftSqlType.int, data['${effectivePrefix}user_rating']),
       collectionId: attachedDatabase.typeMapping
           .read(i0.DriftSqlType.int, data['${effectivePrefix}collection_id'])!,
+      createdAt: attachedDatabase.typeMapping.read(
+          i0.DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
     );
   }
 
@@ -226,11 +242,11 @@ class $BooksTable extends i3.Books with i0.TableInfo<$BooksTable, i1.Book> {
   }
 
   static i0.TypeConverter<List<String>, String> $converterauthors =
-      const i4.ListConverter();
+      const i5.ListConverter();
   static i0.TypeConverter<List<String>?, String?> $converterauthorsn =
       i0.NullAwareTypeConverter.wrap($converterauthors);
   static i0.TypeConverter<List<String>, String> $convertercategories =
-      const i4.ListConverter();
+      const i5.ListConverter();
   static i0.TypeConverter<List<String>?, String?> $convertercategoriesn =
       i0.NullAwareTypeConverter.wrap($convertercategories);
   static i0.JsonTypeConverter2<i2.ReadStatus, int, int> $converterread =
@@ -251,6 +267,7 @@ class Book extends i0.DataClass implements i0.Insertable<i1.Book> {
   final i2.ReadStatus read;
   final int? userRating;
   final int collectionId;
+  final DateTime createdAt;
   const Book(
       {required this.id,
       this.title,
@@ -264,7 +281,8 @@ class Book extends i0.DataClass implements i0.Insertable<i1.Book> {
       this.categories,
       required this.read,
       this.userRating,
-      required this.collectionId});
+      required this.collectionId,
+      required this.createdAt});
   @override
   Map<String, i0.Expression> toColumns(bool nullToAbsent) {
     final map = <String, i0.Expression>{};
@@ -305,6 +323,7 @@ class Book extends i0.DataClass implements i0.Insertable<i1.Book> {
       map['user_rating'] = i0.Variable<int>(userRating);
     }
     map['collection_id'] = i0.Variable<int>(collectionId);
+    map['created_at'] = i0.Variable<DateTime>(createdAt);
     return map;
   }
 
@@ -343,6 +362,7 @@ class Book extends i0.DataClass implements i0.Insertable<i1.Book> {
           ? const i0.Value.absent()
           : i0.Value(userRating),
       collectionId: i0.Value(collectionId),
+      createdAt: i0.Value(createdAt),
     );
   }
 
@@ -364,6 +384,7 @@ class Book extends i0.DataClass implements i0.Insertable<i1.Book> {
           .fromJson(serializer.fromJson<int>(json['read'])),
       userRating: serializer.fromJson<int?>(json['userRating']),
       collectionId: serializer.fromJson<int>(json['collectionId']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
     );
   }
   @override
@@ -384,6 +405,7 @@ class Book extends i0.DataClass implements i0.Insertable<i1.Book> {
           serializer.toJson<int>(i1.$BooksTable.$converterread.toJson(read)),
       'userRating': serializer.toJson<int?>(userRating),
       'collectionId': serializer.toJson<int>(collectionId),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
     };
   }
 
@@ -400,7 +422,8 @@ class Book extends i0.DataClass implements i0.Insertable<i1.Book> {
           i0.Value<List<String>?> categories = const i0.Value.absent(),
           i2.ReadStatus? read,
           i0.Value<int?> userRating = const i0.Value.absent(),
-          int? collectionId}) =>
+          int? collectionId,
+          DateTime? createdAt}) =>
       i1.Book(
         id: id ?? this.id,
         title: title.present ? title.value : this.title,
@@ -417,6 +440,7 @@ class Book extends i0.DataClass implements i0.Insertable<i1.Book> {
         read: read ?? this.read,
         userRating: userRating.present ? userRating.value : this.userRating,
         collectionId: collectionId ?? this.collectionId,
+        createdAt: createdAt ?? this.createdAt,
       );
   Book copyWithCompanion(i1.BooksCompanion data) {
     return Book(
@@ -443,6 +467,7 @@ class Book extends i0.DataClass implements i0.Insertable<i1.Book> {
       collectionId: data.collectionId.present
           ? data.collectionId.value
           : this.collectionId,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
     );
   }
 
@@ -461,7 +486,8 @@ class Book extends i0.DataClass implements i0.Insertable<i1.Book> {
           ..write('categories: $categories, ')
           ..write('read: $read, ')
           ..write('userRating: $userRating, ')
-          ..write('collectionId: $collectionId')
+          ..write('collectionId: $collectionId, ')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }
@@ -480,7 +506,8 @@ class Book extends i0.DataClass implements i0.Insertable<i1.Book> {
       categories,
       read,
       userRating,
-      collectionId);
+      collectionId,
+      createdAt);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -497,7 +524,8 @@ class Book extends i0.DataClass implements i0.Insertable<i1.Book> {
           other.categories == this.categories &&
           other.read == this.read &&
           other.userRating == this.userRating &&
-          other.collectionId == this.collectionId);
+          other.collectionId == this.collectionId &&
+          other.createdAt == this.createdAt);
 }
 
 class BooksCompanion extends i0.UpdateCompanion<i1.Book> {
@@ -514,6 +542,7 @@ class BooksCompanion extends i0.UpdateCompanion<i1.Book> {
   final i0.Value<i2.ReadStatus> read;
   final i0.Value<int?> userRating;
   final i0.Value<int> collectionId;
+  final i0.Value<DateTime> createdAt;
   const BooksCompanion({
     this.id = const i0.Value.absent(),
     this.title = const i0.Value.absent(),
@@ -528,6 +557,7 @@ class BooksCompanion extends i0.UpdateCompanion<i1.Book> {
     this.read = const i0.Value.absent(),
     this.userRating = const i0.Value.absent(),
     this.collectionId = const i0.Value.absent(),
+    this.createdAt = const i0.Value.absent(),
   });
   BooksCompanion.insert({
     this.id = const i0.Value.absent(),
@@ -543,6 +573,7 @@ class BooksCompanion extends i0.UpdateCompanion<i1.Book> {
     required i2.ReadStatus read,
     this.userRating = const i0.Value.absent(),
     required int collectionId,
+    this.createdAt = const i0.Value.absent(),
   })  : read = i0.Value(read),
         collectionId = i0.Value(collectionId);
   static i0.Insertable<i1.Book> custom({
@@ -559,6 +590,7 @@ class BooksCompanion extends i0.UpdateCompanion<i1.Book> {
     i0.Expression<int>? read,
     i0.Expression<int>? userRating,
     i0.Expression<int>? collectionId,
+    i0.Expression<DateTime>? createdAt,
   }) {
     return i0.RawValuesInsertable({
       if (id != null) 'id': id,
@@ -574,6 +606,7 @@ class BooksCompanion extends i0.UpdateCompanion<i1.Book> {
       if (read != null) 'read': read,
       if (userRating != null) 'user_rating': userRating,
       if (collectionId != null) 'collection_id': collectionId,
+      if (createdAt != null) 'created_at': createdAt,
     });
   }
 
@@ -590,7 +623,8 @@ class BooksCompanion extends i0.UpdateCompanion<i1.Book> {
       i0.Value<List<String>?>? categories,
       i0.Value<i2.ReadStatus>? read,
       i0.Value<int?>? userRating,
-      i0.Value<int>? collectionId}) {
+      i0.Value<int>? collectionId,
+      i0.Value<DateTime>? createdAt}) {
     return i1.BooksCompanion(
       id: id ?? this.id,
       title: title ?? this.title,
@@ -605,6 +639,7 @@ class BooksCompanion extends i0.UpdateCompanion<i1.Book> {
       read: read ?? this.read,
       userRating: userRating ?? this.userRating,
       collectionId: collectionId ?? this.collectionId,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 
@@ -653,6 +688,9 @@ class BooksCompanion extends i0.UpdateCompanion<i1.Book> {
     if (collectionId.present) {
       map['collection_id'] = i0.Variable<int>(collectionId.value);
     }
+    if (createdAt.present) {
+      map['created_at'] = i0.Variable<DateTime>(createdAt.value);
+    }
     return map;
   }
 
@@ -671,7 +709,8 @@ class BooksCompanion extends i0.UpdateCompanion<i1.Book> {
           ..write('categories: $categories, ')
           ..write('read: $read, ')
           ..write('userRating: $userRating, ')
-          ..write('collectionId: $collectionId')
+          ..write('collectionId: $collectionId, ')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }

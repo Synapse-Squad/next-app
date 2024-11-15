@@ -43,7 +43,7 @@ class AlbumsDao extends DatabaseAccessor<NextDatabase> with $AlbumsDaoMixin {
                   mode: OrderingMode.desc,
                 ),
             OrderOptions.lowRatingFirst => (a) => OrderingTerm(
-                  expression: a.createdAt,
+                  expression: a.userRating,
                 ),
           }
         ],

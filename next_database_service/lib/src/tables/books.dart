@@ -23,4 +23,5 @@ class Books extends Table {
         #id,
         onDelete: KeyAction.cascade,
       )();
+  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
 }
