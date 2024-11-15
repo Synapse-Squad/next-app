@@ -3,6 +3,7 @@ import 'package:drift/drift.dart' as i0;
 import 'package:next_database_service/src/tables/albums.drift.dart' as i1;
 import 'package:next_database_service/src/enums/listen_status.dart' as i2;
 import 'package:next_database_service/src/tables/albums.dart' as i3;
+import 'package:drift/src/runtime/query_builder/query_builder.dart' as i4;
 
 class $AlbumsTable extends i3.Albums with i0.TableInfo<$AlbumsTable, i1.Album> {
   @override
@@ -88,6 +89,14 @@ class $AlbumsTable extends i3.Albums with i0.TableInfo<$AlbumsTable, i1.Album> {
       requiredDuringInsert: true,
       defaultConstraints: i0.GeneratedColumn.constraintIsAlways(
           'REFERENCES user_collections (id) ON DELETE CASCADE'));
+  static const i0.VerificationMeta _createdAtMeta =
+      const i0.VerificationMeta('createdAt');
+  @override
+  late final i0.GeneratedColumn<DateTime> createdAt =
+      i0.GeneratedColumn<DateTime>('created_at', aliasedName, false,
+          type: i0.DriftSqlType.dateTime,
+          requiredDuringInsert: false,
+          defaultValue: i4.currentDateAndTime);
   @override
   List<i0.GeneratedColumn> get $columns => [
         id,
@@ -101,7 +110,8 @@ class $AlbumsTable extends i3.Albums with i0.TableInfo<$AlbumsTable, i1.Album> {
         primaryGenreName,
         listened,
         userRating,
-        collectionId
+        collectionId,
+        createdAt
       ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -177,6 +187,10 @@ class $AlbumsTable extends i3.Albums with i0.TableInfo<$AlbumsTable, i1.Album> {
     } else if (isInserting) {
       context.missing(_collectionIdMeta);
     }
+    if (data.containsKey('created_at')) {
+      context.handle(_createdAtMeta,
+          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
+    }
     return context;
   }
 
@@ -212,6 +226,8 @@ class $AlbumsTable extends i3.Albums with i0.TableInfo<$AlbumsTable, i1.Album> {
           .read(i0.DriftSqlType.int, data['${effectivePrefix}user_rating']),
       collectionId: attachedDatabase.typeMapping
           .read(i0.DriftSqlType.int, data['${effectivePrefix}collection_id'])!,
+      createdAt: attachedDatabase.typeMapping.read(
+          i0.DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
     );
   }
 
@@ -237,6 +253,7 @@ class Album extends i0.DataClass implements i0.Insertable<i1.Album> {
   final i2.ListenStatus listened;
   final int? userRating;
   final int collectionId;
+  final DateTime createdAt;
   const Album(
       {required this.id,
       this.artistName,
@@ -249,7 +266,8 @@ class Album extends i0.DataClass implements i0.Insertable<i1.Album> {
       this.primaryGenreName,
       required this.listened,
       this.userRating,
-      required this.collectionId});
+      required this.collectionId,
+      required this.createdAt});
   @override
   Map<String, i0.Expression> toColumns(bool nullToAbsent) {
     final map = <String, i0.Expression>{};
@@ -286,6 +304,7 @@ class Album extends i0.DataClass implements i0.Insertable<i1.Album> {
       map['user_rating'] = i0.Variable<int>(userRating);
     }
     map['collection_id'] = i0.Variable<int>(collectionId);
+    map['created_at'] = i0.Variable<DateTime>(createdAt);
     return map;
   }
 
@@ -321,6 +340,7 @@ class Album extends i0.DataClass implements i0.Insertable<i1.Album> {
           ? const i0.Value.absent()
           : i0.Value(userRating),
       collectionId: i0.Value(collectionId),
+      createdAt: i0.Value(createdAt),
     );
   }
 
@@ -342,6 +362,7 @@ class Album extends i0.DataClass implements i0.Insertable<i1.Album> {
           .fromJson(serializer.fromJson<int>(json['listened'])),
       userRating: serializer.fromJson<int?>(json['userRating']),
       collectionId: serializer.fromJson<int>(json['collectionId']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
     );
   }
   @override
@@ -361,6 +382,7 @@ class Album extends i0.DataClass implements i0.Insertable<i1.Album> {
           .toJson<int>(i1.$AlbumsTable.$converterlistened.toJson(listened)),
       'userRating': serializer.toJson<int?>(userRating),
       'collectionId': serializer.toJson<int>(collectionId),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
     };
   }
 
@@ -376,7 +398,8 @@ class Album extends i0.DataClass implements i0.Insertable<i1.Album> {
           i0.Value<String?> primaryGenreName = const i0.Value.absent(),
           i2.ListenStatus? listened,
           i0.Value<int?> userRating = const i0.Value.absent(),
-          int? collectionId}) =>
+          int? collectionId,
+          DateTime? createdAt}) =>
       i1.Album(
         id: id ?? this.id,
         artistName: artistName.present ? artistName.value : this.artistName,
@@ -396,6 +419,7 @@ class Album extends i0.DataClass implements i0.Insertable<i1.Album> {
         listened: listened ?? this.listened,
         userRating: userRating.present ? userRating.value : this.userRating,
         collectionId: collectionId ?? this.collectionId,
+        createdAt: createdAt ?? this.createdAt,
       );
   Album copyWithCompanion(i1.AlbumsCompanion data) {
     return Album(
@@ -425,6 +449,7 @@ class Album extends i0.DataClass implements i0.Insertable<i1.Album> {
       collectionId: data.collectionId.present
           ? data.collectionId.value
           : this.collectionId,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
     );
   }
 
@@ -442,7 +467,8 @@ class Album extends i0.DataClass implements i0.Insertable<i1.Album> {
           ..write('primaryGenreName: $primaryGenreName, ')
           ..write('listened: $listened, ')
           ..write('userRating: $userRating, ')
-          ..write('collectionId: $collectionId')
+          ..write('collectionId: $collectionId, ')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }
@@ -460,7 +486,8 @@ class Album extends i0.DataClass implements i0.Insertable<i1.Album> {
       primaryGenreName,
       listened,
       userRating,
-      collectionId);
+      collectionId,
+      createdAt);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -476,7 +503,8 @@ class Album extends i0.DataClass implements i0.Insertable<i1.Album> {
           other.primaryGenreName == this.primaryGenreName &&
           other.listened == this.listened &&
           other.userRating == this.userRating &&
-          other.collectionId == this.collectionId);
+          other.collectionId == this.collectionId &&
+          other.createdAt == this.createdAt);
 }
 
 class AlbumsCompanion extends i0.UpdateCompanion<i1.Album> {
@@ -492,6 +520,7 @@ class AlbumsCompanion extends i0.UpdateCompanion<i1.Album> {
   final i0.Value<i2.ListenStatus> listened;
   final i0.Value<int?> userRating;
   final i0.Value<int> collectionId;
+  final i0.Value<DateTime> createdAt;
   const AlbumsCompanion({
     this.id = const i0.Value.absent(),
     this.artistName = const i0.Value.absent(),
@@ -505,6 +534,7 @@ class AlbumsCompanion extends i0.UpdateCompanion<i1.Album> {
     this.listened = const i0.Value.absent(),
     this.userRating = const i0.Value.absent(),
     this.collectionId = const i0.Value.absent(),
+    this.createdAt = const i0.Value.absent(),
   });
   AlbumsCompanion.insert({
     this.id = const i0.Value.absent(),
@@ -519,6 +549,7 @@ class AlbumsCompanion extends i0.UpdateCompanion<i1.Album> {
     required i2.ListenStatus listened,
     this.userRating = const i0.Value.absent(),
     required int collectionId,
+    this.createdAt = const i0.Value.absent(),
   })  : listened = i0.Value(listened),
         collectionId = i0.Value(collectionId);
   static i0.Insertable<i1.Album> custom({
@@ -534,6 +565,7 @@ class AlbumsCompanion extends i0.UpdateCompanion<i1.Album> {
     i0.Expression<int>? listened,
     i0.Expression<int>? userRating,
     i0.Expression<int>? collectionId,
+    i0.Expression<DateTime>? createdAt,
   }) {
     return i0.RawValuesInsertable({
       if (id != null) 'id': id,
@@ -548,6 +580,7 @@ class AlbumsCompanion extends i0.UpdateCompanion<i1.Album> {
       if (listened != null) 'listened': listened,
       if (userRating != null) 'user_rating': userRating,
       if (collectionId != null) 'collection_id': collectionId,
+      if (createdAt != null) 'created_at': createdAt,
     });
   }
 
@@ -563,7 +596,8 @@ class AlbumsCompanion extends i0.UpdateCompanion<i1.Album> {
       i0.Value<String?>? primaryGenreName,
       i0.Value<i2.ListenStatus>? listened,
       i0.Value<int?>? userRating,
-      i0.Value<int>? collectionId}) {
+      i0.Value<int>? collectionId,
+      i0.Value<DateTime>? createdAt}) {
     return i1.AlbumsCompanion(
       id: id ?? this.id,
       artistName: artistName ?? this.artistName,
@@ -577,6 +611,7 @@ class AlbumsCompanion extends i0.UpdateCompanion<i1.Album> {
       listened: listened ?? this.listened,
       userRating: userRating ?? this.userRating,
       collectionId: collectionId ?? this.collectionId,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 
@@ -620,6 +655,9 @@ class AlbumsCompanion extends i0.UpdateCompanion<i1.Album> {
     if (collectionId.present) {
       map['collection_id'] = i0.Variable<int>(collectionId.value);
     }
+    if (createdAt.present) {
+      map['created_at'] = i0.Variable<DateTime>(createdAt.value);
+    }
     return map;
   }
 
@@ -637,7 +675,8 @@ class AlbumsCompanion extends i0.UpdateCompanion<i1.Album> {
           ..write('primaryGenreName: $primaryGenreName, ')
           ..write('listened: $listened, ')
           ..write('userRating: $userRating, ')
-          ..write('collectionId: $collectionId')
+          ..write('collectionId: $collectionId, ')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }

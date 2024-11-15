@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 
+import 'daos/albums_dao.dart';
 import 'daos/user_collections_dao.dart';
 import 'next_database.drift.dart';
 import 'tables/albums.dart';
@@ -19,6 +20,7 @@ import 'tables/user_collections.dart';
   ],
   daos: [
     UserCollectionsDao,
+    AlbumsDao,
   ],
 )
 class NextDatabase extends $NextDatabase {

@@ -10,7 +10,7 @@ class UserCollectionsDao extends DatabaseAccessor<NextDatabase>
     with $UserCollectionsDaoMixin {
   UserCollectionsDao(super.attachedDatabase);
 
-  Future<List<UserCollection>> searchForCollection(String query) =>
+  Future<List<UserCollection>> search(String query) =>
       (select(userCollections)..where((c) => c.title.contains(query))).get();
 
   Future<List<UserCollection>> getCollections({
@@ -34,11 +34,12 @@ class UserCollectionsDao extends DatabaseAccessor<NextDatabase>
                 ),
             OrderOptions.newestFirst => (c) => OrderingTerm(
                   expression: c.createdAt,
+                  mode: OrderingMode.desc,
                 ),
             OrderOptions.oldestFirst => (c) => OrderingTerm(
                   expression: c.createdAt,
-                  mode: OrderingMode.desc,
                 ),
+            _ => throw UnimplementedError(),
           }
         ],
       );

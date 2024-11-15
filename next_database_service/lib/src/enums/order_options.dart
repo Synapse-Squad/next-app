@@ -1,1 +1,8 @@
-enum OrderOptions { fromAtoZ, fromZtoA, newestFirst, oldestFirst }
+enum OrderOptions {
+  fromAtoZ,
+  fromZtoA,
+  newestFirst,
+  oldestFirst,
+  highRatingFirst,
+  lowRatingFirst,
+}

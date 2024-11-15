@@ -8,6 +8,7 @@ import 'package:next_database_service/src/tables/podcasts.drift.dart' as i4;
 import 'package:next_database_service/src/tables/books.drift.dart' as i5;
 import 'package:next_database_service/src/daos/user_collections_dao.dart' as i6;
 import 'package:next_database_service/src/next_database.dart' as i7;
+import 'package:next_database_service/src/daos/albums_dao.dart' as i8;
 
 abstract class $NextDatabase extends i0.GeneratedDatabase {
   $NextDatabase(i0.QueryExecutor e) : super(e);
@@ -19,6 +20,7 @@ abstract class $NextDatabase extends i0.GeneratedDatabase {
   late final i5.$BooksTable books = i5.$BooksTable(this);
   late final i6.UserCollectionsDao userCollectionsDao =
       i6.UserCollectionsDao(this as i7.NextDatabase);
+  late final i8.AlbumsDao albumsDao = i8.AlbumsDao(this as i7.NextDatabase);
   @override
   Iterable<i0.TableInfo<i0.Table, Object?>> get allTables =>
       allSchemaEntities.whereType<i0.TableInfo<i0.Table, Object?>>();
