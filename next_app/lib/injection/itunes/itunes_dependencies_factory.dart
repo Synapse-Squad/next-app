@@ -22,8 +22,10 @@ class ItunesDependenciesFactory extends Factory<ItunesDependenciesContainer> {
       baseUrl: config.itunesApiBaseUrl,
     );
     final albumDataSource = AlbumDataSourceImpl(client);
+    final podcastDataSource = PodcastDataSourceImpl(client: client);
     final itunesRepository = ItunesRepositoryImpl(
       albumDataSource: albumDataSource,
+      podcastDataSource: podcastDataSource,
     );
 
     return ItunesDependenciesContainer(
