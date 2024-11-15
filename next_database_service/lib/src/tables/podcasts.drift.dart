@@ -4,8 +4,9 @@ import 'package:next_database_service/src/tables/podcasts.drift.dart' as i1;
 import 'package:next_database_service/src/enums/listen_status.dart' as i2;
 import 'package:next_database_service/dtos/genre_dto.dart' as i3;
 import 'package:next_database_service/src/tables/podcasts.dart' as i4;
+import 'package:drift/src/runtime/query_builder/query_builder.dart' as i5;
 import 'package:next_database_service/src/type_converters/genres_converter.dart'
-    as i5;
+    as i6;
 
 class $PodcastsTable extends i4.Podcasts
     with i0.TableInfo<$PodcastsTable, i1.Podcast> {
@@ -100,6 +101,14 @@ class $PodcastsTable extends i4.Podcasts
       requiredDuringInsert: true,
       defaultConstraints: i0.GeneratedColumn.constraintIsAlways(
           'REFERENCES user_collections (id) ON DELETE CASCADE'));
+  static const i0.VerificationMeta _createdAtMeta =
+      const i0.VerificationMeta('createdAt');
+  @override
+  late final i0.GeneratedColumn<DateTime> createdAt =
+      i0.GeneratedColumn<DateTime>('created_at', aliasedName, false,
+          type: i0.DriftSqlType.dateTime,
+          requiredDuringInsert: false,
+          defaultValue: i5.currentDateAndTime);
   @override
   List<i0.GeneratedColumn> get $columns => [
         id,
@@ -114,7 +123,8 @@ class $PodcastsTable extends i4.Podcasts
         listened,
         userRating,
         genres,
-        collectionId
+        collectionId,
+        createdAt
       ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -191,6 +201,10 @@ class $PodcastsTable extends i4.Podcasts
     } else if (isInserting) {
       context.missing(_collectionIdMeta);
     }
+    if (data.containsKey('created_at')) {
+      context.handle(_createdAtMeta,
+          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
+    }
     return context;
   }
 
@@ -229,6 +243,8 @@ class $PodcastsTable extends i4.Podcasts
           .read(i0.DriftSqlType.string, data['${effectivePrefix}genres'])),
       collectionId: attachedDatabase.typeMapping
           .read(i0.DriftSqlType.int, data['${effectivePrefix}collection_id'])!,
+      createdAt: attachedDatabase.typeMapping.read(
+          i0.DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
     );
   }
 
@@ -240,7 +256,7 @@ class $PodcastsTable extends i4.Podcasts
   static i0.JsonTypeConverter2<i2.ListenStatus, int, int> $converterlistened =
       const i0.EnumIndexConverter<i2.ListenStatus>(i2.ListenStatus.values);
   static i0.TypeConverter<List<i3.GenreDto>, String> $convertergenres =
-      const i5.GenresConverter();
+      const i6.GenresConverter();
   static i0.TypeConverter<List<i3.GenreDto>?, String?> $convertergenresn =
       i0.NullAwareTypeConverter.wrap($convertergenres);
 }
@@ -259,6 +275,7 @@ class Podcast extends i0.DataClass implements i0.Insertable<i1.Podcast> {
   final int? userRating;
   final List<i3.GenreDto>? genres;
   final int collectionId;
+  final DateTime createdAt;
   const Podcast(
       {required this.id,
       this.artworkUrl60,
@@ -272,7 +289,8 @@ class Podcast extends i0.DataClass implements i0.Insertable<i1.Podcast> {
       required this.listened,
       this.userRating,
       this.genres,
-      required this.collectionId});
+      required this.collectionId,
+      required this.createdAt});
   @override
   Map<String, i0.Expression> toColumns(bool nullToAbsent) {
     final map = <String, i0.Expression>{};
@@ -313,6 +331,7 @@ class Podcast extends i0.DataClass implements i0.Insertable<i1.Podcast> {
           i1.$PodcastsTable.$convertergenresn.toSql(genres));
     }
     map['collection_id'] = i0.Variable<int>(collectionId);
+    map['created_at'] = i0.Variable<DateTime>(createdAt);
     return map;
   }
 
@@ -351,6 +370,7 @@ class Podcast extends i0.DataClass implements i0.Insertable<i1.Podcast> {
           ? const i0.Value.absent()
           : i0.Value(genres),
       collectionId: i0.Value(collectionId),
+      createdAt: i0.Value(createdAt),
     );
   }
 
@@ -373,6 +393,7 @@ class Podcast extends i0.DataClass implements i0.Insertable<i1.Podcast> {
       userRating: serializer.fromJson<int?>(json['userRating']),
       genres: serializer.fromJson<List<i3.GenreDto>?>(json['genres']),
       collectionId: serializer.fromJson<int>(json['collectionId']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
     );
   }
   @override
@@ -393,6 +414,7 @@ class Podcast extends i0.DataClass implements i0.Insertable<i1.Podcast> {
       'userRating': serializer.toJson<int?>(userRating),
       'genres': serializer.toJson<List<i3.GenreDto>?>(genres),
       'collectionId': serializer.toJson<int>(collectionId),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
     };
   }
 
@@ -409,7 +431,8 @@ class Podcast extends i0.DataClass implements i0.Insertable<i1.Podcast> {
           i2.ListenStatus? listened,
           i0.Value<int?> userRating = const i0.Value.absent(),
           i0.Value<List<i3.GenreDto>?> genres = const i0.Value.absent(),
-          int? collectionId}) =>
+          int? collectionId,
+          DateTime? createdAt}) =>
       i1.Podcast(
         id: id ?? this.id,
         artworkUrl60:
@@ -431,6 +454,7 @@ class Podcast extends i0.DataClass implements i0.Insertable<i1.Podcast> {
         userRating: userRating.present ? userRating.value : this.userRating,
         genres: genres.present ? genres.value : this.genres,
         collectionId: collectionId ?? this.collectionId,
+        createdAt: createdAt ?? this.createdAt,
       );
   Podcast copyWithCompanion(i1.PodcastsCompanion data) {
     return Podcast(
@@ -462,6 +486,7 @@ class Podcast extends i0.DataClass implements i0.Insertable<i1.Podcast> {
       collectionId: data.collectionId.present
           ? data.collectionId.value
           : this.collectionId,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
     );
   }
 
@@ -480,7 +505,8 @@ class Podcast extends i0.DataClass implements i0.Insertable<i1.Podcast> {
           ..write('listened: $listened, ')
           ..write('userRating: $userRating, ')
           ..write('genres: $genres, ')
-          ..write('collectionId: $collectionId')
+          ..write('collectionId: $collectionId, ')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }
@@ -499,7 +525,8 @@ class Podcast extends i0.DataClass implements i0.Insertable<i1.Podcast> {
       listened,
       userRating,
       genres,
-      collectionId);
+      collectionId,
+      createdAt);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -516,7 +543,8 @@ class Podcast extends i0.DataClass implements i0.Insertable<i1.Podcast> {
           other.listened == this.listened &&
           other.userRating == this.userRating &&
           other.genres == this.genres &&
-          other.collectionId == this.collectionId);
+          other.collectionId == this.collectionId &&
+          other.createdAt == this.createdAt);
 }
 
 class PodcastsCompanion extends i0.UpdateCompanion<i1.Podcast> {
@@ -533,6 +561,7 @@ class PodcastsCompanion extends i0.UpdateCompanion<i1.Podcast> {
   final i0.Value<int?> userRating;
   final i0.Value<List<i3.GenreDto>?> genres;
   final i0.Value<int> collectionId;
+  final i0.Value<DateTime> createdAt;
   const PodcastsCompanion({
     this.id = const i0.Value.absent(),
     this.artworkUrl60 = const i0.Value.absent(),
@@ -547,6 +576,7 @@ class PodcastsCompanion extends i0.UpdateCompanion<i1.Podcast> {
     this.userRating = const i0.Value.absent(),
     this.genres = const i0.Value.absent(),
     this.collectionId = const i0.Value.absent(),
+    this.createdAt = const i0.Value.absent(),
   });
   PodcastsCompanion.insert({
     this.id = const i0.Value.absent(),
@@ -562,6 +592,7 @@ class PodcastsCompanion extends i0.UpdateCompanion<i1.Podcast> {
     this.userRating = const i0.Value.absent(),
     this.genres = const i0.Value.absent(),
     required int collectionId,
+    this.createdAt = const i0.Value.absent(),
   })  : listened = i0.Value(listened),
         collectionId = i0.Value(collectionId);
   static i0.Insertable<i1.Podcast> custom({
@@ -578,6 +609,7 @@ class PodcastsCompanion extends i0.UpdateCompanion<i1.Podcast> {
     i0.Expression<int>? userRating,
     i0.Expression<String>? genres,
     i0.Expression<int>? collectionId,
+    i0.Expression<DateTime>? createdAt,
   }) {
     return i0.RawValuesInsertable({
       if (id != null) 'id': id,
@@ -593,6 +625,7 @@ class PodcastsCompanion extends i0.UpdateCompanion<i1.Podcast> {
       if (userRating != null) 'user_rating': userRating,
       if (genres != null) 'genres': genres,
       if (collectionId != null) 'collection_id': collectionId,
+      if (createdAt != null) 'created_at': createdAt,
     });
   }
 
@@ -609,7 +642,8 @@ class PodcastsCompanion extends i0.UpdateCompanion<i1.Podcast> {
       i0.Value<i2.ListenStatus>? listened,
       i0.Value<int?>? userRating,
       i0.Value<List<i3.GenreDto>?>? genres,
-      i0.Value<int>? collectionId}) {
+      i0.Value<int>? collectionId,
+      i0.Value<DateTime>? createdAt}) {
     return i1.PodcastsCompanion(
       id: id ?? this.id,
       artworkUrl60: artworkUrl60 ?? this.artworkUrl60,
@@ -624,6 +658,7 @@ class PodcastsCompanion extends i0.UpdateCompanion<i1.Podcast> {
       userRating: userRating ?? this.userRating,
       genres: genres ?? this.genres,
       collectionId: collectionId ?? this.collectionId,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 
@@ -671,6 +706,9 @@ class PodcastsCompanion extends i0.UpdateCompanion<i1.Podcast> {
     if (collectionId.present) {
       map['collection_id'] = i0.Variable<int>(collectionId.value);
     }
+    if (createdAt.present) {
+      map['created_at'] = i0.Variable<DateTime>(createdAt.value);
+    }
     return map;
   }
 
@@ -689,7 +727,8 @@ class PodcastsCompanion extends i0.UpdateCompanion<i1.Podcast> {
           ..write('listened: $listened, ')
           ..write('userRating: $userRating, ')
           ..write('genres: $genres, ')
-          ..write('collectionId: $collectionId')
+          ..write('collectionId: $collectionId, ')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }

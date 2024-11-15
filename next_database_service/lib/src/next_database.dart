@@ -1,17 +1,21 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 
-import 'daos/collection_types_dao.dart';
+import 'daos/albums_dao.dart';
+import 'daos/books_dto.dart';
+import 'daos/movies_dto.dart';
+import 'daos/podcasts_dto.dart';
+import 'daos/user_collections_dao.dart';
 import 'next_database.drift.dart';
 import 'tables/albums.dart';
-import 'tables/collection_types.dart';
+import 'tables/books.dart';
 import 'tables/movies.dart';
 import 'tables/podcasts.dart';
 import 'tables/user_collections.dart';
 
 @DriftDatabase(
-  tables: [UserCollections, CollectionTypes, Movies, Albums, Podcasts],
-  daos: [CollectionTypesDao],
+  tables: [UserCollections, Movies, Albums, Podcasts, Books],
+  daos: [UserCollectionsDao, AlbumsDao, PodcastsDto, BooksDto, MoviesDto],
 )
 class NextDatabase extends $NextDatabase {
   NextDatabase() : super(_openConnection());

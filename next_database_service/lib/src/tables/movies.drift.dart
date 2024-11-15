@@ -3,6 +3,7 @@ import 'package:drift/drift.dart' as i0;
 import 'package:next_database_service/src/tables/movies.drift.dart' as i1;
 import 'package:next_database_service/src/enums/watch_status.dart' as i2;
 import 'package:next_database_service/src/tables/movies.dart' as i3;
+import 'package:drift/src/runtime/query_builder/query_builder.dart' as i4;
 
 class $MoviesTable extends i3.Movies with i0.TableInfo<$MoviesTable, i1.Movie> {
   @override
@@ -70,6 +71,14 @@ class $MoviesTable extends i3.Movies with i0.TableInfo<$MoviesTable, i1.Movie> {
       requiredDuringInsert: true,
       defaultConstraints: i0.GeneratedColumn.constraintIsAlways(
           'REFERENCES user_collections (id) ON DELETE CASCADE'));
+  static const i0.VerificationMeta _createdAtMeta =
+      const i0.VerificationMeta('createdAt');
+  @override
+  late final i0.GeneratedColumn<DateTime> createdAt =
+      i0.GeneratedColumn<DateTime>('created_at', aliasedName, false,
+          type: i0.DriftSqlType.dateTime,
+          requiredDuringInsert: false,
+          defaultValue: i4.currentDateAndTime);
   @override
   List<i0.GeneratedColumn> get $columns => [
         id,
@@ -80,7 +89,8 @@ class $MoviesTable extends i3.Movies with i0.TableInfo<$MoviesTable, i1.Movie> {
         voteAverage,
         watched,
         userRating,
-        collectionId
+        collectionId,
+        createdAt
       ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -136,6 +146,10 @@ class $MoviesTable extends i3.Movies with i0.TableInfo<$MoviesTable, i1.Movie> {
     } else if (isInserting) {
       context.missing(_collectionIdMeta);
     }
+    if (data.containsKey('created_at')) {
+      context.handle(_createdAtMeta,
+          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
+    }
     return context;
   }
 
@@ -164,6 +178,8 @@ class $MoviesTable extends i3.Movies with i0.TableInfo<$MoviesTable, i1.Movie> {
           .read(i0.DriftSqlType.int, data['${effectivePrefix}user_rating']),
       collectionId: attachedDatabase.typeMapping
           .read(i0.DriftSqlType.int, data['${effectivePrefix}collection_id'])!,
+      createdAt: attachedDatabase.typeMapping.read(
+          i0.DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
     );
   }
 
@@ -186,6 +202,7 @@ class Movie extends i0.DataClass implements i0.Insertable<i1.Movie> {
   final i2.WatchStatus watched;
   final int? userRating;
   final int collectionId;
+  final DateTime createdAt;
   const Movie(
       {required this.id,
       this.posterPath,
@@ -195,7 +212,8 @@ class Movie extends i0.DataClass implements i0.Insertable<i1.Movie> {
       this.voteAverage,
       required this.watched,
       this.userRating,
-      required this.collectionId});
+      required this.collectionId,
+      required this.createdAt});
   @override
   Map<String, i0.Expression> toColumns(bool nullToAbsent) {
     final map = <String, i0.Expression>{};
@@ -223,6 +241,7 @@ class Movie extends i0.DataClass implements i0.Insertable<i1.Movie> {
       map['user_rating'] = i0.Variable<int>(userRating);
     }
     map['collection_id'] = i0.Variable<int>(collectionId);
+    map['created_at'] = i0.Variable<DateTime>(createdAt);
     return map;
   }
 
@@ -249,6 +268,7 @@ class Movie extends i0.DataClass implements i0.Insertable<i1.Movie> {
           ? const i0.Value.absent()
           : i0.Value(userRating),
       collectionId: i0.Value(collectionId),
+      createdAt: i0.Value(createdAt),
     );
   }
 
@@ -266,6 +286,7 @@ class Movie extends i0.DataClass implements i0.Insertable<i1.Movie> {
           .fromJson(serializer.fromJson<int>(json['watched'])),
       userRating: serializer.fromJson<int?>(json['userRating']),
       collectionId: serializer.fromJson<int>(json['collectionId']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
     );
   }
   @override
@@ -282,6 +303,7 @@ class Movie extends i0.DataClass implements i0.Insertable<i1.Movie> {
           .toJson<int>(i1.$MoviesTable.$converterwatched.toJson(watched)),
       'userRating': serializer.toJson<int?>(userRating),
       'collectionId': serializer.toJson<int>(collectionId),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
     };
   }
 
@@ -294,7 +316,8 @@ class Movie extends i0.DataClass implements i0.Insertable<i1.Movie> {
           i0.Value<double?> voteAverage = const i0.Value.absent(),
           i2.WatchStatus? watched,
           i0.Value<int?> userRating = const i0.Value.absent(),
-          int? collectionId}) =>
+          int? collectionId,
+          DateTime? createdAt}) =>
       i1.Movie(
         id: id ?? this.id,
         posterPath: posterPath.present ? posterPath.value : this.posterPath,
@@ -305,6 +328,7 @@ class Movie extends i0.DataClass implements i0.Insertable<i1.Movie> {
         watched: watched ?? this.watched,
         userRating: userRating.present ? userRating.value : this.userRating,
         collectionId: collectionId ?? this.collectionId,
+        createdAt: createdAt ?? this.createdAt,
       );
   Movie copyWithCompanion(i1.MoviesCompanion data) {
     return Movie(
@@ -323,6 +347,7 @@ class Movie extends i0.DataClass implements i0.Insertable<i1.Movie> {
       collectionId: data.collectionId.present
           ? data.collectionId.value
           : this.collectionId,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
     );
   }
 
@@ -337,14 +362,15 @@ class Movie extends i0.DataClass implements i0.Insertable<i1.Movie> {
           ..write('voteAverage: $voteAverage, ')
           ..write('watched: $watched, ')
           ..write('userRating: $userRating, ')
-          ..write('collectionId: $collectionId')
+          ..write('collectionId: $collectionId, ')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }
 
   @override
   int get hashCode => Object.hash(id, posterPath, overview, title, releaseDate,
-      voteAverage, watched, userRating, collectionId);
+      voteAverage, watched, userRating, collectionId, createdAt);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -357,7 +383,8 @@ class Movie extends i0.DataClass implements i0.Insertable<i1.Movie> {
           other.voteAverage == this.voteAverage &&
           other.watched == this.watched &&
           other.userRating == this.userRating &&
-          other.collectionId == this.collectionId);
+          other.collectionId == this.collectionId &&
+          other.createdAt == this.createdAt);
 }
 
 class MoviesCompanion extends i0.UpdateCompanion<i1.Movie> {
@@ -370,6 +397,7 @@ class MoviesCompanion extends i0.UpdateCompanion<i1.Movie> {
   final i0.Value<i2.WatchStatus> watched;
   final i0.Value<int?> userRating;
   final i0.Value<int> collectionId;
+  final i0.Value<DateTime> createdAt;
   const MoviesCompanion({
     this.id = const i0.Value.absent(),
     this.posterPath = const i0.Value.absent(),
@@ -380,6 +408,7 @@ class MoviesCompanion extends i0.UpdateCompanion<i1.Movie> {
     this.watched = const i0.Value.absent(),
     this.userRating = const i0.Value.absent(),
     this.collectionId = const i0.Value.absent(),
+    this.createdAt = const i0.Value.absent(),
   });
   MoviesCompanion.insert({
     this.id = const i0.Value.absent(),
@@ -391,6 +420,7 @@ class MoviesCompanion extends i0.UpdateCompanion<i1.Movie> {
     required i2.WatchStatus watched,
     this.userRating = const i0.Value.absent(),
     required int collectionId,
+    this.createdAt = const i0.Value.absent(),
   })  : watched = i0.Value(watched),
         collectionId = i0.Value(collectionId);
   static i0.Insertable<i1.Movie> custom({
@@ -403,6 +433,7 @@ class MoviesCompanion extends i0.UpdateCompanion<i1.Movie> {
     i0.Expression<int>? watched,
     i0.Expression<int>? userRating,
     i0.Expression<int>? collectionId,
+    i0.Expression<DateTime>? createdAt,
   }) {
     return i0.RawValuesInsertable({
       if (id != null) 'id': id,
@@ -414,6 +445,7 @@ class MoviesCompanion extends i0.UpdateCompanion<i1.Movie> {
       if (watched != null) 'watched': watched,
       if (userRating != null) 'user_rating': userRating,
       if (collectionId != null) 'collection_id': collectionId,
+      if (createdAt != null) 'created_at': createdAt,
     });
   }
 
@@ -426,7 +458,8 @@ class MoviesCompanion extends i0.UpdateCompanion<i1.Movie> {
       i0.Value<double?>? voteAverage,
       i0.Value<i2.WatchStatus>? watched,
       i0.Value<int?>? userRating,
-      i0.Value<int>? collectionId}) {
+      i0.Value<int>? collectionId,
+      i0.Value<DateTime>? createdAt}) {
     return i1.MoviesCompanion(
       id: id ?? this.id,
       posterPath: posterPath ?? this.posterPath,
@@ -437,6 +470,7 @@ class MoviesCompanion extends i0.UpdateCompanion<i1.Movie> {
       watched: watched ?? this.watched,
       userRating: userRating ?? this.userRating,
       collectionId: collectionId ?? this.collectionId,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 
@@ -471,6 +505,9 @@ class MoviesCompanion extends i0.UpdateCompanion<i1.Movie> {
     if (collectionId.present) {
       map['collection_id'] = i0.Variable<int>(collectionId.value);
     }
+    if (createdAt.present) {
+      map['created_at'] = i0.Variable<DateTime>(createdAt.value);
+    }
     return map;
   }
 
@@ -485,7 +522,8 @@ class MoviesCompanion extends i0.UpdateCompanion<i1.Movie> {
           ..write('voteAverage: $voteAverage, ')
           ..write('watched: $watched, ')
           ..write('userRating: $userRating, ')
-          ..write('collectionId: $collectionId')
+          ..write('collectionId: $collectionId, ')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }

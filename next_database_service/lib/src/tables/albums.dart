@@ -1,7 +1,6 @@
 import 'package:drift/drift.dart';
 
 import '../../next_database_service.dart';
-import '../enums/listen_status.dart';
 
 @DataClassName('Album')
 class Albums extends Table {
@@ -21,4 +20,5 @@ class Albums extends Table {
         #id,
         onDelete: KeyAction.cascade,
       )();
+  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
 }
