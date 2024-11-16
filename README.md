@@ -12,4 +12,5 @@ Welcome to the Next App! We are at the development stage. You can check our code
 
 ## Maintainers
 
-(Kanan Yusubov)[https://github.com/thisisyusub]
+- [Thisisyusub](https://github.com/thisisyusub)
+- [Galib Ismayilzada](https://github.com/Galib33)
