@@ -2,22 +2,33 @@ import 'package:drift/drift.dart';
 
 import '../../next_database_service.dart';
 import '../tables/albums.dart';
-import '../tables/albums.drift.dart';
 import 'albums_dao.drift.dart';
 
 @DriftAccessor(tables: [Albums])
 class AlbumsDao extends DatabaseAccessor<NextDatabase> with $AlbumsDaoMixin {
   AlbumsDao(super.attachedDatabase);
 
-  Future<List<Album>> search(String query) =>
-      (select(albums)..where((a) => a.collectionName.contains(query))).get();
+  // +
+  Future<List<Album>> search({
+    required String query,
+    required int collectionId,
+  }) =>
+      (select(albums)
+            ..where((a) => Expression.and([
+                  a.collectionName.contains(query),
+                  a.collectionId.equals(collectionId),
+                ])))
+          .get();
 
+  // +
   Future<List<Album>> getListByCollectionId(
     int collectionId, {
-    OrderOptions orderOption = OrderOptions.newestFirst,
+    OrderOptions? orderOption,
   }) {
     var selector = select(albums)
       ..where((a) => a.collectionId.equals(collectionId));
+
+    orderOption ??= OrderOptions.newestFirst;
 
     selector = selector
       ..orderBy(
@@ -68,4 +79,7 @@ class AlbumsDao extends DatabaseAccessor<NextDatabase> with $AlbumsDaoMixin {
       );
 
   Future<int> add(AlbumsCompanion companion) => into(albums).insert(companion);
+
+  Stream<Album> watchAlbum(int id) =>
+      (select(albums)..where((a) => a.id.equals(id))).watchSingle();
 }

@@ -13,8 +13,8 @@ typedef WidgetBuilderWithDependency<T> = Widget Function(
   T dependencies,
 );
 
-class FeatureScope<T> extends StatefulWidget {
-  const FeatureScope({
+class ProviderScope<T> extends StatefulWidget {
+  const ProviderScope({
     super.key,
     required this.dependencyContainerBuilder,
     required this.widgetBuilderWithDependency,
@@ -24,11 +24,11 @@ class FeatureScope<T> extends StatefulWidget {
   final WidgetBuilderWithDependency<T> widgetBuilderWithDependency;
 
   @override
-  State<FeatureScope<T>> createState() => _FeatureScopeState<T>();
+  State<ProviderScope<T>> createState() => _ProviderScopeState<T>();
 }
 
-class _FeatureScopeState<T> extends State<FeatureScope<T>> {
-  late final T _dependencies;
+class _ProviderScopeState<T> extends State<ProviderScope<T>> {
+  T? _dependencies;
   final _logger = Logger('Feature:');
 
   @override
@@ -43,11 +43,12 @@ class _FeatureScopeState<T> extends State<FeatureScope<T>> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.widgetBuilderWithDependency(context, _dependencies);
+    return widget.widgetBuilderWithDependency(context, _dependencies as T);
   }
 
   @override
   void dispose() {
+    _dependencies = null;
     _logger.info('$T disposed');
     super.dispose();
   }

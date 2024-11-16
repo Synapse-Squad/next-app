@@ -1,5 +1,6 @@
 class AlbumEntity {
   const AlbumEntity({
+    this.id,
     this.artistName,
     this.collectionName,
     this.collectionViewUrl,
@@ -10,6 +11,7 @@ class AlbumEntity {
     this.primaryGenreName,
   });
 
+  final int? id;
   final String? artistName;
   final String? collectionName;
   final String? collectionViewUrl;
@@ -22,6 +24,7 @@ class AlbumEntity {
   @override
   String toString() {
     return '''AlbumEntity(
+    id: $id,
     artistName: $artistName,
     trackCount: $trackCount,
     releaseData: $releaseDate,
@@ -31,6 +34,7 @@ class AlbumEntity {
 
   @override
   int get hashCode => Object.hashAll([
+        id,
         artistName,
         collectionName,
         collectionViewUrl,
@@ -45,6 +49,7 @@ class AlbumEntity {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is AlbumEntity &&
+          id == other.id &&
           artistName == other.artistName &&
           collectionName == other.collectionName &&
           collectionViewUrl == other.collectionViewUrl &&

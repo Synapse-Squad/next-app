@@ -12,7 +12,7 @@ class AlbumSearchScope extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FeatureScope(
+    return ProviderScope(
       dependencyContainerBuilder: (dependencies) {
         return AlbumDependenciesFactory(
           dependenciesContainer: dependencies,
