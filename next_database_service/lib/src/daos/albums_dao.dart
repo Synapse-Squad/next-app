@@ -8,7 +8,6 @@ import 'albums_dao.drift.dart';
 class AlbumsDao extends DatabaseAccessor<NextDatabase> with $AlbumsDaoMixin {
   AlbumsDao(super.attachedDatabase);
 
-  // +
   Future<List<Album>> search({
     required String query,
     required int collectionId,
@@ -20,7 +19,6 @@ class AlbumsDao extends DatabaseAccessor<NextDatabase> with $AlbumsDaoMixin {
                 ])))
           .get();
 
-  // +
   Future<List<Album>> getListByCollectionId(
     int collectionId, {
     OrderOptions? orderOption,

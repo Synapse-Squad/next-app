@@ -1,4 +1,5 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:facades/facades.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:itunes_service/itunes_service.dart';
 
@@ -6,14 +7,14 @@ part 'album_search_event.dart';
 part 'album_search_state.dart';
 
 class AlbumSearchBloc extends Bloc<AlbumSearchEvent, AlbumSearchState> {
-  AlbumSearchBloc(this.albumRepository) : super(AlbumSearchInitial()) {
+  AlbumSearchBloc(this.albumFacade) : super(AlbumSearchInitial()) {
     on<AlbumQueried>(
       _onAlbumQueried,
       transformer: restartable(),
     );
   }
 
-  final IAlbumRepository albumRepository;
+  final AlbumFacadeType albumFacade;
 
   void _onAlbumQueried(
     AlbumQueried event,
@@ -21,7 +22,7 @@ class AlbumSearchBloc extends Bloc<AlbumSearchEvent, AlbumSearchState> {
   ) async {
     try {
       emit(AlbumInProgress());
-      final albums = await albumRepository.search(event.query);
+      final albums = await albumFacade.searchForRemoteList(event.query);
       emit(AlbumSearchSuccess(albums));
     } on AlbumNotFoundException {
       emit(AlbumNotFound());

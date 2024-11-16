@@ -1,6 +1,8 @@
+import '../../../itunes_service.dart';
+
 class PodcastEntity {
   String? artworkUrl600;
-  String? genreName;
+  List<GenreEntity>? genres;
   String? trackName;
   String? shortDescription;
   DateTime? releaseDate;
@@ -11,7 +13,7 @@ class PodcastEntity {
 
   PodcastEntity({
     this.artworkUrl600,
-    this.genreName,
+    this.genres,
     this.trackName,
     this.shortDescription,
     this.releaseDate,
@@ -25,7 +27,7 @@ class PodcastEntity {
   String toString() {
     return '''PodcastEntity(
     artworkUrl600: $artworkUrl600, 
-    genreName: $genreName, 
+    genres: $genres, 
     trackName: $trackName, 
     shortDescription: $shortDescription,
      releaseDate: $releaseDate, 
@@ -41,7 +43,7 @@ class PodcastEntity {
     if (identical(this, other)) return true;
 
     return other.artworkUrl600 == artworkUrl600 &&
-        other.genreName == genreName &&
+        other.genres == genres &&
         other.trackName == trackName &&
         other.shortDescription == shortDescription &&
         other.releaseDate == releaseDate &&
@@ -54,7 +56,7 @@ class PodcastEntity {
   @override
   int get hashCode {
     return artworkUrl600.hashCode ^
-        genreName.hashCode ^
+        genres.hashCode ^
         trackName.hashCode ^
         shortDescription.hashCode ^
         releaseDate.hashCode ^

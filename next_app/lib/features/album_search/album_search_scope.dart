@@ -15,14 +15,14 @@ class AlbumSearchScope extends StatelessWidget {
     return ProviderScope(
       dependencyContainerBuilder: (dependencies) {
         return AlbumDependenciesFactory(
-          dependenciesContainer: dependencies,
+          dependencies: dependencies,
           config: const Config(),
         ).create();
       },
       widgetBuilderWithDependency: (context, dependencies) {
         return BlocProvider(
           create: (_) {
-            return AlbumSearchBloc(dependencies.albumRepository);
+            return AlbumSearchBloc(dependencies.albumFacade);
           },
           child: const AlbumSearchView(),
         );

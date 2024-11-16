@@ -1,23 +1,31 @@
 import 'package:drift/drift.dart';
 
 import '../../next_database_service.dart';
-import '../tables/podcasts.drift.dart';
-import 'podcasts_dao.drift.dart';
+import '../tables/podcasts.dart';
 
 @DriftAccessor(tables: [Podcasts])
 class PodcastsDao extends DatabaseAccessor<NextDatabase>
     with $PodcastsDaoMixin {
   PodcastsDao(super.attachedDatabase);
 
-  Future<List<Podcast>> search(String query) =>
-      (select(podcasts)..where((p) => p.collectionName.contains(query))).get();
+  Future<List<Podcast>> search({
+    required String query,
+    required int collectionId,
+  }) =>
+      (select(podcasts)
+            ..where((a) => Expression.and([
+                  a.collectionName.contains(query),
+                  a.collectionId.equals(collectionId),
+                ])))
+          .get();
 
   Future<List<Podcast>> getListByCollectionId(
     int collectionId, {
-    OrderOptions orderOption = OrderOptions.newestFirst,
+    OrderOptions? orderOption,
   }) {
     var selector = select(podcasts)
       ..where((p) => p.collectionId.equals(collectionId));
+    orderOption ??= OrderOptions.newestFirst;
 
     selector = selector
       ..orderBy(
@@ -66,4 +74,7 @@ class PodcastsDao extends DatabaseAccessor<NextDatabase>
       (update(podcasts)..where((p) => p.id.equals(id))).write(
         const PodcastsCompanion(listened: Value(ListenStatus.notListened)),
       );
+
+  Future<int> add(PodcastsCompanion companion) =>
+      into(podcasts).insert(companion);
 }
