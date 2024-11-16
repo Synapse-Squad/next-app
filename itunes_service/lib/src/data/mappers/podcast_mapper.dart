@@ -1,22 +1,23 @@
-import '../../domain/entities/podcast_entity.dart';
+import 'package:itunes_service/itunes_service.dart';
+
 import '../dtos/podcast_dto.dart';
 
 class PodcastMapper {
-  static List<PodcastEntity> toEntity(List<PodcastDto> dtoList) {
-    return dtoList.map(
-      (podcast) {
+  static List<PodcastEntity> toEntity(List<PodcastDto> dto) {
+    return dto.map(
+      (dto) {
         return PodcastEntity(
-          artworkUrl600: podcast.artworkUrl600,
-          collectionName: podcast.collectionName,
-          collectionViewUrl: podcast.collectionViewUrl,
-          genreName: podcast.genres != null && podcast.genres!.isNotEmpty
-              ? podcast.genres!.first.name
-              : null,
-          releaseDate: podcast.releaseDate,
-          shortDescription: podcast.shortDescription,
-          trackName: podcast.trackName,
-          trackTimeMillis: podcast.trackTimeMillis,
-          trackViewUrl: podcast.trackViewUrl,
+          artworkUrl600: dto.artworkUrl600,
+          collectionName: dto.collectionName,
+          collectionViewUrl: dto.collectionViewUrl,
+          genres: dto.genres
+              ?.map((genre) => GenreEntity(id: genre.id, name: genre.name))
+              .toList(),
+          releaseDate: dto.releaseDate,
+          shortDescription: dto.shortDescription,
+          trackName: dto.trackName,
+          trackTimeMillis: dto.trackTimeMillis,
+          trackViewUrl: dto.trackViewUrl,
         );
       },
     ).toList();

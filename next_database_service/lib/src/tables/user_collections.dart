@@ -1,9 +1,10 @@
 import 'package:drift/drift.dart';
+import 'package:next_database_service/next_database_service.dart';
 
 class UserCollections extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get title => text().withLength()();
-  IntColumn get typeId => integer()();
+  IntColumn get typeId => intEnum<CollectionTypes>()();
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
 
   @override

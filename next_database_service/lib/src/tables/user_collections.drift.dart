@@ -2,10 +2,11 @@
 import 'package:drift/drift.dart' as i0;
 import 'package:next_database_service/src/tables/user_collections.drift.dart'
     as i1;
-import 'package:next_database_service/src/tables/user_collections.dart' as i2;
-import 'package:drift/src/runtime/query_builder/query_builder.dart' as i3;
+import 'package:next_database_service/src/enums/collection_types.dart' as i2;
+import 'package:next_database_service/src/tables/user_collections.dart' as i3;
+import 'package:drift/src/runtime/query_builder/query_builder.dart' as i4;
 
-class $UserCollectionsTable extends i2.UserCollections
+class $UserCollectionsTable extends i3.UserCollections
     with i0.TableInfo<$UserCollectionsTable, i1.UserCollection> {
   @override
   final i0.GeneratedDatabase attachedDatabase;
@@ -31,9 +32,11 @@ class $UserCollectionsTable extends i2.UserCollections
   static const i0.VerificationMeta _typeIdMeta =
       const i0.VerificationMeta('typeId');
   @override
-  late final i0.GeneratedColumn<int> typeId = i0.GeneratedColumn<int>(
-      'type_id', aliasedName, false,
-      type: i0.DriftSqlType.int, requiredDuringInsert: true);
+  late final i0.GeneratedColumnWithTypeConverter<i2.CollectionTypes, int>
+      typeId = i0.GeneratedColumn<int>('type_id', aliasedName, false,
+              type: i0.DriftSqlType.int, requiredDuringInsert: true)
+          .withConverter<i2.CollectionTypes>(
+              i1.$UserCollectionsTable.$convertertypeId);
   static const i0.VerificationMeta _createdAtMeta =
       const i0.VerificationMeta('createdAt');
   @override
@@ -41,7 +44,7 @@ class $UserCollectionsTable extends i2.UserCollections
       i0.GeneratedColumn<DateTime>('created_at', aliasedName, false,
           type: i0.DriftSqlType.dateTime,
           requiredDuringInsert: false,
-          defaultValue: i3.currentDateAndTime);
+          defaultValue: i4.currentDateAndTime);
   @override
   List<i0.GeneratedColumn> get $columns => [id, title, typeId, createdAt];
   @override
@@ -64,12 +67,7 @@ class $UserCollectionsTable extends i2.UserCollections
     } else if (isInserting) {
       context.missing(_titleMeta);
     }
-    if (data.containsKey('type_id')) {
-      context.handle(_typeIdMeta,
-          typeId.isAcceptableOrUnknown(data['type_id']!, _typeIdMeta));
-    } else if (isInserting) {
-      context.missing(_typeIdMeta);
-    }
+    context.handle(_typeIdMeta, const i0.VerificationResult.success());
     if (data.containsKey('created_at')) {
       context.handle(_createdAtMeta,
           createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
@@ -91,8 +89,9 @@ class $UserCollectionsTable extends i2.UserCollections
           .read(i0.DriftSqlType.int, data['${effectivePrefix}id'])!,
       title: attachedDatabase.typeMapping
           .read(i0.DriftSqlType.string, data['${effectivePrefix}title'])!,
-      typeId: attachedDatabase.typeMapping
-          .read(i0.DriftSqlType.int, data['${effectivePrefix}type_id'])!,
+      typeId: i1.$UserCollectionsTable.$convertertypeId.fromSql(attachedDatabase
+          .typeMapping
+          .read(i0.DriftSqlType.int, data['${effectivePrefix}type_id'])!),
       createdAt: attachedDatabase.typeMapping.read(
           i0.DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
     );
@@ -102,13 +101,17 @@ class $UserCollectionsTable extends i2.UserCollections
   $UserCollectionsTable createAlias(String alias) {
     return $UserCollectionsTable(attachedDatabase, alias);
   }
+
+  static i0.JsonTypeConverter2<i2.CollectionTypes, int, int> $convertertypeId =
+      const i0.EnumIndexConverter<i2.CollectionTypes>(
+          i2.CollectionTypes.values);
 }
 
 class UserCollection extends i0.DataClass
     implements i0.Insertable<i1.UserCollection> {
   final int id;
   final String title;
-  final int typeId;
+  final i2.CollectionTypes typeId;
   final DateTime createdAt;
   const UserCollection(
       {required this.id,
@@ -120,7 +123,10 @@ class UserCollection extends i0.DataClass
     final map = <String, i0.Expression>{};
     map['id'] = i0.Variable<int>(id);
     map['title'] = i0.Variable<String>(title);
-    map['type_id'] = i0.Variable<int>(typeId);
+    {
+      map['type_id'] = i0.Variable<int>(
+          i1.$UserCollectionsTable.$convertertypeId.toSql(typeId));
+    }
     map['created_at'] = i0.Variable<DateTime>(createdAt);
     return map;
   }
@@ -140,7 +146,8 @@ class UserCollection extends i0.DataClass
     return UserCollection(
       id: serializer.fromJson<int>(json['id']),
       title: serializer.fromJson<String>(json['title']),
-      typeId: serializer.fromJson<int>(json['typeId']),
+      typeId: i1.$UserCollectionsTable.$convertertypeId
+          .fromJson(serializer.fromJson<int>(json['typeId'])),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
     );
   }
@@ -150,13 +157,17 @@ class UserCollection extends i0.DataClass
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
       'title': serializer.toJson<String>(title),
-      'typeId': serializer.toJson<int>(typeId),
+      'typeId': serializer.toJson<int>(
+          i1.$UserCollectionsTable.$convertertypeId.toJson(typeId)),
       'createdAt': serializer.toJson<DateTime>(createdAt),
     };
   }
 
   i1.UserCollection copyWith(
-          {int? id, String? title, int? typeId, DateTime? createdAt}) =>
+          {int? id,
+          String? title,
+          i2.CollectionTypes? typeId,
+          DateTime? createdAt}) =>
       i1.UserCollection(
         id: id ?? this.id,
         title: title ?? this.title,
@@ -198,7 +209,7 @@ class UserCollection extends i0.DataClass
 class UserCollectionsCompanion extends i0.UpdateCompanion<i1.UserCollection> {
   final i0.Value<int> id;
   final i0.Value<String> title;
-  final i0.Value<int> typeId;
+  final i0.Value<i2.CollectionTypes> typeId;
   final i0.Value<DateTime> createdAt;
   const UserCollectionsCompanion({
     this.id = const i0.Value.absent(),
@@ -209,7 +220,7 @@ class UserCollectionsCompanion extends i0.UpdateCompanion<i1.UserCollection> {
   UserCollectionsCompanion.insert({
     this.id = const i0.Value.absent(),
     required String title,
-    required int typeId,
+    required i2.CollectionTypes typeId,
     this.createdAt = const i0.Value.absent(),
   })  : title = i0.Value(title),
         typeId = i0.Value(typeId);
@@ -230,7 +241,7 @@ class UserCollectionsCompanion extends i0.UpdateCompanion<i1.UserCollection> {
   i1.UserCollectionsCompanion copyWith(
       {i0.Value<int>? id,
       i0.Value<String>? title,
-      i0.Value<int>? typeId,
+      i0.Value<i2.CollectionTypes>? typeId,
       i0.Value<DateTime>? createdAt}) {
     return i1.UserCollectionsCompanion(
       id: id ?? this.id,
@@ -250,7 +261,8 @@ class UserCollectionsCompanion extends i0.UpdateCompanion<i1.UserCollection> {
       map['title'] = i0.Variable<String>(title.value);
     }
     if (typeId.present) {
-      map['type_id'] = i0.Variable<int>(typeId.value);
+      map['type_id'] = i0.Variable<int>(
+          i1.$UserCollectionsTable.$convertertypeId.toSql(typeId.value));
     }
     if (createdAt.present) {
       map['created_at'] = i0.Variable<DateTime>(createdAt.value);

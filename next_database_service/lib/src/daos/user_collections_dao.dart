@@ -1,8 +1,6 @@
 import 'package:drift/drift.dart';
-import 'package:next_database_service/src/enums/order_options.dart';
 
 import '../../next_database_service.dart';
-import '../enums/collection_types.dart';
 import 'user_collections_dao.drift.dart';
 
 @DriftAccessor(tables: [UserCollections])
@@ -15,12 +13,13 @@ class UserCollectionsDao extends DatabaseAccessor<NextDatabase>
 
   Future<List<UserCollection>> getCollections({
     CollectionTypes? collectionType,
-    OrderOptions orderOption = OrderOptions.newestFirst,
+    OrderOptions? orderOption,
   }) {
     var selector = select(userCollections);
+    orderOption ??= OrderOptions.newestFirst;
 
     if (collectionType != null) {
-      selector = selector..where((c) => c.typeId.equals(collectionType.typeId));
+      selector = selector..where((c) => c.typeId.equals(collectionType.index));
     }
 
     selector = selector

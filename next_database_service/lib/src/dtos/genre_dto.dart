@@ -11,8 +11,8 @@ class GenreDto {
     );
   }
 
-  final int id;
-  final String name;
+  final String? id;
+  final String? name;
 
   Map<String, dynamic> toJson() {
     return {

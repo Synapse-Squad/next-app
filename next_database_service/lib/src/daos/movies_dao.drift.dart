@@ -4,12 +4,12 @@ import 'package:next_database_service/src/next_database.dart' as i1;
 import 'package:next_database_service/src/tables/user_collections.drift.dart'
     as i2;
 import 'package:drift/internal/modular.dart' as i3;
-import 'package:next_database_service/src/tables/podcasts.drift.dart' as i4;
+import 'package:next_database_service/src/tables/movies.drift.dart' as i4;
 
-mixin $PodcastsDtoMixin on i0.DatabaseAccessor<i1.NextDatabase> {
+mixin $MoviesDaoMixin on i0.DatabaseAccessor<i1.NextDatabase> {
   i2.$UserCollectionsTable get userCollections =>
       i3.ReadDatabaseContainer(attachedDatabase)
           .resultSet<i2.$UserCollectionsTable>('user_collections');
-  i4.$PodcastsTable get podcasts => i3.ReadDatabaseContainer(attachedDatabase)
-      .resultSet<i4.$PodcastsTable>('podcasts');
+  i4.$MoviesTable get movies => i3.ReadDatabaseContainer(attachedDatabase)
+      .resultSet<i4.$MoviesTable>('movies');
 }

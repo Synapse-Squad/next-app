@@ -72,7 +72,9 @@ class $AlbumsTable extends i3.Albums with i0.TableInfo<$AlbumsTable, i1.Album> {
   @override
   late final i0.GeneratedColumnWithTypeConverter<i2.ListenStatus, int>
       listened = i0.GeneratedColumn<int>('listened', aliasedName, false,
-              type: i0.DriftSqlType.int, requiredDuringInsert: true)
+              type: i0.DriftSqlType.int,
+              requiredDuringInsert: false,
+              defaultValue: i4.Constant(i2.ListenStatus.notListened.index))
           .withConverter<i2.ListenStatus>(i1.$AlbumsTable.$converterlistened);
   static const i0.VerificationMeta _userRatingMeta =
       const i0.VerificationMeta('userRating');
@@ -546,12 +548,11 @@ class AlbumsCompanion extends i0.UpdateCompanion<i1.Album> {
     this.copyright = const i0.Value.absent(),
     this.releaseDate = const i0.Value.absent(),
     this.primaryGenreName = const i0.Value.absent(),
-    required i2.ListenStatus listened,
+    this.listened = const i0.Value.absent(),
     this.userRating = const i0.Value.absent(),
     required int collectionId,
     this.createdAt = const i0.Value.absent(),
-  })  : listened = i0.Value(listened),
-        collectionId = i0.Value(collectionId);
+  }) : collectionId = i0.Value(collectionId);
   static i0.Insertable<i1.Album> custom({
     i0.Expression<int>? id,
     i0.Expression<String>? artistName,

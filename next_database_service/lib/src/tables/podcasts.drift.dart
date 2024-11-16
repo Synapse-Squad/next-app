@@ -2,7 +2,7 @@
 import 'package:drift/drift.dart' as i0;
 import 'package:next_database_service/src/tables/podcasts.drift.dart' as i1;
 import 'package:next_database_service/src/enums/listen_status.dart' as i2;
-import 'package:next_database_service/dtos/genre_dto.dart' as i3;
+import 'package:next_database_service/src/dtos/genre_dto.dart' as i3;
 import 'package:next_database_service/src/tables/podcasts.dart' as i4;
 import 'package:drift/src/runtime/query_builder/query_builder.dart' as i5;
 import 'package:next_database_service/src/type_converters/genres_converter.dart'
@@ -76,7 +76,9 @@ class $PodcastsTable extends i4.Podcasts
   @override
   late final i0.GeneratedColumnWithTypeConverter<i2.ListenStatus, int>
       listened = i0.GeneratedColumn<int>('listened', aliasedName, false,
-              type: i0.DriftSqlType.int, requiredDuringInsert: true)
+              type: i0.DriftSqlType.int,
+              requiredDuringInsert: false,
+              defaultValue: i5.Constant(i2.ListenStatus.notListened.index))
           .withConverter<i2.ListenStatus>(i1.$PodcastsTable.$converterlistened);
   static const i0.VerificationMeta _userRatingMeta =
       const i0.VerificationMeta('userRating');
@@ -588,13 +590,12 @@ class PodcastsCompanion extends i0.UpdateCompanion<i1.Podcast> {
     this.trackViewUrl = const i0.Value.absent(),
     this.trackTimeMillis = const i0.Value.absent(),
     this.collectionName = const i0.Value.absent(),
-    required i2.ListenStatus listened,
+    this.listened = const i0.Value.absent(),
     this.userRating = const i0.Value.absent(),
     this.genres = const i0.Value.absent(),
     required int collectionId,
     this.createdAt = const i0.Value.absent(),
-  })  : listened = i0.Value(listened),
-        collectionId = i0.Value(collectionId);
+  }) : collectionId = i0.Value(collectionId);
   static i0.Insertable<i1.Podcast> custom({
     i0.Expression<int>? id,
     i0.Expression<String>? artworkUrl60,

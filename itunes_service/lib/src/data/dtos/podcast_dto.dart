@@ -23,7 +23,7 @@ class PodcastDto {
   String? trackViewUrl;
   String? episodeFileExtension;
   String? artworkUrl60;
-  List<Genres>? genres;
+  List<GenreDto>? genres;
   String? episodeGuid;
 
   PodcastDto({
@@ -86,9 +86,9 @@ class PodcastDto {
       episodeFileExtension: json['episodeFileExtension'],
       artworkUrl60: json['artworkUrl60'],
       genres: json['genres'] != null
-          ? List<Genres>.from(
+          ? List<GenreDto>.from(
               (json['genres'] as List<dynamic>).map(
-                (genre) => Genres.fromJson(genre as Map<String, dynamic>),
+                (genre) => GenreDto.fromJson(genre as Map<String, dynamic>),
               ),
             )
           : null,
@@ -97,16 +97,16 @@ class PodcastDto {
   }
 }
 
-class Genres {
+class GenreDto {
   String? name;
   String? id;
-  Genres({
+  GenreDto({
     this.name,
     this.id,
   });
 
-  factory Genres.fromJson(Map<String, dynamic> json) {
-    return Genres(
+  factory GenreDto.fromJson(Map<String, dynamic> json) {
+    return GenreDto(
       name: json['name'],
       id: json['id'],
     );

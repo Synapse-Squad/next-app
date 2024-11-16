@@ -1,4 +1,6 @@
-import '../../../itunes_service.dart';
+import '../../domain/entities/podcast_entity.dart';
+import '../../domain/repositories/podcast_repository.dart';
+import '../data_source/podcast_data_source.dart';
 import '../mappers/podcast_mapper.dart';
 
 final class PodcastRepositoryImpl implements IPodcastRepository {
