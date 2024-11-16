@@ -8,7 +8,7 @@ Welcome to the Next App! We are at the development stage. You can check our code
 
 ## Feature Diagram 
 
-![](./feature_diagram.svg)
+![](./example_feature_diagram.svg)
 
 ## Maintainers
 
