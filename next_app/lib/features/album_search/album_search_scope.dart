@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../injection/config.dart';
-import '../../injection/feature_scope.dart';
 import '../../injection/itunes/album_dependencies_factory.dart';
+import '../../injection/provider_scope/provider_scope.dart';
 import 'bloc/album_search_bloc.dart';
 import 'view/album_search_view.dart';
 
@@ -19,14 +19,15 @@ class AlbumSearchScope extends StatelessWidget {
           config: const Config(),
         ).create();
       },
-      widgetBuilderWithDependency: (context, dependencies) {
+      widgetBuilderWithDependency: (context, dependencies, child) {
         return BlocProvider(
           create: (_) {
             return AlbumSearchBloc(dependencies.albumFacade);
           },
-          child: const AlbumSearchView(),
+          child: child,
         );
       },
+      child: const AlbumSearchView(),
     );
   }
 }
