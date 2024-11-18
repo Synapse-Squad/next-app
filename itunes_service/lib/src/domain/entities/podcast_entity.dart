@@ -1,15 +1,15 @@
 import '../../../itunes_service.dart';
 
 class PodcastEntity {
-  String? artworkUrl600;
-  List<GenreEntity>? genres;
-  String? trackName;
-  String? shortDescription;
-  DateTime? releaseDate;
-  String? collectionViewUrl;
-  String? trackViewUrl;
-  int? trackTimeMillis;
-  String? collectionName;
+  final String? artworkUrl600;
+  final List<GenreEntity>? genres;
+  final String? trackName;
+  final String? shortDescription;
+  final DateTime? releaseDate;
+  final String? collectionViewUrl;
+  final String? trackViewUrl;
+  final int? trackTimeMillis;
+  final String? collectionName;
 
   PodcastEntity({
     this.artworkUrl600,

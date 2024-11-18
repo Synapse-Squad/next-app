@@ -11,7 +11,7 @@ final class PodcastDataSourceImpl implements PodcastDataSource {
   @override
   Future<List<PodcastDto>> searchForPodcast(String query) async {
     final response = await client.get(
-      'itunes.apple.com/search',
+      '/search',
       queryParameters: {
         'term': query,
         'entity': 'podcastEpisode',

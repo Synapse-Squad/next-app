@@ -1,30 +1,30 @@
 class PodcastDto {
-  String? artworkUrl600;
-  String? episodeContentType;
-  String? artworkUrl160;
-  List<dynamic>? artistIds;
-  String? episodeUrl;
-  String? collectionViewUrl;
-  int? trackTimeMillis;
-  DateTime? releaseDate;
-  String? shortDescription;
-  int? trackId;
-  String? trackName;
-  String? feedUrl;
-  String? closedCaptioning;
-  int? collectionId;
-  String? collectionName;
-  String? previewUrl;
-  String? kind;
-  String? wrapperType;
-  String? description;
-  String? country;
-  String? contentAdvisoryRating;
-  String? trackViewUrl;
-  String? episodeFileExtension;
-  String? artworkUrl60;
-  List<GenreDto>? genres;
-  String? episodeGuid;
+  final String? artworkUrl600;
+  final String? episodeContentType;
+  final String? artworkUrl160;
+  final List<dynamic>? artistIds;
+  final String? episodeUrl;
+  final String? collectionViewUrl;
+  final int? trackTimeMillis;
+  final DateTime? releaseDate;
+  final String? shortDescription;
+  final int? trackId;
+  final String? trackName;
+  final String? feedUrl;
+  final String? closedCaptioning;
+  final int? collectionId;
+  final String? collectionName;
+  final String? previewUrl;
+  final String? kind;
+  final String? wrapperType;
+  final String? description;
+  final String? country;
+  final String? contentAdvisoryRating;
+  final String? trackViewUrl;
+  final String? episodeFileExtension;
+  final String? artworkUrl60;
+  final List<GenreDto>? genres;
+  final String? episodeGuid;
 
   PodcastDto({
     this.artworkUrl600,
