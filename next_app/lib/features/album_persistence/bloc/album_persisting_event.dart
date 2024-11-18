@@ -18,8 +18,8 @@ class AlbumSavingRequired extends AlbumPersistingEvent {
       other is AlbumSavingRequired && album == other.album;
 }
 
-class AlbumUnsavingRequired extends AlbumPersistingEvent {
-  const AlbumUnsavingRequired(this.album);
+class AlbumRemovingRequired extends AlbumPersistingEvent {
+  const AlbumRemovingRequired(this.album);
 
   final AlbumEntity album;
 
@@ -29,5 +29,5 @@ class AlbumUnsavingRequired extends AlbumPersistingEvent {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is AlbumSavingRequired && album == other.album;
+      other is AlbumRemovingRequired && album == other.album;
 }

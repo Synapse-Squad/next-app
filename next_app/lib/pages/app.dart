@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../injection/composition_result.dart';
 import '../injection/widget/dependencies_scope.dart';
-import 'album_search_page.dart';
+import 'album_search/album_search_page.dart';
 
 class NextApp extends StatelessWidget {
   const NextApp({

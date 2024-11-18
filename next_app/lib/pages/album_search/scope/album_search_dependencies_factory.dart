@@ -3,13 +3,14 @@ import 'package:itunes_service/itunes_service.dart';
 import 'package:next_database_service/next_database_service.dart';
 import 'package:rest_service/rest_service.dart';
 
-import '../config.dart';
-import '../factories.dart';
-import '../global/dependencies_container.dart';
+import '../../../injection/config.dart';
+import '../../../injection/factories.dart';
+import '../../../injection/global/dependencies_container.dart';
 import 'album_dependencies_container.dart';
 
-class AlbumDependenciesFactory extends Factory<AlbumDependenciesContainer> {
-  AlbumDependenciesFactory({
+class AlbumSearchDependenciesFactory
+    extends Factory<AlbumSearchDependenciesContainer> {
+  AlbumSearchDependenciesFactory({
     required this.dependencies,
     required this.config,
   });
@@ -18,7 +19,7 @@ class AlbumDependenciesFactory extends Factory<AlbumDependenciesContainer> {
   final Config config;
 
   @override
-  AlbumDependenciesContainer create() {
+  AlbumSearchDependenciesContainer create() {
     print('url: ${config.itunesApiBaseUrl}');
     final client = HttpRestClient(
       client: dependencies.httpClient,
@@ -38,7 +39,7 @@ class AlbumDependenciesFactory extends Factory<AlbumDependenciesContainer> {
       albumsDao: albumsDao,
     );
 
-    return AlbumDependenciesContainer(
+    return AlbumSearchDependenciesContainer(
       albumDataSource: albumDataSource,
       albumRepository: albumRepository,
       albumFacade: albumFacade,

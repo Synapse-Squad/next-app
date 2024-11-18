@@ -4,7 +4,7 @@ import 'package:next_database_service/next_database_service.dart';
 
 import 'album_mapper.dart';
 
-typedef AlbumFacadeType = IGenericTypedFacade<AlbumEntity, AlbumsCompanion>;
+typedef IAlbumFacade = IGenericTypedFacade<AlbumEntity, AlbumsCompanion>;
 
 final class AlbumFacade
     implements IGenericTypedFacade<AlbumEntity, AlbumsCompanion> {

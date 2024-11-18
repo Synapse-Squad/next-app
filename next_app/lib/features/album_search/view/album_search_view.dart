@@ -41,7 +41,7 @@ class AlbumSearchView extends StatelessWidget {
                     return ListView.builder(
                       padding: const EdgeInsets.all(16),
                       itemBuilder: (context, index) {
-                        return AlbumItem(album: albums[index]);
+                        return AlbumItem(album: albums[index].data);
                       },
                       itemCount: albums.length,
                     );

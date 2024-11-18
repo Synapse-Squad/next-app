@@ -9,7 +9,7 @@ class AlbumSearchInitial extends AlbumSearchState {}
 class AlbumSearchSuccess extends AlbumSearchState {
   const AlbumSearchSuccess(this.albums);
 
-  final List<AlbumEntity> albums;
+  final List<Selector<AlbumEntity>> albums;
 
   @override
   int get hashCode => Object.hashAll([albums]);
