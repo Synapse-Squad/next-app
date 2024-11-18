@@ -1,13 +1,7 @@
 part of 'album_persisting_bloc.dart';
 
-abstract class AlbumPersistingState {
-  const AlbumPersistingState();
-}
-
-class AlbumPersistingInitial extends AlbumPersistingState {}
-
-class AlbumPersistingSuccess extends AlbumPersistingState {
-  const AlbumPersistingSuccess(this.recentlyAddedIds);
+class AlbumPersistingState {
+  const AlbumPersistingState([this.recentlyAddedIds = const {}]);
 
   final Set<int> recentlyAddedIds;
 
@@ -17,10 +11,6 @@ class AlbumPersistingSuccess extends AlbumPersistingState {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is AlbumPersistingSuccess &&
+      other is AlbumPersistingState &&
           recentlyAddedIds == other.recentlyAddedIds;
-}
-
-class AlbumPersistingFailure extends AlbumPersistingState {
-  const AlbumPersistingFailure();
 }

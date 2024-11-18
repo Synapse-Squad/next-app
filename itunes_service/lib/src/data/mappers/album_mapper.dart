@@ -5,6 +5,7 @@ class AlbumMapper {
   static List<AlbumEntity> toEntity(List<AlbumDto> dto) {
     return dto.map((dto) {
       return AlbumEntity(
+        id: dto.collectionId,
         artistName: dto.artistName,
         collectionName: dto.collectionName,
         collectionViewUrl: dto.collectionViewUrl,

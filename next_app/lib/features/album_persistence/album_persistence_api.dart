@@ -2,18 +2,19 @@ import 'dart:async';
 
 import 'bloc/album_persisting_bloc.dart';
 
-abstract interface class AlbumPersistenceApi {}
+abstract interface class AlbumPersistenceApi {
+  Stream<Set<int>> get idsStream;
+}
 
 final class AlbumPersistenceApiImpl implements AlbumPersistenceApi {
   AlbumPersistenceApiImpl(this.bloc);
 
   final AlbumPersistingBloc bloc;
 
-  Stream<Set<int>> get listen async* {
+  @override
+  Stream<Set<int>> get idsStream async* {
     await for (var newState in bloc.stream) {
-      if (newState is AlbumPersistingSuccess) {
-        yield newState.recentlyAddedIds;
-      }
+      yield newState.recentlyAddedIds;
     }
   }
 }
