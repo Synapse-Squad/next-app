@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  clock: 1.1.1
+  clock: 1.1.2
   logging: ^1.3.0
   http: ^1.2.2
   flutter_bloc: ^8.1.6
@@ -39,6 +39,8 @@ dependencies:
     path: ../rest_service
   itunes_service:
     path: ../itunes_service
+  google_books_service:
+    path: ../google_books_service
   next_database_service:
     path: ../next_database_service
   facades:
