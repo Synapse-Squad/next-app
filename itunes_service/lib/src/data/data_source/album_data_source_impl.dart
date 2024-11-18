@@ -7,7 +7,7 @@ import 'album_data_source.dart';
 final class AlbumDataSourceImpl implements AlbumDataSource {
   const AlbumDataSourceImpl(this.client);
 
-  final HttpRestClient client;
+  final RestClient client;
 
   @override
   Future<List<AlbumDto>> searchForAlbum(String query) async {

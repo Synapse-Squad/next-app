@@ -71,11 +71,10 @@ class _ProviderScopeState<T> extends State<ProviderScope<T>> {
     if (widget.type == ProviderType.newInstance) {
       final dependencies = DependenciesScope.of(context);
       _dependencies = widget.dependencyContainerBuilder!(dependencies);
+      _logger.info('$T initialized');
     } else {
       _dependencies = widget.value;
     }
-
-    _logger.info('$T initialized');
   }
 
   @override
@@ -89,8 +88,8 @@ class _ProviderScopeState<T> extends State<ProviderScope<T>> {
     }
 
     return _ProviderValueScope(
+      value: _dependencies,
       child: widget.child,
-      value: _dependencies!,
     );
   }
 

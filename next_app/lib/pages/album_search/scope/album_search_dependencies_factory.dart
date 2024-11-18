@@ -20,7 +20,6 @@ class AlbumSearchDependenciesFactory
 
   @override
   AlbumSearchDependenciesContainer create() {
-    print('url: ${config.itunesApiBaseUrl}');
     final client = HttpRestClient(
       client: dependencies.httpClient,
       baseUrl: config.itunesApiBaseUrl,

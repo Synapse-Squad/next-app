@@ -23,8 +23,6 @@ class AlbumSearchBloc extends Bloc<AlbumSearchEvent, AlbumSearchState> {
 
     _recentlyAddedIds = albumPersistenceApi.idsStream.listen(
       (ids) {
-        print('ids: $ids');
-
         if (state is! AlbumSearchSuccess) {
           return;
         }
@@ -56,8 +54,6 @@ class AlbumSearchBloc extends Bloc<AlbumSearchEvent, AlbumSearchState> {
     try {
       emit(AlbumInProgress());
       final albums = await albumFacade.searchForRemoteList(event.query);
-
-      List<Selector<AlbumEntity>> mappedAlbums;
 
       emit(AlbumSearchSuccess(_mapToSelector(albums)));
     } on AlbumNotFoundException {
