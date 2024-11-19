@@ -28,7 +28,7 @@ class AlbumMapper {
 
   static AlbumEntity toEntity(Album album) {
     return AlbumEntity(
-      id: album.id,
+      id: album.collectionId,
       artistName: album.artistName,
       collectionName: album.collectionName,
       collectionViewUrl: album.collectionViewUrl,

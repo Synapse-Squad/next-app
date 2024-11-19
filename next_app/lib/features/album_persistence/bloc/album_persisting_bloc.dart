@@ -1,4 +1,5 @@
 import 'package:facades/facades.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:itunes_service/itunes_service.dart';
 
@@ -7,7 +8,7 @@ part 'album_persisting_state.dart';
 
 class AlbumPersistingBloc
     extends Bloc<AlbumPersistingEvent, AlbumPersistingState> {
-  AlbumPersistingBloc(this.albumFacade) : super(AlbumPersistingInitial()) {
+  AlbumPersistingBloc(this.albumFacade) : super(const AlbumPersistingState()) {
     on<AlbumSavingRequired>(_onAlbumSavingRequired);
     on<AlbumRemovingRequired>(_onAlbumRemovingRequired);
   }
@@ -25,14 +26,15 @@ class AlbumPersistingBloc
       final album = event.album;
 
       final result = await albumFacade.persistSelectedItem(
-        collectionId: 1,
+        collectionId: 2,
         entity: album,
       );
 
       _previouslyPersistedRemoteIds[album.id!] = result;
-      emit(AlbumPersistingSuccess({..._mapRemoteIds()}));
-    } catch (_) {
-      emit(const AlbumPersistingFailure());
+      emit(AlbumPersistingState({..._mapRemoteIds()}));
+    } catch (e, s) {
+      debugPrintThrottled('$e => $s');
+      //  emit(const AlbumPersistingFailure());
     }
   }
 
@@ -49,9 +51,9 @@ class AlbumPersistingBloc
       await albumFacade.delete(localId);
       _previouslyPersistedRemoteIds.remove(album.id);
 
-      emit(AlbumPersistingSuccess({..._mapRemoteIds()}));
+      emit(AlbumPersistingState({..._mapRemoteIds()}));
     } catch (_) {
-      emit(const AlbumPersistingFailure());
+      //  emit(const AlbumPersistingFailure());
     }
   }
 

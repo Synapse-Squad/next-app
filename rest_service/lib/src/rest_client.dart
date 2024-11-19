@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
-
 typedef HeaderBuilder = Future<Map<String, dynamic>?> Function();
 
 abstract class RestClient {
@@ -13,7 +11,7 @@ abstract class RestClient {
   final String? baseUrl;
   final HeaderBuilder? headers;
 
-  Future<void> get(
+  Future<Map<String, dynamic>?> get(
     String url, {
     Map<String, String>? headers,
     Map<String, dynamic>? queryParameters,

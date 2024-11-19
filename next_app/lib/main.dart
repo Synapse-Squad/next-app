@@ -13,5 +13,17 @@ void main() async {
   const config = Config();
   final compositionResult = await const CompositionRoot(config).compose();
 
+  // final dao = compositionResult.dependencies.nextDatabase.userCollectionsDao;
+  //
+  // dao.add(
+  //   UserCollectionsCompanion.insert(
+  //     title: 'Top Albums 2024',
+  //     typeId: CollectionTypes.album,
+  //   ),
+  // );
+  //
+  // final collections = await dao.getCollections();
+  // print(collections);
+
   runApp(NextApp(result: compositionResult));
 }

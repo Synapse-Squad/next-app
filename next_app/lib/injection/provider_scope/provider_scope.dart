@@ -4,7 +4,7 @@ import 'package:logging/logging.dart';
 import '../../../injection/widget/dependencies_scope.dart';
 import '../global/dependencies_container.dart';
 
-enum _ProviderType { newInstance, previousInstance }
+enum ProviderType { newInstance, previousInstance }
 
 typedef DependencyContainerBuilder<T> = T Function(
   DependenciesContainer dependencies,
@@ -36,7 +36,7 @@ class ProviderScope<T> extends StatefulWidget {
           dependencyContainerBuilder: dependencyContainerBuilder,
           widgetBuilderWithDependency: widgetBuilderWithDependency,
           child: child,
-          type: _ProviderType.newInstance,
+          type: ProviderType.newInstance,
         );
 
   const ProviderScope.value({
@@ -47,14 +47,14 @@ class ProviderScope<T> extends StatefulWidget {
           key: key,
           value: value,
           child: child,
-          type: _ProviderType.previousInstance,
+          type: ProviderType.previousInstance,
         );
 
   final Widget child;
   final DependencyContainerBuilder<T>? dependencyContainerBuilder;
   final WidgetBuilderWithDependency<T>? widgetBuilderWithDependency;
   final T? value;
-  final _ProviderType type;
+  final ProviderType type;
 
   @override
   State<ProviderScope<T>> createState() => _ProviderScopeState<T>();
@@ -68,19 +68,18 @@ class _ProviderScopeState<T> extends State<ProviderScope<T>> {
   void initState() {
     super.initState();
 
-    if (widget.type == _ProviderType.newInstance) {
+    if (widget.type == ProviderType.newInstance) {
       final dependencies = DependenciesScope.of(context);
       _dependencies = widget.dependencyContainerBuilder!(dependencies);
+      _logger.info('$T initialized');
     } else {
       _dependencies = widget.value;
     }
-
-    _logger.info('$T initialized');
   }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.type == _ProviderType.newInstance) {
+    if (widget.type == ProviderType.newInstance) {
       return widget.widgetBuilderWithDependency!(
         context,
         _dependencies as T,
@@ -89,8 +88,8 @@ class _ProviderScopeState<T> extends State<ProviderScope<T>> {
     }
 
     return _ProviderValueScope(
+      value: _dependencies,
       child: widget.child,
-      value: _dependencies!,
     );
   }
 
