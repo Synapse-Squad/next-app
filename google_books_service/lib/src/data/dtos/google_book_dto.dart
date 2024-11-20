@@ -13,14 +13,14 @@ class GoogleBookDto {
     this.volumeInfo,
   });
 
-  factory GoogleBookDto.fromMap(Map<String, dynamic> map) {
+  factory GoogleBookDto.fromJson(Map<String, dynamic> json) {
     return GoogleBookDto(
-      kind: map['kind'],
-      id: map['id'],
-      etag: map['etag'],
-      selfLink: map['selfLink'],
-      volumeInfo: map['volumeInfo'] != null
-          ? VolumeInfoDto.fromMap(map['volumeInfo'] as Map<String, dynamic>)
+      kind: json['kind'],
+      id: json['id'],
+      etag: json['etag'],
+      selfLink: json['selfLink'],
+      volumeInfo: json['volumeInfo'] != null
+          ? VolumeInfoDto.fromJson(json['volumeInfo'] as Map<String, dynamic>)
           : null,
     );
   }
@@ -69,33 +69,33 @@ class VolumeInfoDto {
     this.ratingsCount,
   });
 
-  factory VolumeInfoDto.fromMap(Map<String, dynamic> map) {
+  factory VolumeInfoDto.fromJson(Map<String, dynamic> json) {
     return VolumeInfoDto(
-      title: map['title'],
-      authors: map['authors'] != null
-          ? List<String>.from((map['authors'] as List<dynamic>))
+      title: json['title'],
+      authors: json['authors'] != null
+          ? List<String>.from((json['authors'] as List<dynamic>))
           : null,
-      publishedDate: map['publishedDate'],
-      pageCount: map['pageCount'],
-      printType: map['printType'],
-      maturityRating: map['maturityRating'],
-      allowAnonLogging: map['allowAnonLogging'],
-      contentVersion: map['contentVersion'],
-      imageLinks: map['imageLinks'] != null
-          ? ImageLinkDto.fromMap(map['imageLinks'] as Map<String, dynamic>)
+      publishedDate: json['publishedDate'],
+      pageCount: json['pageCount'],
+      printType: json['printType'],
+      maturityRating: json['maturityRating'],
+      allowAnonLogging: json['allowAnonLogging'],
+      contentVersion: json['contentVersion'],
+      imageLinks: json['imageLinks'] != null
+          ? ImageLinkDto.fromJson(json['imageLinks'] as Map<String, dynamic>)
           : null,
-      language: map['language'],
-      previewLink: map['previewLink'],
-      infoLink: map['infoLink'],
-      canonicalVolumeLink: map['canonicalVolumeLink'],
-      subtitle: map['subtitle'],
-      publisher: map['publisher'],
-      description: map['description'],
-      categories: map['categories'] != null
-          ? List<String>.from((map['categories'] as List<dynamic>))
+      language: json['language'],
+      previewLink: json['previewLink'],
+      infoLink: json['infoLink'],
+      canonicalVolumeLink: json['canonicalVolumeLink'],
+      subtitle: json['subtitle'],
+      publisher: json['publisher'],
+      description: json['description'],
+      categories: json['categories'] != null
+          ? List<String>.from((json['categories'] as List<dynamic>))
           : null,
-      averageRating: map['averageRating'],
-      ratingsCount: map['ratingsCount'],
+      averageRating: json['averageRating'],
+      ratingsCount: json['ratingsCount'],
     );
   }
 }
@@ -108,10 +108,10 @@ class ImageLinkDto {
     this.thumbnail,
   });
 
-  factory ImageLinkDto.fromMap(Map<String, dynamic> map) {
+  factory ImageLinkDto.fromJson(Map<String, dynamic> json) {
     return ImageLinkDto(
-      smallThumbnail: map['smallThumbnail'],
-      thumbnail: map['thumbnail'],
+      smallThumbnail: json['smallThumbnail'],
+      thumbnail: json['thumbnail'],
     );
   }
 }

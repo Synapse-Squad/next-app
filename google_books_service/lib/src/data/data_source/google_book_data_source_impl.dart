@@ -27,7 +27,7 @@ class GoogleBookDataSourceImpl implements GoogleBookDataSource {
 
     return books
         .map(
-          (book) => GoogleBookDto.fromMap(book),
+          (book) => GoogleBookDto.fromJson(book),
         )
         .toList();
   }
