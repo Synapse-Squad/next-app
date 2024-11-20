@@ -1,0 +1,1 @@
+class MovieNotFoundException implements Exception {}
