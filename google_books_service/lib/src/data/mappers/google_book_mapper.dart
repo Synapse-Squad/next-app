@@ -18,7 +18,6 @@ class GoogleBookMapper {
             pageCount: bookDto.volumeInfo?.pageCount,
             previewLink: bookDto.volumeInfo?.previewLink,
             publishedDate: bookDto.volumeInfo?.publishedDate,
-            ratingsCount: bookDto.volumeInfo?.ratingsCount,
             title: bookDto.volumeInfo?.title,
           ),
         );

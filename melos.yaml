@@ -8,6 +8,7 @@ packages:
   - rest_service
   - next_database_service
   - facades
+  - testing_utils
 
 scripts:
   analyze:
@@ -15,7 +16,7 @@ scripts:
     exec:
       concurrency: 7
   unit_test:
-    run: melos exec --dir-exists="test" --fail-fast -- flutter test --no-pub --coverage
+    run: melos exec --dir-exists="test" -- flutter test --no-pub --coverage
     description: Run all Flutter tests in this project.
   coverage:merge: >
     rm -f merged_coverage.lcov.info &&
@@ -26,7 +27,7 @@ scripts:
         sed "s|SF:|SF:$abs_package_path/|g" "$coverage_file" >> merged_coverage.lcov.info;
       fi
     done &&
-    genhtml merged_coverage.lcov.info -o coverage_html --ignore-errors source
+    genhtml merged_coverage.lcov.info -o coverage_html --ignore-errors source --prefix=/Users/thisisyusub/Self/next-app/
   test:coverage:open:
     run: |
       melos run unit_test &&

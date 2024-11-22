@@ -1,0 +1,74 @@
+{
+  "kind": "books#volume",
+  "id": "ByiFDwAAQBAJ",
+  "etag": "wR2hly355c8",
+  "selfLink": "https://www.googleapis.com/books/v1/volumes/ByiFDwAAQBAJ",
+  "volumeInfo": {
+    "title": "Çərpələng uçuran",
+    "authors": [
+      "Xalid Hüseyni"
+    ],
+    "publisher": "BoD – Books on Demand",
+    "publishedDate": "2018-01-01",
+    "description": "Xalid Hüseyninin bu debüt romanını artıq yeni əsrin baş romanı, müəllifini isə canlı klassik hesab eləyirlər. “Çərpaləng uçuran” bu an yaşanan müstəmləkəçilik sonrası yeni müstəmləkəçilik (neokolonial), qloballaşma, mədəniyyətlərarası savaş, vətəndaş müharibəsi və miqrasiya kimi mövzulara bədii baxış açısı gətirir. Bundan əlavə, müəllif xatirələr, aydınlatma, cinsi ilişkilər kimi qavrayışlara da toxunur. Kitab sözün əsl mənasında dostluq, sədaqət, xəyanət, günahlardan arınma haqqındadır və Xalid Hüseyninin bu incə, canayaxın, ironik və sözün yaxşı mənasında sentimental romanı doymadan və göz çəkə bilmədən baxdıqca baxılan möhtəşəm bir rəsm əsərinə bənzəyir. Müəllif, əsərin adından da göründüyü kimi, Əfqan uşaqlarının çərpələng uçurmaq əyləncəsini yada salır. Bu yarışlardan birində əsərin qəhrəmanlarından biri – Həzara (Xəzər) oğlu Həsənin başına dəhşətli hadisə gəlir, o bu hadisəyə dostu bildiyi Əmirin naminə razı olur, ancaq onu kədərləndirmək haqda düşünmür. Həmin dost isə, bu dəhşəti kənardan görür, lakin gizlənib səsini çıxarmır. Bununla da faciə böyüyür, getdikcə davam edir. Öz qorxaqlığından çıldıran Əmir ayılanda artıq gec olduğunu düşünür. Haçansa gec olurmu?",
+    "industryIdentifiers": [
+      {
+        "type": "ISBN_13",
+        "identifier": "9789952261769"
+      },
+      {
+        "type": "ISBN_10",
+        "identifier": "9952261764"
+      }
+    ],
+    "readingModes": {
+      "text": false,
+      "image": true
+    },
+    "pageCount": 450,
+    "printType": "BOOK",
+    "categories": [
+      "Fiction"
+    ],
+    "maturityRating": "NOT_MATURE",
+    "allowAnonLogging": false,
+    "contentVersion": "0.1.0.0.preview.1",
+    "panelizationSummary": {
+      "containsEpubBubbles": false,
+      "containsImageBubbles": false
+    },
+    "imageLinks": {
+      "smallThumbnail": "http://books.google.com/books/content?id=ByiFDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+      "thumbnail": "http://books.google.com/books/content?id=ByiFDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+    },
+    "language": "az",
+    "previewLink": "http://books.google.com/books?id=ByiFDwAAQBAJ&pg=PA3&dq=%C3%A7%27rp%27l%27ng&hl=&cd=1&source=gbs_api",
+    "infoLink": "http://books.google.com/books?id=ByiFDwAAQBAJ&dq=%C3%A7%27rp%27l%27ng&hl=&source=gbs_api",
+    "canonicalVolumeLink": "https://books.google.com/books/about/%C3%87%C9%99rp%C9%99l%C9%99ng_u%C3%A7uran.html?hl=&id=ByiFDwAAQBAJ"
+  },
+  "saleInfo": {
+    "country": "AZ",
+    "saleability": "NOT_FOR_SALE",
+    "isEbook": false
+  },
+  "accessInfo": {
+    "country": "AZ",
+    "viewability": "PARTIAL",
+    "embeddable": true,
+    "publicDomain": false,
+    "textToSpeechPermission": "ALLOWED",
+    "epub": {
+      "isAvailable": false
+    },
+    "pdf": {
+      "isAvailable": true,
+      "acsTokenLink": "http://books.google.com/books/download/%C3%87%C9%99rp%C9%99l%C9%99ng_u%C3%A7uran-sample-pdf.acsm?id=ByiFDwAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+    },
+    "webReaderLink": "http://play.google.com/books/reader?id=ByiFDwAAQBAJ&hl=&source=gbs_api",
+    "accessViewStatus": "SAMPLE",
+    "quoteSharingAllowed": false
+  },
+  "searchInfo": {
+    "textSnippet": "... <b>Ç&quot;rp&quot;l&quot;ng</b> uçuran” bu an ya%anan müst&quot;ml&quot;k&quot;çilik sonras( yeni müst&quot;ml&quot;- k&quot;çilik (neokolonial), qloballa%ma, m&quot;d&quot;niyy&quot;tl&quot;raras( sava%, v&quot;t&quot;nda% müharib&quot;si v&quot; miqrasiya kimi mövzulara b&quot;dii bax(% aç(s( g&quot;tirir. Bundan &quot;lav&quot;, mü&quot;llif xatir&nbsp;..."
+  }
+}

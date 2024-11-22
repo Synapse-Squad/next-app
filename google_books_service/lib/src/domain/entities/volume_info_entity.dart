@@ -3,17 +3,6 @@ import 'package:collection/collection.dart';
 import '../../../google_books_service.dart';
 
 class VolumeInfoEntity {
-  final String? title;
-  final List<String>? authors;
-  final DateTime? publishedDate;
-  final int? pageCount;
-  final ImageLinkEntity? imageLinks;
-  final String? language;
-  final String? previewLink;
-  final String? description;
-  final List<String>? categories;
-  final int? ratingsCount;
-
   VolumeInfoEntity({
     this.title,
     this.authors,
@@ -24,8 +13,17 @@ class VolumeInfoEntity {
     this.previewLink,
     this.description,
     this.categories,
-    this.ratingsCount,
   });
+
+  final String? title;
+  final List<String>? authors;
+  final String? publishedDate;
+  final int? pageCount;
+  final ImageLinkEntity? imageLinks;
+  final String? language;
+  final String? previewLink;
+  final String? description;
+  final List<String>? categories;
 
   @override
   bool operator ==(covariant VolumeInfoEntity other) {
@@ -40,8 +38,7 @@ class VolumeInfoEntity {
         other.language == language &&
         other.previewLink == previewLink &&
         other.description == description &&
-        listEquals(other.categories, categories) &&
-        other.ratingsCount == ratingsCount;
+        listEquals(other.categories, categories);
   }
 
   @override
@@ -54,7 +51,6 @@ class VolumeInfoEntity {
         language.hashCode ^
         previewLink.hashCode ^
         description.hashCode ^
-        categories.hashCode ^
-        ratingsCount.hashCode;
+        categories.hashCode;
   }
 }

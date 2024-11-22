@@ -1,4 +1,6 @@
-class AlbumDto {
+import 'package:equatable/equatable.dart';
+
+class AlbumDto extends Equatable {
   const AlbumDto({
     this.wrapperType,
     this.collectionType,
@@ -65,7 +67,7 @@ class AlbumDto {
   final String? primaryGenreName;
 
   @override
-  int get hashCode => Object.hashAll([
+  List<Object?> get props => [
         wrapperType,
         collectionType,
         artistId,
@@ -83,27 +85,6 @@ class AlbumDto {
         country,
         currency,
         releaseDate,
-      ]);
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AlbumDto &&
-          wrapperType == other.wrapperType &&
-          other.collectionType == collectionType &&
-          other.artistId == artistId &&
-          other.collectionId == collectionId &&
-          other.artistName == artistName &&
-          other.collectionName == collectionName &&
-          other.collectionCensoredName == collectionCensoredName &&
-          other.artistViewUrl == artistViewUrl &&
-          other.collectionViewUrl == collectionViewUrl &&
-          other.artworkUrl60 == artworkUrl60 &&
-          other.artworkUrl100 == artworkUrl100 &&
-          other.collectionExplicitness == collectionExplicitness &&
-          other.trackCount == trackCount &&
-          other.copyright == copyright &&
-          other.country == country &&
-          other.currency == currency &&
-          other.releaseDate == releaseDate;
+        primaryGenreName,
+      ];
 }
