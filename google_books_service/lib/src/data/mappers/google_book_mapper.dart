@@ -1,7 +1,5 @@
-import 'package:google_books_service/src/data/dtos/google_book_dto.dart';
-import 'package:google_books_service/src/domain/entities/google_book_entity.dart';
-import 'package:google_books_service/src/domain/entities/image_link_entity.dart';
-import 'package:google_books_service/src/domain/entities/volume_info_entity.dart';
+import '../../../google_books_service.dart';
+import '../dtos/google_book_dto.dart';
 
 class GoogleBookMapper {
   static List<GoogleBookEntity> toEntity(List<GoogleBookDto> bookDtoList) {
@@ -14,7 +12,8 @@ class GoogleBookMapper {
             categories: bookDto.volumeInfo?.categories,
             description: bookDto.volumeInfo?.description,
             imageLinks: ImageLinkEntity(
-                smallThumbnail: bookDto.volumeInfo?.imageLinks?.smallThumbnail),
+              smallThumbnail: bookDto.volumeInfo?.imageLinks?.smallThumbnail,
+            ),
             language: bookDto.volumeInfo?.language,
             pageCount: bookDto.volumeInfo?.pageCount,
             previewLink: bookDto.volumeInfo?.previewLink,

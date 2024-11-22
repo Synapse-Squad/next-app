@@ -1,4 +1,4 @@
-import 'package:google_books_service/src/domain/entities/google_book_entity.dart';
+import '../../../google_books_service.dart';
 
 abstract interface class IGoogleBookRepository {
   Future<List<GoogleBookEntity>> search(String? query);

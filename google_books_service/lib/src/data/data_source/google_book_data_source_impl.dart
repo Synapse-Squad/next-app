@@ -1,13 +1,12 @@
-import 'package:google_books_service/src/core/exceptions/book_not_found_exception.dart';
-import 'package:google_books_service/src/data/data_source/google_book_data_source.dart';
-import 'package:google_books_service/src/data/dtos/google_book_dto.dart';
 import 'package:rest_service/rest_service.dart';
 
+import '../../../google_books_service.dart';
+import '../dtos/google_book_dto.dart';
+
 class GoogleBookDataSourceImpl implements GoogleBookDataSource {
+  GoogleBookDataSourceImpl({required this.client});
+
   final HttpRestClient client;
-  GoogleBookDataSourceImpl({
-    required this.client,
-  });
 
   @override
   Future<List<GoogleBookDto>> searchForBook({String? query}) async {
