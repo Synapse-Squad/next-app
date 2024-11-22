@@ -1,7 +1,5 @@
-import 'package:moviedb_service/src/data/data_source/movie_data_source.dart';
-import 'package:moviedb_service/src/data/mappers/movie_mapper.dart';
-import 'package:moviedb_service/src/domain/entities/movie_entity.dart';
-import 'package:moviedb_service/src/domain/repositories/movie_repository.dart';
+import '../../../moviedb_service.dart';
+import '../mappers/movie_mapper.dart';
 
 class MovieRepositoryImpl implements IMovieRepository {
   MovieRepositoryImpl(this.dataSource);

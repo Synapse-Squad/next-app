@@ -1,5 +1,5 @@
-import 'package:moviedb_service/src/data/dtos/movie_dto.dart';
-import 'package:moviedb_service/src/domain/entities/movie_entity.dart';
+import '../../../moviedb_service.dart';
+import '../dtos/movie_dto.dart';
 
 class MovieMapper {
   static List<MovieEntity> toEntity(List<MovieDto> movieDtoList) {

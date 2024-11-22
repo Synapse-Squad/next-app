@@ -11,7 +11,6 @@ class AlbumDto {
     this.collectionViewUrl,
     this.artworkUrl60,
     this.artworkUrl100,
-    this.collectionPrice,
     this.collectionExplicitness,
     this.trackCount,
     this.copyright,
@@ -34,7 +33,6 @@ class AlbumDto {
       collectionViewUrl: json['collectionViewUrl'],
       artworkUrl60: json['artworkUrl60'],
       artworkUrl100: json['artworkUrl100'],
-      collectionPrice: json['collectionPrice'],
       collectionExplicitness: json['collectionExplicitness'],
       trackCount: json['trackCount'],
       copyright: json['copyright'],
@@ -58,7 +56,6 @@ class AlbumDto {
   final String? collectionViewUrl;
   final String? artworkUrl60;
   final String? artworkUrl100;
-  final double? collectionPrice;
   final String? collectionExplicitness;
   final int? trackCount;
   final String? copyright;
@@ -66,4 +63,47 @@ class AlbumDto {
   final String? currency;
   final DateTime? releaseDate;
   final String? primaryGenreName;
+
+  @override
+  int get hashCode => Object.hashAll([
+        wrapperType,
+        collectionType,
+        artistId,
+        collectionId,
+        artistName,
+        collectionName,
+        collectionCensoredName,
+        artistViewUrl,
+        collectionViewUrl,
+        artworkUrl60,
+        artworkUrl100,
+        collectionExplicitness,
+        trackCount,
+        copyright,
+        country,
+        currency,
+        releaseDate,
+      ]);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AlbumDto &&
+          wrapperType == other.wrapperType &&
+          other.collectionType == collectionType &&
+          other.artistId == artistId &&
+          other.collectionId == collectionId &&
+          other.artistName == artistName &&
+          other.collectionName == collectionName &&
+          other.collectionCensoredName == collectionCensoredName &&
+          other.artistViewUrl == artistViewUrl &&
+          other.collectionViewUrl == collectionViewUrl &&
+          other.artworkUrl60 == artworkUrl60 &&
+          other.artworkUrl100 == artworkUrl100 &&
+          other.collectionExplicitness == collectionExplicitness &&
+          other.trackCount == trackCount &&
+          other.copyright == copyright &&
+          other.country == country &&
+          other.currency == currency &&
+          other.releaseDate == releaseDate;
 }

@@ -1,0 +1,1 @@
+class BookNotFoundException implements Exception {}

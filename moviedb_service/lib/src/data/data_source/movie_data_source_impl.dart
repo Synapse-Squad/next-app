@@ -1,7 +1,7 @@
-import 'package:moviedb_service/src/core/exceptions/movie_not_found_exception.dart';
-import 'package:moviedb_service/src/data/data_source/movie_data_source.dart';
-import 'package:moviedb_service/src/data/dtos/movie_dto.dart';
 import 'package:rest_service/rest_service.dart';
+
+import '../../../moviedb_service.dart';
+import '../dtos/movie_dto.dart';
 
 class MovieDataSourceImpl implements MovieDataSource {
   MovieDataSourceImpl(this.client);
