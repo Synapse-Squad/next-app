@@ -25,7 +25,7 @@ final class CompositionRoot {
 
     /// global dependencies
     logger.info('Initializing global dependencies...');
-    final dependencies = GlobalDependenciesFactory().create();
+    final dependencies = GlobalDependenciesFactory(config).create();
     logger.finest('Global dependencies initialized');
 
     stopwatch.stop();

@@ -43,6 +43,8 @@ dependencies:
     path: ../google_books_service
   next_database_service:
     path: ../next_database_service
+  moviedb_service:
+    path: ../moviedb_service
   facades:
     path: ../facades
 
