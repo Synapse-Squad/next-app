@@ -11,4 +11,26 @@ packages:
 
 scripts:
   analyze:
-    exec: dart analyze .
+    run: dart analyze .
+    exec:
+      concurrency: 7
+  unit_test:
+    run: melos exec --dir-exists="test" --fail-fast -- flutter test --no-pub --coverage
+    description: Run all Flutter tests in this project.
+  coverage:merge: >
+    rm -f merged_coverage.lcov.info &&
+    for package_dir in */; do
+      coverage_file="${package_dir}coverage/lcov.info";
+      abs_package_path="$(cd "$package_dir" && pwd)";
+      if [ -f "$coverage_file" ]; then
+        sed "s|SF:|SF:$abs_package_path/|g" "$coverage_file" >> merged_coverage.lcov.info;
+      fi
+    done &&
+    genhtml merged_coverage.lcov.info -o coverage_html --ignore-errors source
+  test:coverage:open:
+    run: |
+      melos run unit_test &&
+      melos run coverage:merge &&
+      open coverage_html/index.html
+    description: Run tests, merge coverage, and open HTML report.
+    
