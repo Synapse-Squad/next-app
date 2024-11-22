@@ -1,7 +1,7 @@
 name: moviedb_service
 description: "A new Flutter package project."
 version: 0.0.1
-homepage:
+publish_to: none
 
 environment:
   sdk: ^3.5.4
@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  rest_service:
+    path: ../rest_service
 
 dev_dependencies:
   flutter_test:
