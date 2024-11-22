@@ -1,8 +1,6 @@
 import 'package:drift/drift.dart';
 
 import '../../next_database_service.dart';
-import '../enums/order_options.dart';
-import '../enums/read_status.dart';
 import '../tables/books.dart';
 import '../tables/books.drift.dart';
 import 'books_dao.drift.dart';

@@ -8,3 +8,7 @@ packages:
   - rest_service
   - next_database_service
   - facades
+
+scripts:
+  analyze:
+    exec: dart analyze .

@@ -26,7 +26,7 @@ class AlbumPersistingBloc
       final album = event.album;
 
       final result = await albumFacade.persistSelectedItem(
-        collectionId: 2,
+        collectionId: 1,
         entity: album,
       );
 

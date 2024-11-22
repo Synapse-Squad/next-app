@@ -5,3 +5,8 @@ environment:
 
 dependencies:
   melos: ^6.2.0
+
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+
