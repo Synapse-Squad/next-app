@@ -13,8 +13,8 @@ class GoogleBookDataSourceImpl implements GoogleBookDataSource {
     final response = await client.get(
       '/volumes',
       queryParameters: {
-        'q': query,
-        'limit': 10,
+        if (query != null) 'q': query,
+        'limit': '10',
       },
     );
 

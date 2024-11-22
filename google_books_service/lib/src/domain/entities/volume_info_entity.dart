@@ -1,9 +1,9 @@
-import 'package:collection/collection.dart';
+import 'package:equatable/equatable.dart';
 
 import '../../../google_books_service.dart';
 
-class VolumeInfoEntity {
-  VolumeInfoEntity({
+class VolumeInfoEntity extends Equatable {
+  const VolumeInfoEntity({
     this.title,
     this.authors,
     this.publishedDate,
@@ -26,31 +26,18 @@ class VolumeInfoEntity {
   final List<String>? categories;
 
   @override
-  bool operator ==(covariant VolumeInfoEntity other) {
-    if (identical(this, other)) return true;
-    final listEquals = const DeepCollectionEquality().equals;
-
-    return other.title == title &&
-        listEquals(other.authors, authors) &&
-        other.publishedDate == publishedDate &&
-        other.pageCount == pageCount &&
-        other.imageLinks == imageLinks &&
-        other.language == language &&
-        other.previewLink == previewLink &&
-        other.description == description &&
-        listEquals(other.categories, categories);
-  }
+  List<Object?> get props => [
+        title,
+        authors,
+        publishedDate,
+        pageCount,
+        imageLinks,
+        language,
+        previewLink,
+        description,
+        categories,
+      ];
 
   @override
-  int get hashCode {
-    return title.hashCode ^
-        authors.hashCode ^
-        publishedDate.hashCode ^
-        pageCount.hashCode ^
-        imageLinks.hashCode ^
-        language.hashCode ^
-        previewLink.hashCode ^
-        description.hashCode ^
-        categories.hashCode;
-  }
+  bool? get stringify => true;
 }

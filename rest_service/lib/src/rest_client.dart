@@ -3,36 +3,35 @@ import 'dart:convert';
 typedef HeaderBuilder = Future<Map<String, dynamic>?> Function();
 
 abstract class RestClient {
-  const RestClient({
-    required this.baseUrl,
+  RestClient({
+    required String baseUrl,
     this.headers,
-  });
+  }) : baseUri = Uri.parse(baseUrl);
 
-  final String? baseUrl;
+  final Uri baseUri;
   final HeaderBuilder? headers;
 
   Future<Map<String, dynamic>?> get(
     String url, {
     Map<String, String>? headers,
-    Map<String, dynamic>? queryParameters,
+    Map<String, String>? queryParameters,
   });
 
   Uri buildUri(
     String path, {
-    Map<String, dynamic>? queryParameters,
+    Map<String, String>? queryParameters,
   }) {
-    if (baseUrl != null) {
-      final queriesAsString = queryParameters?.map(
-        (key, value) {
-          return MapEntry(key, value.toString());
-        },
-      );
+    final finalPath = baseUri.path + path;
 
-      final result = Uri.https(baseUrl!, path, queriesAsString);
-      return result;
-    }
+    final uri = baseUri.replace(
+      path: finalPath,
+      queryParameters: {
+        ...baseUri.queryParameters,
+        ...?queryParameters,
+      },
+    );
 
-    return Uri.parse(path);
+    return uri;
   }
 
   dynamic decodeBody(String data) => jsonDecode(data);

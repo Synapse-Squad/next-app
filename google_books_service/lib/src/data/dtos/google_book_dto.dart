@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class GoogleBookDto extends Equatable {
-  GoogleBookDto({
+  const GoogleBookDto({
     this.kind,
     this.id,
     this.volumeInfo,
@@ -23,6 +23,9 @@ class GoogleBookDto extends Equatable {
 
   @override
   List<Object?> get props => [kind, id, volumeInfo];
+
+  @override
+  bool? get stringify => true;
 }
 
 class VolumeInfoDto extends Equatable {

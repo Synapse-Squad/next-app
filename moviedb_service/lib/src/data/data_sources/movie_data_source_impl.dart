@@ -17,7 +17,7 @@ class MovieDataSourceImpl implements MovieDataSource {
             "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZWM2ZTlhODRhZTVhZjhkMTc3NTE3ZTM3NTRiMjgxNSIsIm5iZiI6MTczMTU4NDE2Ny43NDMwMTYsInN1YiI6IjY3MmUzYWMzZjcwMmQ0M2VlYTg1MmFjNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Auj2erdU6K7WDbJN83QgDSdg9GqCsUNGJfnFz0Tzvz0"
       },
       queryParameters: {
-        'query': query,
+        if (query != null) 'query': query,
       },
     );
 

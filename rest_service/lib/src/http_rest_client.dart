@@ -8,9 +8,9 @@ import 'rest_client.dart';
 import 'rest_exceptions.dart' as exceptions;
 
 final class HttpRestClient extends RestClient {
-  const HttpRestClient({
+  HttpRestClient({
     required this.client,
-    super.baseUrl,
+    required super.baseUrl,
     super.headers,
   });
 
@@ -20,7 +20,7 @@ final class HttpRestClient extends RestClient {
   Future<Map<String, dynamic>?> get(
     String url, {
     Map<String, String>? headers,
-    Map<String, dynamic>? queryParameters,
+    Map<String, String>? queryParameters,
   }) =>
       send(
         url,
@@ -35,7 +35,7 @@ final class HttpRestClient extends RestClient {
     String url, {
     required HttpRequestType requestType,
     required Map<String, String>? headers,
-    Map<String, dynamic>? queryParameters,
+    Map<String, String>? queryParameters,
     Object? body,
   }) async {
     try {

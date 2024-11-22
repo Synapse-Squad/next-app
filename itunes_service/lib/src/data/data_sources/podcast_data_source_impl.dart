@@ -15,7 +15,7 @@ final class PodcastDataSourceImpl implements PodcastDataSource {
       queryParameters: {
         'term': query,
         'entity': 'podcastEpisode',
-        'limit': 10,
+        'limit': '10',
       },
     );
 
