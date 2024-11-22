@@ -1,4 +1,4 @@
-import '../../../itunes_service.dart';
+import 'genre_entity.dart';
 
 class PodcastEntity {
   final String? artworkUrl600;

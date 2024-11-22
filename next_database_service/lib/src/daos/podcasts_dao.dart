@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 
 import '../../next_database_service.dart';
 import '../tables/podcasts.dart';
+import '../tables/podcasts.drift.dart';
 
 @DriftAccessor(tables: [Podcasts])
 class PodcastsDao extends DatabaseAccessor<NextDatabase>

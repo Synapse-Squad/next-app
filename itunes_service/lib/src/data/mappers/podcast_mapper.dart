@@ -1,4 +1,4 @@
-import 'package:itunes_service/itunes_service.dart';
+import 'package:domain/domain.dart';
 
 import '../dtos/podcast_dto.dart';
 

@@ -1,8 +1,0 @@
-# melos_managed_dependency_overrides: itunes_service,next_database_service,rest_service
-dependency_overrides:
-  itunes_service:
-    path: ../itunes_service
-  next_database_service:
-    path: ../next_database_service
-  rest_service:
-    path: ../rest_service

@@ -1,7 +1,7 @@
 name: next_database_service
 description: "A new Flutter package project."
 version: 0.0.1
-homepage:
+publish_to: none
 
 environment:
   sdk: ^3.5.4
@@ -12,6 +12,9 @@ dependencies:
     sdk: flutter
   drift: ^2.11.1
   drift_flutter: ^0.2.1
+  domain:
+    path: ../domain
+
 
 dev_dependencies:
   flutter_test:

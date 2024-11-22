@@ -1,6 +1,8 @@
 import 'package:drift/drift.dart';
 
 import '../../next_database_service.dart';
+import '../tables/movies.dart';
+import '../tables/movies.drift.dart';
 import 'movies_dao.drift.dart';
 
 @DriftAccessor(tables: [Movies])

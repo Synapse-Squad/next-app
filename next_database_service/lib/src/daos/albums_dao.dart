@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 
 import '../../next_database_service.dart';
 import '../tables/albums.dart';
+import '../tables/albums.drift.dart';
 import 'albums_dao.drift.dart';
 
 @DriftAccessor(tables: [Albums])

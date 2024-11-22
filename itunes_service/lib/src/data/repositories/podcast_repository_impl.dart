@@ -1,9 +1,9 @@
-import '../../domain/entities/podcast_entity.dart';
-import '../../domain/repositories/podcast_repository.dart';
+import 'package:domain/domain.dart';
+
 import '../data_sources/podcast_data_source.dart';
 import '../mappers/podcast_mapper.dart';
 
-final class PodcastRepositoryImpl implements IPodcastRepository {
+final class PodcastRepositoryImpl implements RemotePodcastRepository {
   const PodcastRepositoryImpl(this.podcastDataSource);
 
   final PodcastDataSource podcastDataSource;

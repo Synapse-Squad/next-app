@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 
 import '../../next_database_service.dart';
 import '../type_converters/genres_converter.dart';
+import 'user_collections.dart';
 
 @DataClassName('Podcast')
 class Podcasts extends Table {

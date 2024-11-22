@@ -45,9 +45,8 @@ dependencies:
     path: ../next_database_service
   moviedb_service:
     path: ../moviedb_service
-  facades:
-    path: ../facades
-
+  domain:
+    path: ../domain
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
