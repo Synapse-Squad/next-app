@@ -16,7 +16,7 @@ class RemoteAlbumDependenciesFactory
   @override
   RemoteAlbumDependenciesContainer create() {
     final dataSource = AlbumDataSourceImpl(dependencies.itunesClient);
-    final repository = AlbumRepositoryImpl(albumDataSource: dataSource);
+    final repository = RemoteAlbumRepositoryImpl(albumDataSource: dataSource);
     final useCase = SearchAlbumUseCase(repository);
 
     return RemoteAlbumDependenciesContainer(

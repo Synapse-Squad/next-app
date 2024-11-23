@@ -3,8 +3,8 @@ import 'package:domain/domain.dart';
 import '../../../itunes_service.dart';
 import '../mappers/album_mapper.dart';
 
-final class AlbumRepositoryImpl implements RemoteAlbumRepository {
-  const AlbumRepositoryImpl({required this.albumDataSource});
+final class RemoteAlbumRepositoryImpl implements RemoteAlbumRepository {
+  const RemoteAlbumRepositoryImpl({required this.albumDataSource});
 
   final AlbumDataSource albumDataSource;
 
