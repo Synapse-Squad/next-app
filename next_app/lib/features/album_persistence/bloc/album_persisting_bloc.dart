@@ -7,13 +7,16 @@ part 'album_persisting_state.dart';
 
 class AlbumPersistingBloc
     extends Bloc<AlbumPersistingEvent, AlbumPersistingState> {
-  AlbumPersistingBloc(this.persistAlbumUseCase)
-      : super(const AlbumPersistingState()) {
+  AlbumPersistingBloc({
+    required this.persistAlbumUseCase,
+    required this.deleteAlbumUseCase,
+  }) : super(const AlbumPersistingState()) {
     on<AlbumSavingRequired>(_onAlbumSavingRequired);
     on<AlbumRemovingRequired>(_onAlbumRemovingRequired);
   }
 
   final PersistAlbumUseCase persistAlbumUseCase;
+  final DeleteAlbumUseCase deleteAlbumUseCase;
 
   /// remoteId:localId Map
   final _previouslyPersistedRemoteIds = <int, int>{};
@@ -47,7 +50,7 @@ class AlbumPersistingBloc
 
       if (localId == null) return;
 
-      //await albumFacade.delete(localId);
+      await deleteAlbumUseCase.execute(AlbumDeleteParams(album: album));
       _previouslyPersistedRemoteIds.remove(album.id);
 
       emit(AlbumPersistingState({..._mapRemoteIds()}));

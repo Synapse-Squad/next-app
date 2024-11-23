@@ -39,7 +39,8 @@ class _AlbumSearchScopeState extends State<AlbumSearchScope> {
         BlocProvider(
           create: (_) {
             return AlbumPersistingBloc(
-              _localDependencies!.persistAlbumUseCase,
+              persistAlbumUseCase: _localDependencies!.persistAlbumUseCase,
+              deleteAlbumUseCase: _localDependencies!.deleteAlbumUseCase,
             );
           },
         ),
@@ -63,6 +64,7 @@ class _AlbumSearchScopeState extends State<AlbumSearchScope> {
   @override
   void dispose() {
     _localDependencies = null;
+    _remoteDependencies = null;
     super.dispose();
   }
 }

@@ -13,4 +13,8 @@ final class LocalAlbumRepositoryImpl implements LocalAlbumRepository {
     final companion = params.album.toCompanion(params.categoryId);
     return albumsDao.add(companion);
   }
+
+  @override
+  Future<int> delete(AlbumDeleteParams params) =>
+      albumsDao.deleteById(params.album.id!);
 }

@@ -54,7 +54,7 @@ class AlbumSearchBloc extends Bloc<AlbumSearchEvent, AlbumSearchState> {
     try {
       emit(AlbumInProgress());
       final albums = await searchAlbumUseCase.execute(
-        SearchQueryParam(event.query),
+        SearchQueryParams(event.query),
       );
 
       emit(AlbumSearchSuccess(_mapToSelector(albums)));

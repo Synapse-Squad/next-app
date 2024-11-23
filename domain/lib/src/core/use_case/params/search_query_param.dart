@@ -1,7 +1,7 @@
 import '../use_case.dart';
 
-final class SearchQueryParam extends Params {
-  const SearchQueryParam(this.query);
+final class SearchQueryParams extends Params {
+  const SearchQueryParams(this.query);
 
   final String query;
 

@@ -60,7 +60,7 @@ void main() {
       );
 
       test(
-        'should return list of [AlbumNotFoundException] if there is no '
+        'should return [AlbumNotFoundException] if there is no '
         'album item in search list',
         () async {
           when(
@@ -76,8 +76,6 @@ void main() {
               return jsonData;
             },
           );
-
-          ;
 
           expect(
             () async => await albumDataSource.searchForAlbum(query),

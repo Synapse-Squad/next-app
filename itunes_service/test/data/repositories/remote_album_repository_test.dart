@@ -1,9 +1,11 @@
 import 'package:domain/domain.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:itunes_service/itunes_service.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../mock/data/album.dart';
+@GenerateNiceMocks([MockSpec<AlbumDataSource>()])
 import 'remote_album_repository_test.mocks.dart';
 
 void main() {

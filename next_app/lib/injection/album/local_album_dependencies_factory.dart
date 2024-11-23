@@ -15,20 +15,16 @@ class LocalAlbumDependenciesFactory
 
   @override
   LocalAlbumDependenciesContainer create() {
-    // final albumDataSource = AlbumDataSourceImpl(dependencies.itunesClient);
-    //
-    // final albumRepository = AlbumRepositoryImpl(
-    //   albumDataSource: albumDataSource,
-    // );
-
     final dao = AlbumsDao(dependencies.nextDatabase);
     final repository = LocalAlbumRepositoryImpl(dao);
-    final useCase = PersistAlbumUseCase(repository);
+    final persistUseCase = PersistAlbumUseCase(repository);
+    final deleteUseCase = DeleteAlbumUseCase(repository);
 
     return LocalAlbumDependenciesContainer(
       albumsDao: dao,
       localAlbumRepository: repository,
-      persistAlbumUseCase: useCase,
+      persistAlbumUseCase: persistUseCase,
+      deleteAlbumUseCase: deleteUseCase,
     );
   }
 }

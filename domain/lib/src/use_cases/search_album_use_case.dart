@@ -5,13 +5,13 @@ import '../entities/album_entity.dart';
 import '../repositories/album_repository.dart';
 
 final class SearchAlbumUseCase
-    extends AsyncUseCase<List<AlbumEntity>, SearchQueryParam> {
+    extends AsyncUseCase<List<AlbumEntity>, SearchQueryParams> {
   const SearchAlbumUseCase(this.remoteAlbumRepository);
 
   final RemoteAlbumRepository remoteAlbumRepository;
 
   @override
-  Future<List<AlbumEntity>> execute(SearchQueryParam param) {
+  Future<List<AlbumEntity>> execute(SearchQueryParams param) {
     if (param.query.trim().isEmpty) {
       throw EmptyQueryException();
     }

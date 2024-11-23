@@ -23,12 +23,10 @@ scripts:
     run: |
       melos exec --dir-exists="lib" --depends-on="build_runner" -- flutter pub run build_runner build --delete-conflicting-outputs
     description: Run build_runner in all packages that depend on it.
-
   build:runner:watch:
     run: |
       melos exec --dir-exists="lib" --depends-on="build_runner" -- flutter pub run build_runner watch
     description: Run build_runner in watch mode for all packages.
-
   build:runner:clean:
     run: |
       melos exec --dir-exists="lib" --depends-on="build_runner" -- flutter pub run build_runner clean
