@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../injection/composition_result.dart';
 import '../injection/widget/dependencies_scope.dart';
-import 'album_search/album_search_page.dart';
+import 'collections/collections_page.dart';
 
 class NextApp extends StatelessWidget {
   const NextApp({
@@ -22,26 +22,7 @@ class NextApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: Builder(
-          builder: (context) {
-            return Scaffold(
-              body: Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) {
-                          return const AlbumSearchPage();
-                        },
-                      ),
-                    );
-                  },
-                  child: const Text('Go to Album Search Page'),
-                ),
-              ),
-            );
-          },
-        ),
+        home: const CollectionsPage(),
       ),
     );
   }

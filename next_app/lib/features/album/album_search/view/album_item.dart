@@ -1,7 +1,7 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/bloc/selector.dart';
+import '../../../../core/bloc/selector.dart';
 
 typedef AlbumPrefixBuilder = Widget Function(Selector<AlbumEntity> album);
 

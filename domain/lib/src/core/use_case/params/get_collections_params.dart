@@ -4,8 +4,8 @@ import '../use_case.dart';
 
 final class GetCollectionsParams extends Params {
   const GetCollectionsParams({
-    required this.type,
-    required this.orderOptions,
+    this.type,
+    this.orderOptions,
   });
 
   final CollectionTypes? type;

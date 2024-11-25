@@ -4,6 +4,8 @@ export 'src/core/enums/collection_types.dart';
 export 'src/core/enums/order_options.dart';
 export 'src/core/use_case/params/album_delete_params.dart';
 export 'src/core/use_case/params/album_persisting_params.dart';
+export 'src/core/use_case/params/create_collection_params.dart';
+export 'src/core/use_case/params/get_collections_params.dart';
 export 'src/core/use_case/params/search_query_param.dart';
 export 'src/entities/album_entity.dart';
 export 'src/entities/collection_entity.dart';

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../features/album_persistence/album_persistence_api.dart';
-import '../../../features/album_persistence/bloc/album_persisting_bloc.dart';
-import '../../../features/album_search/bloc/album_search_bloc.dart';
+import '../../../features/album/album.dart';
 import '../../../injection/album/local_album_dependencies_factory.dart';
 import '../../../injection/album/remote_album_dependencies_factory.dart';
 import '../../../injection/widget/dependencies_scope.dart';

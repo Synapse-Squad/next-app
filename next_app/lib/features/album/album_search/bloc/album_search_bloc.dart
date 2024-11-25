@@ -5,7 +5,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:itunes_service/itunes_service.dart';
 
-import '../../../core/bloc/selector.dart';
+import '../../../../core/bloc/selector.dart';
 import '../../album_persistence/album_persistence_api.dart';
 
 part 'album_search_event.dart';

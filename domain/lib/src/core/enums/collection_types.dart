@@ -1,1 +1,1 @@
-enum CollectionTypes { movie, book, album, podcast }
+enum CollectionTypes { movie, book, album, podcast, all }

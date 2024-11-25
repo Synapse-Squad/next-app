@@ -10,6 +10,6 @@ final class GetCollectionsUseCase
   final CollectionRepository collectionRepository;
 
   @override
-  Future<List<CollectionEntity>> execute(GetCollectionsParams param) =>
-      collectionRepository.getCollections(param);
+  Future<List<CollectionEntity>> execute(GetCollectionsParams? param) =>
+      collectionRepository.getCollections(params: param);
 }

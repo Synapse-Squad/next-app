@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../features/album_persistence/bloc/album_persisting_bloc.dart';
-import '../../features/album_search/view/album_search_view.dart';
+import '../../features/album/album.dart';
 import 'scope/album_search_scope.dart';
 
 class AlbumSearchPage extends StatelessWidget {

@@ -21,7 +21,7 @@ class UserCollectionsDao extends DatabaseAccessor<NextDatabase>
     var selector = select(userCollections);
     orderOption ??= OrderOptions.newestFirst;
 
-    if (collectionType != null) {
+    if (collectionType != null && collectionType != CollectionTypes.all) {
       selector = selector..where((c) => c.typeId.equals(collectionType.index));
     }
 
