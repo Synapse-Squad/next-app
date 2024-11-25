@@ -1,6 +1,8 @@
 import 'package:drift/drift.dart';
 
 import '../../next_database_service.dart';
+import '../tables/user_collections.dart';
+import '../tables/user_collections.drift.dart';
 import 'user_collections_dao.drift.dart';
 
 @DriftAccessor(tables: [UserCollections])

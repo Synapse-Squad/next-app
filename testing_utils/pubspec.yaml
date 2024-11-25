@@ -10,11 +10,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  mockito: ^5.4.4
+  rest_service:
+    path: ../rest_service
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  build_runner: ^2.4.13
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

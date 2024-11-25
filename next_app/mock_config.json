@@ -1,0 +1,7 @@
+{
+  "itunesApiBaseUrl": "https://itunes.apple.com",
+  "googleBooksApiBaseUrl": "https://www.googleapis.com/books/v1",
+  "moviesDbApiBaseUrl": "https://api.themoviedb.org/3",
+  "googleBooksApiKey": "...",
+  "moviesDbBearerToken": "..."
+}
