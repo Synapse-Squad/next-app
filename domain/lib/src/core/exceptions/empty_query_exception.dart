@@ -1,0 +1,1 @@
+class EmptyQueryException implements Exception {}

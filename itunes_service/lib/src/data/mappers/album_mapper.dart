@@ -1,4 +1,5 @@
-import '../../../itunes_service.dart';
+import 'package:domain/domain.dart';
+
 import '../dtos/album_dto.dart';
 
 class AlbumMapper {

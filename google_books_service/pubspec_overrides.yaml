@@ -1,5 +1,7 @@
-# melos_managed_dependency_overrides: rest_service,testing_utils
+# melos_managed_dependency_overrides: rest_service,testing_utils,domain
 dependency_overrides:
+  domain:
+    path: ../domain
   rest_service:
     path: ../rest_service
   testing_utils:

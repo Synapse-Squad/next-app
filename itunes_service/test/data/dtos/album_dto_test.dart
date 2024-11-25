@@ -6,8 +6,8 @@ import '../../mock/data/album.dart';
 
 void main() {
   test('AlbumDto should parse the json successfully', () async {
-    final albumJson = await TestFileReader.read(MockJsonPath.album);
+    final albumJson = await TestFileReader.read('test/mock/jsons/album.json');
     final parsedAlbum = AlbumDto.fromJson(albumJson);
-    expect(parsedAlbum, mockAlbum);
+    expect(parsedAlbum, mockAlbumDto);
   });
 }

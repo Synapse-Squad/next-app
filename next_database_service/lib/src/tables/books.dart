@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 
 import '../../next_database_service.dart';
 import '../type_converters/list_converter.dart';
+import 'user_collections.dart';
 
 @DataClassName('Book')
 class Books extends Table {

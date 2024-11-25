@@ -1,5 +1,5 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:itunes_service/itunes_service.dart';
 
 import '../../../core/bloc/selector.dart';
 

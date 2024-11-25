@@ -6,7 +6,7 @@ import '../../mock/data/mock_book.dart';
 
 void main() {
   test('GoogleBookDto should parse the json successfully', () async {
-    final bookJson = await TestFileReader.read(MockJsonPath.book);
+    final bookJson = await TestFileReader.read('test/mock/jsons/book.json');
     final parsedBook = GoogleBookDto.fromJson(bookJson);
     expect(parsedBook, mockBook);
   });
