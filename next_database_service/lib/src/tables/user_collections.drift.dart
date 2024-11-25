@@ -2,7 +2,7 @@
 import 'package:drift/drift.dart' as i0;
 import 'package:next_database_service/src/tables/user_collections.drift.dart'
     as i1;
-import 'package:next_database_service/src/enums/collection_types.dart' as i2;
+import 'package:domain/src/core/enums/collection_types.dart' as i2;
 import 'package:next_database_service/src/tables/user_collections.dart' as i3;
 import 'package:drift/src/runtime/query_builder/query_builder.dart' as i4;
 
