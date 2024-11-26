@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:next_app/core/extensions/collection_types_ext.dart';
 
 import '../bloc/collections_bloc.dart';
 import 'widgets/selectable_collection_types.dart';
 
 class CollectionsView extends StatelessWidget {
-  const CollectionsView({super.key});
+  const CollectionsView({
+    super.key,
+    this.action,
+  });
+
+  final Widget? action;
 
   @override
   Widget build(BuildContext context) {
+    final titleScaler = MediaQuery.textScalerOf(context).scale(24) * 2;
+    final dateScaler = MediaQuery.textScalerOf(context).scale(20);
+
     return Scaffold(
-      backgroundColor: Colors.black,
       body: SafeArea(
         child: BlocBuilder<CollectionsBloc, CollectionsState>(
           builder: (context, state) {
@@ -19,38 +27,46 @@ class CollectionsView extends StatelessWidget {
               CollectionsEmpty() => const SizedBox.shrink(),
               CollectionsSuccess(:var type, :var collections) =>
                 GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 1.5,
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 300,
+                    mainAxisExtent: titleScaler.ceil() + dateScaler.ceil() + 88,
                   ),
                   itemBuilder: (context, index) {
                     final collection = collections[index];
 
-                    return Card(
-                      color: Colors.white12,
-                      borderOnForeground: false,
-                      shadowColor: Colors.transparent,
-                      surfaceTintColor: Colors.white12,
-                      elevation: 0,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              collection.title,
-                              style: TextStyle(color: Colors.white),
+                    return Container(
+                      padding: const EdgeInsets.all(8.0),
+                      margin: const EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        color: Colors.white12,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          collection.type.icon,
+                          const SizedBox(height: 16),
+                          Text(
+                            collection.title,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              height: 24 / 20,
                             ),
-                            Text(
-                              collection.type.name,
-                              style: TextStyle(color: Colors.white),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 16), // 16
+                          Text(
+                            collection.createdAt.toIso8601String(),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              height: 20 / 16,
                             ),
-                            Text(
-                              collection.createdAt.toIso8601String(),
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
+                            maxLines: 1,
+                          ),
+                        ],
                       ),
                     );
                   },
@@ -67,6 +83,7 @@ class CollectionsView extends StatelessWidget {
           },
         ),
       ),
+      floatingActionButton: action,
     );
   }
 }

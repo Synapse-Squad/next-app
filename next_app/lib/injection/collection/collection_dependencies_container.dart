@@ -7,10 +7,12 @@ base class CollectionDependenciesContainer {
     required this.collectionRepository,
     required this.createCollectionUseCase,
     required this.getCollectionsUseCase,
+    required this.validateCreateCollectionUseCase,
   });
 
   final UserCollectionsDao collectionsDao;
   final CollectionRepository collectionRepository;
   final CreateCollectionUseCase createCollectionUseCase;
   final GetCollectionsUseCase getCollectionsUseCase;
+  final ValidateCreateCollectionUseCase validateCreateCollectionUseCase;
 }

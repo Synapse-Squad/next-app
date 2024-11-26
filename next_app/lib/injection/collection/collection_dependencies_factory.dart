@@ -18,11 +18,24 @@ final class CollectionDependenciesFactory
     final createUseCase = CreateCollectionUseCase(collectionRepository);
     final getListUseCase = GetCollectionsUseCase(collectionRepository);
 
+    final titleValidator = ValidateTitleUseCase(
+      dependencies.validatorLocalizationService,
+    );
+    final typeValidator = ValidateRequiredUseCase<CollectionTypes>(
+      dependencies.validatorLocalizationService,
+    );
+
+    final createValidator = ValidateCreateCollectionUseCase(
+      validateTitleUseCase: titleValidator,
+      typeRequiredUSeCas: typeValidator,
+    );
+
     return CollectionDependenciesContainer(
       collectionsDao: collectionDao,
       collectionRepository: collectionRepository,
       createCollectionUseCase: createUseCase,
       getCollectionsUseCase: getListUseCase,
+      validateCreateCollectionUseCase: createValidator,
     );
   }
 }

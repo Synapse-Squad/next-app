@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-abstract base class UseCase<Result, Param extends Params> {
+abstract base class UseCase<Result, Param> {
   const UseCase();
 
   Result execute(Param param);

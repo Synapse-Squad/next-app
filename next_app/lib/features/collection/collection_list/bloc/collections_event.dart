@@ -19,3 +19,7 @@ class CollectionsRequired extends CollectionsEvent {
   @override
   List<Object?> get props => [type, orderOptions];
 }
+
+class CollectionsReloadRequired extends CollectionsEvent {
+  const CollectionsReloadRequired();
+}

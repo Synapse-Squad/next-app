@@ -1,8 +1,8 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:next_app/features/collection/collection.dart';
 
+import '../../../features/collection/collection.dart';
 import '../../../injection/collection/collection_dependencies_container.dart';
 import '../../../injection/collection/collection_dependencies_factory.dart';
 import '../../../injection/widget/dependencies_scope.dart';
@@ -33,10 +33,22 @@ class _CollectionsScopeState extends State<CollectionsScope> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CollectionsBloc(
-        _collectionDependencies!.getCollectionsUseCase,
-      )..add(CollectionsRequired(type: CollectionTypes.all)),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => CollectionsBloc(
+            _collectionDependencies!.getCollectionsUseCase,
+          )..add(CollectionsRequired(type: CollectionTypes.all)),
+        ),
+        BlocProvider(
+          lazy: true,
+          create: (_) => CreateCollectionBloc(
+            createCollectionUseCase:
+                _collectionDependencies!.createCollectionUseCase,
+            validator: _collectionDependencies!.validateCreateCollectionUseCase,
+          ),
+        ),
+      ],
       child: Builder(builder: widget.builder),
     );
   }

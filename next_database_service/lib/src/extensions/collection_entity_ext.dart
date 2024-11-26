@@ -6,8 +6,8 @@ import '../tables/user_collections.drift.dart';
 extension CollectionEntityExt on CreateCollectionParams {
   UserCollectionsCompanion toCompanion() {
     return UserCollectionsCompanion(
-      title: Value(title),
-      typeId: Value(type),
+      title: Value(title!),
+      typeId: Value(type!),
     );
   }
 }
