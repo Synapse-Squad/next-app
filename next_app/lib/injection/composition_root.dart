@@ -1,9 +1,9 @@
 import 'package:clock/clock.dart';
 import 'package:logging/logging.dart';
-import 'package:next_app/injection/global/dependencies_factory.dart';
 
 import 'composition_result.dart';
 import 'config.dart';
+import 'core/core_module_factory.dart';
 
 final class CompositionRoot {
   const CompositionRoot(this.config);
@@ -16,7 +16,7 @@ final class CompositionRoot {
 
     /// global dependencies
     logger.info('Initializing global dependencies...');
-    final dependencies = GlobalDependenciesFactory(config).create();
+    final dependencies = CoreModuleFactory(config).create();
     stopwatch.stop();
     logger.finest('Global dependencies initialized');
     logger.finest('consumed time: ${stopwatch.elapsed}');

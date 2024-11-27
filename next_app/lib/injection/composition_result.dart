@@ -1,9 +1,9 @@
-import 'package:next_app/injection/global/dependencies_container.dart';
+import 'core/core_module.dart';
 
 class CompositionResult {
   const CompositionResult({
     required this.dependencies,
   });
 
-  final DependenciesContainer dependencies;
+  final CoreModule dependencies;
 }

@@ -1,5 +1,5 @@
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:user_collections/user_collections.dart';
 
 extension CollectionTypesExt on CollectionTypes {
   Widget get icon {
