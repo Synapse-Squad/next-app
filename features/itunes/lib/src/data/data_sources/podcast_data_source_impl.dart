@@ -1,6 +1,7 @@
 import 'package:rest_service/rest_service.dart';
 
 import '../../../itunes_service.dart';
+import '../../core/exceptions/podcast_not_found_exception.dart';
 import '../dtos/podcast_dto.dart';
 
 final class PodcastDataSourceImpl implements PodcastDataSource {

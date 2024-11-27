@@ -20,8 +20,9 @@ final class LocalAlbumRepositoryImpl implements LocalAlbumRepository {
     } catch (e, s) {
       return Left(
         Failure.database(
-          'Something went wrong while writing to table',
-          e,
+          debugMessage: 'Something went wrong while writing to table',
+          error: e,
+          stackTrace: s,
         ),
       );
     }
@@ -32,6 +33,14 @@ final class LocalAlbumRepositoryImpl implements LocalAlbumRepository {
     try {
       final id = await albumsDao.deleteById(params.album.id!);
       return Right(id);
-    } catch (_) {}
+    } catch (e, s) {
+      return Left(
+        Failure.database(
+          debugMessage: 'Something went wrong while deleting album from table',
+          error: e,
+          stackTrace: s,
+        ),
+      );
+    }
   }
 }

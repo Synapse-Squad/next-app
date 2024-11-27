@@ -1,0 +1,1 @@
+class AlbumNotFoundException implements Exception {}

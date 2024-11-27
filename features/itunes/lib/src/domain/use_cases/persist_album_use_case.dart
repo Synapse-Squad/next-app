@@ -1,3 +1,5 @@
+import 'package:either/either.dart';
+
 import '../params/album_persisting_params.dart';
 import '../repositories/album_repository.dart';
 
@@ -6,7 +8,7 @@ final class PersistAlbumUseCase {
 
   final LocalAlbumRepository localAlbumRepository;
 
-  Future<int> call(AlbumPersistingParams param) {
+  Future<Either<Failure, int>> call(AlbumPersistingParams param) {
     return localAlbumRepository.persist(param);
   }
 }
