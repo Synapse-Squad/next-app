@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:itunes_service/src/data/dtos/album_dto.dart';
+import 'package:itunes/src/data/dtos/album_dto.dart';
 import 'package:testing_utils/testing_utils.dart';
 
 import '../../mock/data/album.dart';

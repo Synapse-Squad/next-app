@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../injection/composition_result.dart';
 import '../injection/widget/core_module_scope.dart';
-import 'routing/router.dart';
+import 'router/router.dart';
 
 class NextApp extends StatefulWidget {
   const NextApp({

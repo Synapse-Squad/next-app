@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../create_collection/bloc/create_collection_bloc.dart';
-import '../routing/routes.dart';
+import '../router/routes.dart';
 import 'bloc/collections_bloc.dart';
 import 'widgets/collections_view.dart';
 

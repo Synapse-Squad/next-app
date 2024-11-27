@@ -1,6 +1,6 @@
-import 'package:google_books_service/src/data/dtos/google_book_dto.dart';
+import 'package:books/src/data/dtos/google_book_dto.dart';
 
-final mockBook = GoogleBookDto(
+const mockBook = GoogleBookDto(
   kind: 'books#volume',
   id: 'ByiFDwAAQBAJ',
   volumeInfo: VolumeInfoDto(
