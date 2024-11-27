@@ -11,26 +11,23 @@ class CreateCollectionBloc extends Cubit<CreateCollectionState> {
 
   final CreateCollectionUseCase createCollectionUseCase;
 
-  var _createParams = CreateCollectionParams();
+  ({String? title, CollectionTypes? type})? _createParams;
 
   void submit() async {
-    try {
-      await createCollectionUseCase(_createParams);
-      emit(state.copyWith(status: CreateStatus.success));
-    } catch (_) {}
+    await createCollectionUseCase(
+      CollectionParams(
+        title: _createParams!.title!,
+        type: _createParams!.type!,
+      ),
+    );
+    emit(state.copyWith(status: CreateStatus.success));
   }
 
   void onTitleChanged(String? value) {
-    _createParams = CreateCollectionParams(
-      title: value,
-      type: _createParams.type,
-    );
+    _createParams = (title: value, type: _createParams?.type);
   }
 
   void onTypeChanged(CollectionTypes? value) {
-    _createParams = CreateCollectionParams(
-      title: _createParams.title,
-      type: value,
-    );
+    _createParams = (title: _createParams?.title, type: value);
   }
 }

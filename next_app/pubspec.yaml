@@ -51,6 +51,8 @@ dependencies:
     path: ../shared/next_database_service
   domain:
     path: ../domain
+  either:
+    path: ../shared/either
   equatable: ^2.0.7
   go_router: ^14.6.1
 

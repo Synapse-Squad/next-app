@@ -1,7 +1,7 @@
-name: user_collections
+name: either
 description: "A new Flutter package project."
 version: 0.0.1
-publish_to: none
+homepage:
 
 environment:
   sdk: ^3.5.4
@@ -11,11 +11,6 @@ dependencies:
   flutter:
     sdk: flutter
   equatable: ^2.0.7
-  next_database_service:
-    path: ../../shared/next_database_service
-  either:
-    path: ../../shared/either
-
 
 dev_dependencies:
   flutter_test:

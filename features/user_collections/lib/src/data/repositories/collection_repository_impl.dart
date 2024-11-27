@@ -1,3 +1,4 @@
+import 'package:either/either.dart';
 import 'package:next_database_service/next_database_service.dart';
 
 import '../../core/extensions/collection_entity_ext.dart';
@@ -12,18 +13,46 @@ final class CollectionRepositoryImpl implements CollectionRepository {
   final UserCollectionsDao collectionsDao;
 
   @override
-  Future<void> createCollection(CreateCollectionParams params) =>
-      collectionsDao.add(params.toCompanion());
+  Future<Either<Failure, Unit>> createCollection(
+    CollectionParams params,
+  ) async {
+    try {
+      await collectionsDao.add(params.toCompanion());
+      return const Right(unit);
+    } catch (_) {
+      return Left(Failure.database());
+    }
+  }
 
   @override
-  Future<List<CollectionEntity>> getCollections({
+  Future<Either<Failure, List<CollectionEntity>>> getCollections({
     GetCollectionsParams? params,
   }) async {
-    final collections = await collectionsDao.getCollections(
-      collectionType: params?.type,
-      orderOption: params?.orderOptions,
-    );
+    try {
+      final collections = await collectionsDao.getCollections(
+        collectionType: params?.type,
+        orderOption: params?.orderOptions,
+      );
 
-    return collections.toEntityList();
+      return Right(collections.toEntityList());
+    } catch (_) {
+      return Left(Failure.database());
+    }
+  }
+
+  @override
+  Future<Either<Failure, CollectionEntity?>> getCollection(
+    CollectionParams params,
+  ) async {
+    try {
+      final collection = await collectionsDao.getCollection(
+        title: params.title,
+        collectionType: params.type,
+      );
+
+      return Right(collection?.toEntity());
+    } catch (_) {
+      return Left(Failure.database());
+    }
   }
 }

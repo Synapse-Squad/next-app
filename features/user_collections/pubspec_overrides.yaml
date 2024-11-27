@@ -1,6 +1,8 @@
-# melos_managed_dependency_overrides: domain,next_database_service
+# melos_managed_dependency_overrides: domain,next_database_service,either
 dependency_overrides:
   domain:
     path: ../../domain
+  either:
+    path: ../../shared/either
   next_database_service:
     path: ../../shared/next_database_service

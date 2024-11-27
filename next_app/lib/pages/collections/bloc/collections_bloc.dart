@@ -17,25 +17,28 @@ class CollectionsBloc extends Bloc<CollectionsEvent, CollectionsState> {
     CollectionsRequired event,
     Emitter<CollectionsState> emit,
   ) async {
-    try {
-      final collections = await getCollectionsUseCase(
-        GetCollectionsParams(
-          type: event.type,
-          orderOptions: event.orderOptions,
-        ),
-      );
+    final collections = await getCollectionsUseCase(
+      GetCollectionsParams(
+        type: event.type,
+        orderOptions: event.orderOptions,
+      ),
+    );
 
-      if (collections.isEmpty) {
-        emit(CollectionsEmpty(event.type));
-        return;
-      }
+    collections.fold(
+      onLeft: (failure) {},
+      onRight: (collections) {
+        if (collections.isEmpty) {
+          emit(CollectionsEmpty(event.type));
+          return;
+        }
 
-      emit(
-        CollectionsSuccess(
-          collections: collections,
-          type: event.type,
-        ),
-      );
-    } catch (_) {}
+        emit(
+          CollectionsSuccess(
+            collections: collections,
+            type: event.type,
+          ),
+        );
+      },
+    );
   }
 }

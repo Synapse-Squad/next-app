@@ -44,7 +44,7 @@ extension $CreateCollectionsRouteExtension on CreateCollectionsRoute {
       CreateCollectionsRoute(
         state.extra as ({
           CollectionsBloc collectionsBloc,
-          CreateCollectionBloc createBloc
+          CreateCollectionUseCase createCollectionUseCase
         }),
       );
 
