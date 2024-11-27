@@ -12,8 +12,6 @@ dependencies:
     sdk: flutter
   rest_service:
     path: ../../shared/rest_service
-  domain:
-    path: ../../domain
 
 dev_dependencies:
   flutter_test:

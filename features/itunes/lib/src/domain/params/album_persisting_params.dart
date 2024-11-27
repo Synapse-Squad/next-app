@@ -1,7 +1,8 @@
-import '../../../entities/album_entity.dart';
-import '../use_case.dart';
+import 'package:equatable/equatable.dart';
 
-final class AlbumPersistingParams extends Params {
+import '../entities/album_entity.dart';
+
+final class AlbumPersistingParams extends Equatable {
   const AlbumPersistingParams({
     required this.categoryId,
     required this.album,

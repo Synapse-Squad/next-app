@@ -1,7 +1,9 @@
-# melos_managed_dependency_overrides: rest_service,testing_utils,domain
+# melos_managed_dependency_overrides: rest_service,testing_utils,either,next_database_service
 dependency_overrides:
-  domain:
-    path: ../../domain
+  either:
+    path: ../../shared/either
+  next_database_service:
+    path: ../../shared/next_database_service
   rest_service:
     path: ../../shared/rest_service
   testing_utils:

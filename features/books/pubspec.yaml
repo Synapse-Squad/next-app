@@ -13,8 +13,6 @@ dependencies:
   equatable: ^2.0.7
   rest_service:
     path: ../../shared/rest_service
-  domain:
-    path: ../../domain
 
 dev_dependencies:
   flutter_test:

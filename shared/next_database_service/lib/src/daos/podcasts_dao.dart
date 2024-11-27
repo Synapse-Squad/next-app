@@ -1,4 +1,3 @@
-import 'package:domain/domain.dart';
 import 'package:drift/drift.dart';
 
 import '../../next_database_service.dart';

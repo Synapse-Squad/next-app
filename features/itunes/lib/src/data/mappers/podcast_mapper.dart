@@ -1,5 +1,5 @@
-import 'package:domain/domain.dart';
-
+import '../../domain/entities/genre_entity.dart';
+import '../../domain/entities/podcast_entity.dart';
 import '../dtos/podcast_dto.dart';
 
 class PodcastMapper {

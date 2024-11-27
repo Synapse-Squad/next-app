@@ -1,6 +1,6 @@
-import 'package:domain/domain.dart';
-
 import '../../../itunes_service.dart';
+import '../../domain/entities/album_entity.dart';
+import '../../domain/repositories/album_repository.dart';
 import '../mappers/album_mapper.dart';
 
 final class RemoteAlbumRepositoryImpl implements RemoteAlbumRepository {

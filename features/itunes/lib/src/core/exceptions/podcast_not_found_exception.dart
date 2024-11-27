@@ -1,1 +1,0 @@
-class PodcastNotFoundException implements Exception {}

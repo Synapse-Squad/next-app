@@ -1,6 +1,4 @@
-# melos_managed_dependency_overrides: rest_service,domain
+# melos_managed_dependency_overrides: rest_service
 dependency_overrides:
-  domain:
-    path: ../../domain
   rest_service:
     path: ../../shared/rest_service

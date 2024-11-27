@@ -12,9 +12,6 @@ dependencies:
     sdk: flutter
   drift: ^2.11.1
   drift_flutter: ^0.2.1
-  domain:
-    path: ../../domain
-
 
 dev_dependencies:
   flutter_test:

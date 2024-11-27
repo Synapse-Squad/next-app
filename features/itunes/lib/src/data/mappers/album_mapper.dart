@@ -1,5 +1,4 @@
-import 'package:domain/domain.dart';
-
+import '../../domain/entities/album_entity.dart';
 import '../dtos/album_dto.dart';
 
 class AlbumMapper {

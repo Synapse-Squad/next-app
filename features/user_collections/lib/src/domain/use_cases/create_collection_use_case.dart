@@ -15,8 +15,8 @@ final class CreateCollectionUseCase {
     if (collection.isRight() || collection.getRight() != null) {
       return const Left(
         SameCollectionFoundFailure(
-          'user can\'t create new collection '
-          'with the same name and type',
+          debugMessage: 'user can\'t create new collection '
+              'with the same name and type',
         ),
       );
     }

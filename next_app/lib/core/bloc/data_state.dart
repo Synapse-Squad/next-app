@@ -12,6 +12,9 @@ sealed class DataState<Success> extends Equatable {
 
   @override
   List<Object?> get props => [];
+
+  @override
+  bool? get stringify => true;
 }
 
 class DataInitial<Success> extends DataState<Success> {
@@ -26,6 +29,9 @@ class DataFailure<Success> extends DataState<Success> {
   const DataFailure(this.failure);
 
   final Failure failure;
+
+  @override
+  List<Object?> get props => [failure];
 }
 
 class DataEmpty<Success> extends DataState<Success> {

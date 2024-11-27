@@ -4,7 +4,6 @@ packages:
   - next_app
   - features/**
   - shared/**
-  - domain
 
 scripts:
   # you should install fzf command line tool to run this command

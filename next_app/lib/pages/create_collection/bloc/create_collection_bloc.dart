@@ -6,12 +6,13 @@ import 'package:user_collections/user_collections.dart';
 export 'package:next_app/core/bloc/data_state.dart';
 
 typedef CreateCollectionState = DataState<Unit>;
+typedef CreateCollectionInitial = DataInitial<Unit>;
 typedef CreateCollectionFailure = DataFailure<Unit>;
 
 class CreateCollectionBloc extends Cubit<CreateCollectionState> {
   CreateCollectionBloc({
     required this.createCollectionUseCase,
-  }) : super(DataState.initial());
+  }) : super(const CreateCollectionInitial());
 
   final CreateCollectionUseCase createCollectionUseCase;
 

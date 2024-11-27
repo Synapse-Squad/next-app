@@ -1,7 +1,8 @@
-import '../../../entities/album_entity.dart';
-import '../use_case.dart';
+import 'package:equatable/equatable.dart';
 
-final class AlbumDeleteParams extends Params {
+import '../entities/album_entity.dart';
+
+final class AlbumDeleteParams extends Equatable {
   const AlbumDeleteParams({
     required this.album,
   });

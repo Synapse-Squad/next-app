@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   equatable: ^2.0.7
+  drift: ^2.21.0
   next_database_service:
     path: ../../shared/next_database_service
   either:

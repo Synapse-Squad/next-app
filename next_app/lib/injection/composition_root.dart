@@ -15,13 +15,13 @@ final class CompositionRoot {
     final logger = Logger('CompositionRootLogger');
 
     /// global dependencies
-    logger.info('Initializing global dependencies...');
-    final dependencies = CoreModuleFactory(config).create();
+    logger.info('Initializing CoreModule...');
+    final coreModule = CoreModuleFactory(config).create();
     stopwatch.stop();
-    logger.finest('Global dependencies initialized');
+    logger.finest('CoreModule initialized');
     logger.finest('consumed time: ${stopwatch.elapsed}');
 
-    final result = CompositionResult(dependencies: dependencies);
+    final result = CompositionResult(dependencies: coreModule);
     return result;
   }
 }
