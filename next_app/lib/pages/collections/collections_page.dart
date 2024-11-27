@@ -23,12 +23,12 @@ class CollectionsPage extends StatelessWidget {
           ).push(context);
         },
         child: Card(
-          color: Colors.white12,
+          color: Colors.white,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
               'Add new list',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
             ),
           ),
         ),

@@ -2,12 +2,16 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_collections/user_collections.dart';
 
+import '../../../core/bloc/data_state.dart';
+
+export '../../../core/bloc/data_state.dart';
+
 part 'collections_event.dart';
-part 'collections_state.dart';
+
+typedef CollectionsState = DataState<List<CollectionEntity>>;
 
 class CollectionsBloc extends Bloc<CollectionsEvent, CollectionsState> {
-  CollectionsBloc(this.getCollectionsUseCase)
-      : super(const CollectionsInitial()) {
+  CollectionsBloc(this.getCollectionsUseCase) : super(DataState.initial()) {
     on<CollectionsRequired>(_onCollectionsRequired);
   }
 
@@ -17,6 +21,8 @@ class CollectionsBloc extends Bloc<CollectionsEvent, CollectionsState> {
     CollectionsRequired event,
     Emitter<CollectionsState> emit,
   ) async {
+    emit(DataState.inProgress());
+
     final collections = await getCollectionsUseCase(
       GetCollectionsParams(
         type: event.type,
@@ -25,19 +31,16 @@ class CollectionsBloc extends Bloc<CollectionsEvent, CollectionsState> {
     );
 
     collections.fold(
-      onLeft: (failure) {},
+      onLeft: (failure) {
+        emit(DataState.failure(failure));
+      },
       onRight: (collections) {
         if (collections.isEmpty) {
-          emit(CollectionsEmpty(event.type));
+          emit(DataState.empty());
           return;
         }
 
-        emit(
-          CollectionsSuccess(
-            collections: collections,
-            type: event.type,
-          ),
-        );
+        emit(DataState.success(collections));
       },
     );
   }

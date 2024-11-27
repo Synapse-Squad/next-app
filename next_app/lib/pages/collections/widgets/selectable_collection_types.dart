@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_collections/user_collections.dart';
 
-import '../bloc/collections_bloc.dart';
-
-class SelectableCollectionTypes extends StatelessWidget {
+class SelectableCollectionTypes extends StatefulWidget {
   const SelectableCollectionTypes({
     super.key,
-    required this.currentType,
+    this.onChanged,
   });
 
-  final CollectionTypes currentType;
+  final ValueChanged<CollectionTypes?>? onChanged;
+
+  @override
+  State<SelectableCollectionTypes> createState() =>
+      _SelectableCollectionTypesState();
+}
+
+class _SelectableCollectionTypesState extends State<SelectableCollectionTypes> {
+  var _currentType = CollectionTypes.all;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +27,11 @@ class SelectableCollectionTypes extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 8),
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          final selected = types[index] == currentType;
+          final type = types[index];
+          final selected = types[index] == _currentType;
 
           return ChoiceChip(
-            label: Text(types[index].name),
+            label: Text(type.name),
             selected: selected,
             selectedColor: Colors.white54,
             disabledColor: Colors.black87,
@@ -37,11 +43,10 @@ class SelectableCollectionTypes extends StatelessWidget {
             ),
             checkmarkColor: Colors.black,
             onSelected: (_) {
-              context.read<CollectionsBloc>().add(
-                    CollectionsRequired(
-                      type: types[index],
-                    ),
-                  );
+              setState(() {
+                widget.onChanged?.call(type);
+                _currentType = type;
+              });
             },
             backgroundColor: Colors.black87,
           );

@@ -1,43 +1,42 @@
 import 'package:either/failure.dart';
 import 'package:equatable/equatable.dart';
 
-base class DataState<Success> extends Equatable {
-  const DataState({
-    this.isInProgress = false,
-    this.isFailure = false,
-    this.isSuccess = false,
-    this.data,
-    this.failure,
-  });
+sealed class DataState<Success> extends Equatable {
+  const DataState();
 
-  final bool isInProgress;
-  final bool isFailure;
-  final bool isSuccess;
-  final Success? data;
-  final Failure? failure;
-
-  DataState<Success> copyWith({
-    final bool? isInProgress,
-    final bool? isFailure,
-    final bool? isSuccess,
-    final Success? data,
-    final Failure? failure,
-  }) {
-    return DataState(
-      isInProgress: isInProgress ?? false,
-      isFailure: isFailure ?? false,
-      isSuccess: isSuccess ?? false,
-      data: data,
-      failure: failure,
-    );
-  }
+  factory DataState.initial() => const DataInitial();
+  factory DataState.inProgress() => const DataInProgress();
+  factory DataState.failure(Failure failure) => DataFailure(failure);
+  factory DataState.empty() => const DataEmpty();
+  factory DataState.success(Success data) => DataSuccess(data);
 
   @override
-  List<Object?> get props => [
-        isInProgress,
-        isFailure,
-        isSuccess,
-        data,
-        failure,
-      ];
+  List<Object?> get props => [];
+}
+
+class DataInitial<Success> extends DataState<Success> {
+  const DataInitial();
+}
+
+class DataInProgress<Success> extends DataState<Success> {
+  const DataInProgress();
+}
+
+class DataFailure<Success> extends DataState<Success> {
+  const DataFailure(this.failure);
+
+  final Failure failure;
+}
+
+class DataEmpty<Success> extends DataState<Success> {
+  const DataEmpty();
+}
+
+class DataSuccess<Success> extends DataState<Success> {
+  const DataSuccess(this.data);
+
+  final Success data;
+
+  @override
+  List<Object?> get props => [data];
 }

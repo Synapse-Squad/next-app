@@ -1,4 +1,5 @@
 {
     "titleSymbolLengthInvalid": "at least 3 character required for title",
-    "fieldRequired": "This field is required"
+    "fieldRequired": "This field is required",
+    "youCantCreateSameCollection": "You can't create same collection again!"
 }

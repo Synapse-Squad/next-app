@@ -1,26 +1,40 @@
-import 'package:equatable/equatable.dart';
+import 'package:either/either.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:next_app/core/bloc/data_state.dart';
 import 'package:user_collections/user_collections.dart';
 
-part 'create_collection_state.dart';
+export 'package:next_app/core/bloc/data_state.dart';
+
+typedef CreateCollectionState = DataState<Unit>;
+typedef CreateCollectionFailure = DataFailure<Unit>;
 
 class CreateCollectionBloc extends Cubit<CreateCollectionState> {
   CreateCollectionBloc({
     required this.createCollectionUseCase,
-  }) : super(const CreateCollectionState());
+  }) : super(DataState.initial());
 
   final CreateCollectionUseCase createCollectionUseCase;
 
   ({String? title, CollectionTypes? type})? _createParams;
 
   void submit() async {
-    await createCollectionUseCase(
+    if (_createParams == null ||
+        _createParams!.type == null ||
+        _createParams!.title == null) {
+      return;
+    }
+
+    final result = await createCollectionUseCase(
       CollectionParams(
         title: _createParams!.title!,
         type: _createParams!.type!,
       ),
     );
-    emit(state.copyWith(status: CreateStatus.success));
+
+    result.fold(
+      onLeft: (failure) => emit(DataState.failure(failure)),
+      onRight: (_) => emit(DataState.success(unit)),
+    );
   }
 
   void onTitleChanged(String? value) {
