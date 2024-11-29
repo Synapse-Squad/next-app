@@ -32,6 +32,8 @@ class CreateCollectionBloc extends Cubit<CreateCollectionState> {
       ),
     );
 
+    print(result);
+
     result.fold(
       onLeft: (failure) => emit(DataState.failure(failure)),
       onRight: (_) => emit(DataState.success(unit)),

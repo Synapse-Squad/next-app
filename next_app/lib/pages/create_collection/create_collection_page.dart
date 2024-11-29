@@ -15,6 +15,7 @@ class CreateCollectionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<CreateCollectionBloc, CreateCollectionState>(
       listener: (BuildContext context, state) {
+        print(state);
         if (state is DataSuccess) {
           context.read<CollectionsBloc>().add(CollectionsRequired());
           context.pop();
