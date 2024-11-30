@@ -57,20 +57,6 @@ extension EitherExtensions<L, R> on Either<L, R> {
 
   L? getLeft() => this is Left<L, R> ? (this as Left<L, R>).value : null;
   R? getRight() => this is Right<L, R> ? (this as Right<L, R>).value : null;
-  //
-  // Either<L, T> mapRight<T>(T Function(R right) transform) {
-  //   return fold(
-  //     (left) => Left<L, T>(left),
-  //     (right) => Right<L, T>(transform(right)),
-  //   );
-  // }
-  //
-  // Either<T, R> mapLeft<T>(T Function(L left) transform) {
-  //   return fold(
-  //     (left) => Left<T, R>(transform(left)),
-  //     (right) => Right<T, R>(right),
-  //   );
-  // }
 }
 
 @immutable

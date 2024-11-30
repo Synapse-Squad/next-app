@@ -12,7 +12,7 @@ final class CreateCollectionUseCase {
   Future<Either<Failure, Unit>> call(CollectionParams param) async {
     final collection = await collectionRepository.getCollection(param);
 
-    if (collection.isRight() || collection.getRight() != null) {
+    if (collection.isRight() && collection.getRight() != null) {
       return const Left(
         SameCollectionFoundFailure(
           debugMessage: 'user can\'t create new collection '

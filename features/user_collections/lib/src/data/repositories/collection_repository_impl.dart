@@ -50,6 +50,8 @@ final class CollectionRepositoryImpl implements CollectionRepository {
         collectionType: params.type,
       );
 
+      print('collection: $collection');
+
       return Right(collection?.toEntity());
     } catch (_) {
       return Left(Failure.database());

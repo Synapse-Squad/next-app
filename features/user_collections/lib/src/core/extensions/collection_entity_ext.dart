@@ -7,8 +7,8 @@ import '../../domain/params/create_collection_params.dart';
 extension CollectionEntityExt on CollectionParams {
   UserCollectionsCompanion toCompanion() {
     return UserCollectionsCompanion(
-      title: Value(title!),
-      typeId: Value(type!),
+      title: Value(title),
+      typeId: Value(type),
     );
   }
 }
