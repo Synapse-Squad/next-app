@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
 
-import 'core/bloc_observer.dart';
+import 'core/bloc/bloc_observer.dart';
 import 'injection/composition_root.dart';
 import 'injection/config.dart';
 import 'pages/app.dart';
@@ -14,7 +14,8 @@ void main() async {
   Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((record) {
     debugPrintThrottled(
-      '${record.level.name}: '
+      '${record.loggerName} '
+      '[${record.level.name}]: '
       '${record.time}: ${record.message}',
     );
   });

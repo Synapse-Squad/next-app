@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../core/router/router.dart';
 import '../injection/composition_result.dart';
-import '../injection/widget/dependencies_scope.dart';
-import 'album_search/album_search_page.dart';
+import '../injection/widget/core_module_scope.dart';
 
-class NextApp extends StatelessWidget {
+class NextApp extends StatefulWidget {
   const NextApp({
     super.key,
     required this.result,
@@ -13,35 +14,33 @@ class NextApp extends StatelessWidget {
   final CompositionResult result;
 
   @override
+  State<NextApp> createState() => _NextAppState();
+}
+
+class _NextAppState extends State<NextApp> with WidgetsBindingObserver {
+  @override
   Widget build(BuildContext context) {
-    return DependenciesScope(
-      dependencies: result.dependencies,
-      child: MaterialApp(
+    return CoreModuleScope(
+      coreModule: widget.result.dependencies,
+      child: MaterialApp.router(
         title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        locale: Locale('az'),
+        themeMode: ThemeMode.dark,
+        darkTheme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.black,
+          ),
+          scaffoldBackgroundColor: Colors.black,
+          appBarTheme: AppBarTheme(
+            color: Colors.black,
+            foregroundColor: Colors.white,
+            //other options
+          ),
           useMaterial3: true,
         ),
-        home: Builder(
-          builder: (context) {
-            return Scaffold(
-              body: Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) {
-                          return const AlbumSearchPage();
-                        },
-                      ),
-                    );
-                  },
-                  child: const Text('Go to Album Search Page'),
-                ),
-              ),
-            );
-          },
-        ),
+        routerConfig: router,
       ),
     );
   }
