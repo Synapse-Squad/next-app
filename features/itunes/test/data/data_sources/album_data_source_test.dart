@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:itunes/itunes_service.dart';
+import 'package:itunes/src/core/exceptions/album_not_found_exception.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rest_service/rest_service.dart';

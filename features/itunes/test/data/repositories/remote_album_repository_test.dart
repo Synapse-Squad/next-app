@@ -1,6 +1,6 @@
-import 'package:domain/domain.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:itunes/itunes_service.dart';
+import 'package:itunes/src/domain/repositories/album_repository.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 

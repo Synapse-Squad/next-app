@@ -1,5 +1,5 @@
-import 'package:domain/domain.dart';
 import 'package:itunes/src/data/dtos/album_dto.dart';
+import 'package:itunes/src/domain/entities/album_entity.dart';
 
 final mockAlbumDto = AlbumDto(
   wrapperType: 'collection',
