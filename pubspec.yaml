@@ -1,12 +1,16 @@
-name: next_app_workspace
+name: next
+publish_to: none
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
-
-dependencies:
-  melos: ^6.2.0
-
-
-dev_dependencies:
-  flutter_lints: ^5.0.0
-
+  sdk: ^3.6.0
+  
+workspace:
+  - features/books
+  - features/itunes
+  - features/movies
+  - features/user_collections
+  - shared/either
+  - shared/next_database_service
+  - shared/rest_service
+  - shared/testing_utils
+  - next_app
