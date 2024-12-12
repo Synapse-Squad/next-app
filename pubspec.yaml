@@ -13,4 +13,3 @@ workspace:
   - shared/next_database_service
   - shared/rest_service
   - shared/testing_utils
-  - next_app

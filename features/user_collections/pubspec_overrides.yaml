@@ -1,6 +1,0 @@
-# melos_managed_dependency_overrides: next_database_service,either
-dependency_overrides:
-  either:
-    path: ../../shared/either
-  next_database_service:
-    path: ../../shared/next_database_service

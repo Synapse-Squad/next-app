@@ -5,3 +5,5 @@ melos_next_app.iml
 itunes_service/pubspec_overrides.yaml
 next_app/pubspec_overrides.yaml
 pubspec.lock
+.flutter-plugins
+.flutter-plugins-dependencies
