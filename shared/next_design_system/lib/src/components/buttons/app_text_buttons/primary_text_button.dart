@@ -33,11 +33,6 @@ class PrimaryTextButton extends AppTextButton {
   }
 
   @override
-  Color hoverColor(BuildContext context) {
-    return context.buttonTheme.primaryHover;
-  }
-
-  @override
   Color textColor(BuildContext context) {
     return context.buttonTheme.primaryText;
   }

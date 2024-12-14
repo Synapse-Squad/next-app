@@ -7,7 +7,6 @@ export 'src/components/buttons/app_text_buttons/base_app_text_button.dart';
 export 'src/components/buttons/app_text_buttons/link_text_button.dart';
 export 'src/components/buttons/app_text_buttons/outline_text_button.dart';
 export 'src/components/buttons/app_text_buttons/primary_text_button.dart';
-export 'src/components/buttons/app_text_buttons/secondary_text_button.dart';
 export 'src/components/inputs/app_text_field.dart';
 export 'src/components/inputs/dropdown/app_dropdown_field.dart';
 export 'src/core/extensions/theme_ext.dart';

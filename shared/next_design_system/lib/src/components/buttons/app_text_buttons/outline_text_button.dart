@@ -33,11 +33,6 @@ class OutlineTextButton extends AppTextButton {
   }
 
   @override
-  Color hoverColor(BuildContext context) {
-    return context.buttonTheme.outlinedHover;
-  }
-
-  @override
   Color textColor(BuildContext context) {
     return context.buttonTheme.buttonLineDefault;
   }

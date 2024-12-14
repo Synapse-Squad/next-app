@@ -33,12 +33,7 @@ class LinkTextButton extends AppTextButton {
   }
 
   @override
-  Color hoverColor(BuildContext context) {
-    return context.buttonTheme.linkHover;
-  }
-
-  @override
   Color textColor(BuildContext context) {
-    return context.buttonTheme.primaryTextOnBrand;
+    return context.buttonTheme.linkText;
   }
 }

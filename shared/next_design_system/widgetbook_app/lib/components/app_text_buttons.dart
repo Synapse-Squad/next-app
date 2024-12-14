@@ -54,7 +54,6 @@ Widget textButtonsUseCase(BuildContext context) {
       : null;
 
   return Scaffold(
-    backgroundColor: Colors.white,
     body: Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -68,14 +67,6 @@ Widget textButtonsUseCase(BuildContext context) {
           ),
           const SizedBox(height: 8),
           OutlineTextButton(
-            label: labelKnob,
-            appButtonSize: buttonSizeKnob,
-            onTap: buttonCallback,
-            leading: leading,
-            trailing: trailing,
-          ),
-          const SizedBox(height: 8),
-          SecondaryTextButton(
             label: labelKnob,
             appButtonSize: buttonSizeKnob,
             onTap: buttonCallback,

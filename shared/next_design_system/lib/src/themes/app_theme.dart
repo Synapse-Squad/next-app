@@ -49,7 +49,7 @@ class AppTheme extends ThemeExtension<AppTheme> {
   /// {@macro app_theme}
   factory AppTheme.dark() {
     return AppTheme(
-      appButtonTheme: AppButtonTheme.light(),
+      appButtonTheme: AppButtonTheme.dark(),
       appCheckboxTheme: AppCheckboxTheme.dark(),
       appIconTheme: AppIconTheme.light(),
       appToggleTheme: AppToggleTheme.dark(),

@@ -41,9 +41,6 @@ abstract class AppTextButton extends StatelessWidget {
   /// The focus color for the text button.
   Color focusColor(BuildContext context);
 
-  /// The hover color for the text button.
-  Color hoverColor(BuildContext context);
-
   /// The disabled color for the text button.
   Color disabledColor(BuildContext context);
 
@@ -60,9 +57,6 @@ abstract class AppTextButton extends StatelessWidget {
 
   /// The focused border for the text button.
   BorderSide focusedBorder(BuildContext context) => BorderSide.none;
-
-  /// The hover border for the text button.
-  BorderSide hoverBorder(BuildContext context) => BorderSide.none;
 
   /// The disabled border for the text button.
   BorderSide disabledBorder(BuildContext context) => BorderSide.none;
@@ -98,10 +92,6 @@ abstract class AppTextButton extends StatelessWidget {
               return disabledColor(context);
             }
 
-            if (states.contains(WidgetState.hovered)) {
-              return hoverColor(context);
-            }
-
             if (states.contains(WidgetState.focused)) {
               return focusColor(context);
             }
@@ -127,10 +117,6 @@ abstract class AppTextButton extends StatelessWidget {
               return shape.copyWith(side: focusedBorder(context));
             }
 
-            if (states.contains(WidgetState.hovered)) {
-              return shape.copyWith(side: hoverBorder(context));
-            }
-
             if (states.contains(WidgetState.pressed)) {
               return shape.copyWith(side: focusedBorder(context));
             }
@@ -142,10 +128,6 @@ abstract class AppTextButton extends StatelessWidget {
           (states) {
             if (states.contains(WidgetState.disabled)) {
               return disabledColor(context);
-            }
-
-            if (states.contains(WidgetState.hovered)) {
-              return hoverColor(context);
             }
 
             if (states.contains(WidgetState.focused)) {

@@ -10,51 +10,57 @@ class AppButtonTheme extends ThemeExtension<AppButtonTheme> {
   const AppButtonTheme({
     required this.primaryText,
     required this.primaryTextDisabled,
-    required this.primaryTextOnBrand,
     required this.buttonLineDefault,
     required this.primaryDefault,
-    required this.primaryHover,
     required this.primaryFocused,
     required this.primaryDisabled,
-    required this.secondaryDefault,
-    required this.secondaryHover,
-    required this.secondaryFocused,
-    required this.secondaryDisabled,
     required this.outlinedDefault,
-    required this.outlinedHover,
     required this.outlinedFocused,
     required this.outlinedDisabled,
     required this.outlinedBorderDisabled,
     required this.linkDefault,
-    required this.linkHover,
     required this.linkFocused,
     required this.linkDisabled,
+    required this.linkText,
   });
 
   /// {@macro app_button_theme}
   factory AppButtonTheme.light() {
     return AppButtonTheme(
       primaryText: AppColors.white,
-      primaryTextDisabled: AppColors.brand[150]!,
-      primaryTextOnBrand: AppColors.brand.shade500,
-      buttonLineDefault: AppColors.brand.shade500,
-      primaryDefault: AppColors.brand.shade500,
-      primaryHover: AppColors.brand.shade600,
-      primaryFocused: AppColors.brand.shade700,
-      primaryDisabled: AppColors.brand.shade50,
-      secondaryDefault: AppColors.brand.shade100,
-      secondaryHover: AppColors.brand[150]!,
-      secondaryFocused: AppColors.brand.shade200,
-      secondaryDisabled: AppColors.brand.shade50,
-      outlinedDefault: AppColors.white,
-      outlinedHover: AppColors.brand.shade50,
-      outlinedFocused: AppColors.brand.shade100,
-      outlinedDisabled: AppColors.white,
-      outlinedBorderDisabled: AppColors.brand[150]!,
+      primaryTextDisabled: AppColors.darkGray,
+      buttonLineDefault: AppColors.black,
+      primaryDefault: AppColors.brand,
+      primaryFocused: AppColors.brand,
+      primaryDisabled: AppColors.lightGray,
+      outlinedDefault: AppColors.transparent,
+      outlinedFocused: AppColors.transparent,
+      outlinedDisabled: AppColors.transparent,
+      outlinedBorderDisabled: AppColors.darkGray,
       linkDefault: AppColors.transparent,
-      linkHover: AppColors.brand.shade50,
-      linkFocused: AppColors.brand[150]!,
-      linkDisabled: AppColors.white,
+      linkFocused: AppColors.transparent,
+      linkDisabled: AppColors.transparent,
+      linkText: AppColors.black,
+    );
+  }
+
+  /// {@macro app_button_theme}
+  factory AppButtonTheme.dark() {
+    return AppButtonTheme(
+      primaryText: AppColors.white,
+      primaryTextDisabled: AppColors.darkGray,
+      buttonLineDefault: AppColors.white,
+      primaryDefault: AppColors.brand,
+      primaryFocused: AppColors.brand,
+      primaryDisabled: AppColors.lightGray,
+      outlinedDefault: AppColors.transparent,
+      outlinedFocused: AppColors.transparent,
+      outlinedDisabled: AppColors.transparent,
+      outlinedBorderDisabled: AppColors.darkGray,
+      linkDefault: AppColors.transparent,
+      linkFocused: AppColors.transparent,
+      linkDisabled: AppColors.transparent,
+      linkText: AppColors.white,
     );
   }
 
@@ -64,17 +70,11 @@ class AppButtonTheme extends ThemeExtension<AppButtonTheme> {
   /// The color of the primary text when disabled.
   final Color primaryTextDisabled;
 
-  /// The color of the primary text on the brand color.
-  final Color primaryTextOnBrand;
-
   /// The color of the button line default.
   final Color buttonLineDefault;
 
   /// The color of the primary button default.
   final Color primaryDefault;
-
-  /// The color of the primary button hover.
-  final Color primaryHover;
 
   /// The color of the primary button focused.
   final Color primaryFocused;
@@ -82,23 +82,8 @@ class AppButtonTheme extends ThemeExtension<AppButtonTheme> {
   /// The color of the primary button disabled.
   final Color primaryDisabled;
 
-  /// The color of the secondary button default.
-  final Color secondaryDefault;
-
-  /// The color of the secondary button hover.
-  final Color secondaryHover;
-
-  /// The color of the secondary button focused.
-  final Color secondaryFocused;
-
-  /// The color of the secondary button disabled.
-  final Color secondaryDisabled;
-
   /// The color of the outlined button default.
   final Color outlinedDefault;
-
-  /// The color of the outlined button hover.
-  final Color outlinedHover;
 
   /// The color of the outlined button focused.
   final Color outlinedFocused;
@@ -112,71 +97,48 @@ class AppButtonTheme extends ThemeExtension<AppButtonTheme> {
   /// The color of the link default.
   final Color linkDefault;
 
-  /// The color of the link hover.
-  final Color linkHover;
-
   /// The color of the link focused.
   final Color linkFocused;
 
   /// The color of the link disabled.
   final Color linkDisabled;
 
+  /// The default color of the link text.
+  final Color linkText;
+
   @override
   ThemeExtension<AppButtonTheme> copyWith({
     Color? primaryText,
     Color? primaryTextDisabled,
-    Color? secondaryGrayText,
-    Color? secondaryGrayTextDisabled,
-    Color? primaryTextOnBrand,
-    Color? secondaryBorderGrayDefault,
-    Color? secondaryBorderGrayFocused,
-    Color? secondaryBorderGrayDisabled,
     Color? buttonLineDefault,
     Color? primaryDefault,
-    Color? primaryHover,
     Color? primaryFocused,
     Color? primaryDisabled,
-    Color? secondaryDefault,
-    Color? secondaryHover,
-    Color? secondaryFocused,
-    Color? secondaryDisabled,
-    Color? secondaryGrayDefault,
-    Color? secondaryGrayHover,
-    Color? secondaryGrayFocused,
-    Color? secondaryGrayDisabled,
     Color? outlinedDefault,
-    Color? outlinedHover,
     Color? outlinedFocused,
     Color? outlinedDisabled,
     Color? outlinedBorderDisabled,
     Color? linkDefault,
-    Color? linkHover,
     Color? linkFocused,
     Color? linkDisabled,
+    Color? linkText,
   }) {
     return AppButtonTheme(
       primaryText: primaryText ?? this.primaryText,
       primaryTextDisabled: primaryTextDisabled ?? this.primaryTextDisabled,
-      primaryTextOnBrand: primaryTextOnBrand ?? this.primaryTextOnBrand,
       buttonLineDefault: buttonLineDefault ?? this.buttonLineDefault,
       primaryDefault: primaryDefault ?? this.primaryDefault,
-      primaryHover: primaryHover ?? this.primaryHover,
       primaryFocused: primaryFocused ?? this.primaryFocused,
       primaryDisabled: primaryDisabled ?? this.primaryDisabled,
-      secondaryDefault: secondaryDefault ?? this.secondaryDefault,
-      secondaryHover: secondaryHover ?? this.secondaryHover,
-      secondaryFocused: secondaryFocused ?? this.secondaryFocused,
-      secondaryDisabled: secondaryDisabled ?? this.secondaryDisabled,
       outlinedDefault: outlinedDefault ?? this.outlinedDefault,
-      outlinedHover: outlinedHover ?? this.outlinedHover,
       outlinedFocused: outlinedFocused ?? this.outlinedFocused,
       outlinedDisabled: outlinedDisabled ?? this.outlinedDisabled,
       outlinedBorderDisabled:
           outlinedBorderDisabled ?? this.outlinedBorderDisabled,
       linkDefault: linkDefault ?? this.linkDefault,
-      linkHover: linkHover ?? this.linkHover,
       linkFocused: linkFocused ?? this.linkFocused,
       linkDisabled: linkDisabled ?? this.linkDisabled,
+      linkText: linkText ?? this.linkText,
     );
   }
 
@@ -196,35 +158,15 @@ class AppButtonTheme extends ThemeExtension<AppButtonTheme> {
         other.primaryTextDisabled,
         t,
       )!,
-      primaryTextOnBrand: Color.lerp(
-        primaryTextOnBrand,
-        other.primaryTextOnBrand,
-        t,
-      )!,
       buttonLineDefault: Color.lerp(
         buttonLineDefault,
         other.buttonLineDefault,
         t,
       )!,
       primaryDefault: Color.lerp(primaryDefault, other.primaryDefault, t)!,
-      primaryHover: Color.lerp(primaryHover, other.primaryHover, t)!,
       primaryFocused: Color.lerp(primaryFocused, other.primaryFocused, t)!,
       primaryDisabled: Color.lerp(primaryDisabled, other.primaryDisabled, t)!,
-      secondaryDefault:
-          Color.lerp(secondaryDefault, other.secondaryDefault, t)!,
-      secondaryHover: Color.lerp(secondaryHover, other.secondaryHover, t)!,
-      secondaryFocused: Color.lerp(
-        secondaryFocused,
-        other.secondaryFocused,
-        t,
-      )!,
-      secondaryDisabled: Color.lerp(
-        secondaryDisabled,
-        other.secondaryDisabled,
-        t,
-      )!,
       outlinedDefault: Color.lerp(outlinedDefault, other.outlinedDefault, t)!,
-      outlinedHover: Color.lerp(outlinedHover, other.outlinedHover, t)!,
       outlinedFocused: Color.lerp(outlinedFocused, other.outlinedFocused, t)!,
       outlinedDisabled: Color.lerp(
         outlinedDisabled,
@@ -237,9 +179,9 @@ class AppButtonTheme extends ThemeExtension<AppButtonTheme> {
         t,
       )!,
       linkDefault: Color.lerp(linkDefault, other.linkDefault, t)!,
-      linkHover: Color.lerp(linkHover, other.linkHover, t)!,
       linkFocused: Color.lerp(linkFocused, other.linkFocused, t)!,
       linkDisabled: Color.lerp(linkDisabled, other.linkDisabled, t)!,
+      linkText: Color.lerp(linkText, other.linkText, t)!,
     );
   }
 }
