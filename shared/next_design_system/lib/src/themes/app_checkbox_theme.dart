@@ -24,6 +24,16 @@ class AppCheckboxTheme extends ThemeExtension<AppCheckboxTheme> {
     );
   }
 
+  /// {@macro app_checkbox_theme}
+  factory AppCheckboxTheme.dark() {
+    return AppCheckboxTheme(
+      borderColor: AppColors.brand,
+      disabledBorderColor: AppColors.lightGray,
+      enabledColor: AppColors.brand,
+      disabledColor: AppColors.darkGray,
+    );
+  }
+
   /// The default border color.
   final Color borderColor;
 
@@ -40,14 +50,14 @@ class AppCheckboxTheme extends ThemeExtension<AppCheckboxTheme> {
   ThemeExtension<AppCheckboxTheme> copyWith({
     Color? borderColor,
     Color? disabledBorderColor,
-    Color? enabledColor,
-    Color? disabledColor,
+    Color? enabledTrackColor,
+    Color? disabledTrackColor,
   }) {
     return AppCheckboxTheme(
       borderColor: borderColor ?? this.borderColor,
       disabledBorderColor: disabledBorderColor ?? this.disabledBorderColor,
-      enabledColor: enabledColor ?? this.enabledColor,
-      disabledColor: disabledColor ?? this.disabledColor,
+      enabledColor: enabledTrackColor ?? this.enabledColor,
+      disabledColor: disabledTrackColor ?? this.disabledColor,
     );
   }
 

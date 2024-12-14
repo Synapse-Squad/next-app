@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:next_design_system/src/core/extensions/theme_ext.dart';
 
+import '../atoms/app_colors.dart';
 import '../atoms/app_radius.dart';
 
 /// {@template app_checkbox}
@@ -42,7 +43,7 @@ class AppCheckboxState extends State<AppCheckbox> {
             false => context.checkboxTheme.disabledColor,
             _ => widget.value
                 ? context.checkboxTheme.enabledColor
-                : Colors.transparent,
+                : AppColors.transparent,
           },
           border: Border.all(
             color: switch (widget.enabled) {
@@ -55,8 +56,8 @@ class AppCheckboxState extends State<AppCheckbox> {
           ),
           borderRadius: const BorderRadius.all(AppRadius.xs),
         ),
-        width: 19,
-        height: 19,
+        width: 20,
+        height: 20,
         child: Center(
           child: widget.value && widget.enabled
               ? Icon(

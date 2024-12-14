@@ -50,9 +50,9 @@ class AppTheme extends ThemeExtension<AppTheme> {
   factory AppTheme.dark() {
     return AppTheme(
       appButtonTheme: AppButtonTheme.light(),
-      appCheckboxTheme: AppCheckboxTheme.light(),
+      appCheckboxTheme: AppCheckboxTheme.dark(),
       appIconTheme: AppIconTheme.light(),
-      appToggleTheme: AppToggleTheme.light(),
+      appToggleTheme: AppToggleTheme.dark(),
       appTypographyTheme: AppTypographyTheme.light(),
       appTypography: AppRegularTypography(),
       appDropdownTheme: AppDropdownTheme.light(),

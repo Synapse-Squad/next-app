@@ -98,7 +98,7 @@ class AppInputTheme extends ThemeExtension<AppInputTheme> {
     Color? errorBorderColor,
     Color? disabledBorderColor,
     Color? defaultColor,
-    Color? disabledColor,
+    Color? disabledTrackColor,
     Color? cursorColor,
     Color? hintTextColor,
   }) {
@@ -111,7 +111,7 @@ class AppInputTheme extends ThemeExtension<AppInputTheme> {
       errorBorderColor: errorBorderColor ?? this.errorBorderColor,
       disabledBorderColor: disabledBorderColor ?? this.disabledBorderColor,
       defaultColor: defaultColor ?? this.defaultColor,
-      disabledColor: disabledColor ?? this.disabledColor,
+      disabledColor: disabledTrackColor ?? this.disabledColor,
       cursorColor: cursorColor ?? this.cursorColor,
       hintTextColor: hintTextColor ?? this.hintTextColor,
     );

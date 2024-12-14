@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:next_design_system/src/core/extensions/theme_ext.dart';
 
-import '../atoms/app_colors.dart';
-
 /// {@template app_toggle}
 /// A custom toggle switch widget that adapts to the platform.
 /// {@endtemplate}
@@ -31,10 +29,10 @@ class AppToggleState extends State<AppToggle> {
     return Switch.adaptive(
       value: widget.value,
       onChanged: widget.onChanged,
-      activeColor: AppColors.white,
-      inactiveThumbColor: AppColors.white,
-      activeTrackColor: context.toggleTheme.active,
-      inactiveTrackColor: context.toggleTheme.disabled,
+      activeColor: context.toggleTheme.activeColor,
+      inactiveThumbColor: context.toggleTheme.inactiveThumbColor,
+      activeTrackColor: context.toggleTheme.enabledTrackColor,
+      inactiveTrackColor: context.toggleTheme.disabledTrackColor,
     );
   }
 }

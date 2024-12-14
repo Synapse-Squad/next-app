@@ -53,7 +53,7 @@ class AppIconTheme extends ThemeExtension<AppIconTheme> {
     Color? gray,
     Color? success,
     Color? error,
-    Color? disabled,
+    Color? disabledTrackColor,
   }) {
     return AppIconTheme(
       white: white ?? this.white,
@@ -61,7 +61,7 @@ class AppIconTheme extends ThemeExtension<AppIconTheme> {
       gray: gray ?? this.gray,
       success: success ?? this.success,
       error: error ?? this.error,
-      disabled: disabled ?? this.disabled,
+      disabled: disabledTrackColor ?? this.disabled,
     );
   }
 

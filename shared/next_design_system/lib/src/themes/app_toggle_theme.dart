@@ -8,32 +8,56 @@ import '../atoms/app_colors.dart';
 class AppToggleTheme extends ThemeExtension<AppToggleTheme> {
   /// {@macro app_toggle_theme}
   const AppToggleTheme({
-    required this.active,
-    required this.disabled,
+    required this.enabledTrackColor,
+    required this.activeColor,
+    required this.disabledTrackColor,
+    required this.inactiveThumbColor,
   });
 
   /// {@macro app_toggle_theme}
   factory AppToggleTheme.light() {
     return AppToggleTheme(
-      active: AppColors.brand.shade500,
-      disabled: AppColors.brand[150]!,
+      enabledTrackColor: AppColors.brand,
+      disabledTrackColor: AppColors.darkGray,
+      activeColor: AppColors.white,
+      inactiveThumbColor: AppColors.lightGray,
+    );
+  }
+
+  /// {@macro app_toggle_theme}
+  factory AppToggleTheme.dark() {
+    return AppToggleTheme(
+      enabledTrackColor: AppColors.brand,
+      disabledTrackColor: AppColors.darkGray,
+      activeColor: AppColors.white,
+      inactiveThumbColor: AppColors.lightGray,
     );
   }
 
   /// The active color.
-  final Color active;
+  final Color enabledTrackColor;
 
   /// The disabled color.
-  final Color disabled;
+  final Color disabledTrackColor;
+
+  /// The active color.
+  final Color activeColor;
+
+  /// The inactive thumb color.
+  final Color inactiveThumbColor;
 
   @override
   ThemeExtension<AppToggleTheme> copyWith({
-    Color? active,
-    Color? disabled,
+    Color? enabledTrackColor,
+    Color? disabledTrackColor,
+    Color? activeColor,
+    Color? inactiveThumbColor,
   }) {
     return AppToggleTheme(
-      active: active ?? this.active,
-      disabled: disabled ?? this.disabled,
+      enabledTrackColor: enabledTrackColor ?? this.enabledTrackColor,
+      disabledTrackColor: disabledTrackColor ?? this.disabledTrackColor,
+      activeColor: activeColor ?? this.activeColor,
+      inactiveThumbColor: inactiveThumbColor ?? this.inactiveThumbColor,
     );
   }
 
@@ -47,8 +71,22 @@ class AppToggleTheme extends ThemeExtension<AppToggleTheme> {
     }
 
     return AppToggleTheme(
-      active: Color.lerp(active, other.active, t)!,
-      disabled: Color.lerp(disabled, other.disabled, t)!,
+      enabledTrackColor: Color.lerp(
+        enabledTrackColor,
+        other.enabledTrackColor,
+        t,
+      )!,
+      disabledTrackColor: Color.lerp(
+        disabledTrackColor,
+        other.disabledTrackColor,
+        t,
+      )!,
+      activeColor: Color.lerp(activeColor, other.activeColor, t)!,
+      inactiveThumbColor: Color.lerp(
+        inactiveThumbColor,
+        other.inactiveThumbColor,
+        t,
+      )!,
     );
   }
 }
