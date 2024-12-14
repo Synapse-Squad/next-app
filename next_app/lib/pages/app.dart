@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:next_design_system/next_design_system.dart';
 
 import '../core/router/router.dart';
 import '../injection/composition_result.dart';
@@ -20,6 +21,8 @@ class NextApp extends StatefulWidget {
 class _NextAppState extends State<NextApp> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
+    final theme = ThemeScope.of(context);
+
     return CoreModuleScope(
       coreModule: widget.result.dependencies,
       child: MaterialApp.router(
@@ -29,16 +32,11 @@ class _NextAppState extends State<NextApp> with WidgetsBindingObserver {
         locale: Locale('az'),
         themeMode: ThemeMode.dark,
         darkTheme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.black,
-          ),
-          scaffoldBackgroundColor: Colors.black,
-          appBarTheme: AppBarTheme(
-            color: Colors.black,
-            foregroundColor: Colors.white,
-            //other options
-          ),
           useMaterial3: true,
+          fontFamily: 'DMSans',
+          extensions: [theme.appTheme],
+          scaffoldBackgroundColor:
+              (theme.appTheme.appLayoutTheme as AppLayoutTheme).pageBackground,
         ),
         routerConfig: router,
       ),

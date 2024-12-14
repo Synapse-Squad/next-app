@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
+import 'package:next_design_system/next_design_system.dart';
 
 import 'core/bloc/bloc_observer.dart';
 import 'injection/composition_root.dart';
@@ -24,5 +25,9 @@ void main() async {
   const config = Config();
   final compositionResult = await const CompositionRoot(config).compose();
 
-  runApp(NextApp(result: compositionResult));
+  final app = await ThemeScopeWidget.initialize(
+    NextApp(result: compositionResult),
+  );
+
+  runApp(app);
 }
