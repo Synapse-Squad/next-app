@@ -17,26 +17,13 @@ class WidgetbookApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final lightTheme = AppTheme(
-      appButtonTheme: AppButtonTheme.light(),
-      appTypographyTheme: AppTypographyTheme.light(),
-      appTypography: AppRegularTypography(),
-      appCheckboxTheme: AppCheckboxTheme.light(),
-      appDropdownTheme: AppDropdownTheme.light(),
-      appIconTheme: AppIconTheme.light(),
-      appToggleTheme: AppToggleTheme.light(),
-      appLayoutTheme: AppLayoutTheme.light(),
-      appInputTheme: AppInputTheme.light(),
-      appBadgeTheme: AppBadgeTheme.light(),
-    );
-
     final lightThemeData = ThemeData(
-      extensions: [lightTheme],
+      extensions: [AppTheme.light()],
       scaffoldBackgroundColor: Colors.white,
     );
 
     final darkThemeData = ThemeData(
-      extensions: [lightTheme],
+      extensions: [AppTheme.dark()],
       scaffoldBackgroundColor: Colors.black,
     );
 

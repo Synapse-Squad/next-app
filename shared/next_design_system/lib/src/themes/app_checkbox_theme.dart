@@ -8,53 +8,46 @@ import '../atoms/app_colors.dart';
 class AppCheckboxTheme extends ThemeExtension<AppCheckboxTheme> {
   /// {@macro app_checkbox_theme}
   const AppCheckboxTheme({
-    required this.borderDefault,
-    required this.borderHover,
-    required this.borderDisabled,
-    required this.active,
-    required this.disabled,
+    required this.borderColor,
+    required this.disabledBorderColor,
+    required this.enabledColor,
+    required this.disabledColor,
   });
 
   /// {@macro app_checkbox_theme}
   factory AppCheckboxTheme.light() {
     return AppCheckboxTheme(
-      borderDefault: AppColors.brand[250]!,
-      borderHover: AppColors.brand.shade300,
-      borderDisabled: AppColors.brand.shade200,
-      active: AppColors.brand.shade500,
-      disabled: AppColors.brand[150]!,
+      borderColor: AppColors.brand,
+      disabledBorderColor: AppColors.lightGray,
+      enabledColor: AppColors.brand,
+      disabledColor: AppColors.extraLightGray,
     );
   }
 
   /// The default border color.
-  final Color borderDefault;
-
-  /// The border color when hovered.
-  final Color borderHover;
+  final Color borderColor;
 
   /// The border color when disabled.
-  final Color borderDisabled;
+  final Color disabledBorderColor;
 
   /// The active color.
-  final Color active;
+  final Color enabledColor;
 
   /// The disabled color.
-  final Color disabled;
+  final Color disabledColor;
 
   @override
   ThemeExtension<AppCheckboxTheme> copyWith({
     Color? borderColor,
-    Color? borderHover,
     Color? disabledBorderColor,
-    Color? active,
-    Color? disabled,
+    Color? enabledColor,
+    Color? disabledColor,
   }) {
     return AppCheckboxTheme(
-      borderDefault: borderColor ?? this.borderDefault,
-      borderHover: borderHover ?? this.borderHover,
-      borderDisabled: disabledBorderColor ?? this.borderDisabled,
-      active: active ?? this.active,
-      disabled: disabled ?? this.disabled,
+      borderColor: borderColor ?? this.borderColor,
+      disabledBorderColor: disabledBorderColor ?? this.disabledBorderColor,
+      enabledColor: enabledColor ?? this.enabledColor,
+      disabledColor: disabledColor ?? this.disabledColor,
     );
   }
 
@@ -68,11 +61,11 @@ class AppCheckboxTheme extends ThemeExtension<AppCheckboxTheme> {
     }
 
     return AppCheckboxTheme(
-      borderDefault: Color.lerp(borderDefault, other.borderDefault, t)!,
-      borderHover: Color.lerp(borderHover, other.borderHover, t)!,
-      borderDisabled: Color.lerp(borderDisabled, other.borderDisabled, t)!,
-      active: Color.lerp(active, other.active, t)!,
-      disabled: Color.lerp(disabled, other.disabled, t)!,
+      borderColor: Color.lerp(borderColor, other.borderColor, t)!,
+      disabledBorderColor:
+          Color.lerp(disabledBorderColor, other.disabledBorderColor, t)!,
+      enabledColor: Color.lerp(enabledColor, other.enabledColor, t)!,
+      disabledColor: Color.lerp(disabledColor, other.disabledColor, t)!,
     );
   }
 }
