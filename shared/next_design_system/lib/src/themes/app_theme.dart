@@ -46,6 +46,22 @@ class AppTheme extends ThemeExtension<AppTheme> {
     );
   }
 
+  /// {@macro app_theme}
+  factory AppTheme.dark() {
+    return AppTheme(
+      appButtonTheme: AppButtonTheme.light(),
+      appCheckboxTheme: AppCheckboxTheme.light(),
+      appIconTheme: AppIconTheme.light(),
+      appToggleTheme: AppToggleTheme.light(),
+      appTypographyTheme: AppTypographyTheme.light(),
+      appTypography: AppRegularTypography(),
+      appDropdownTheme: AppDropdownTheme.light(),
+      appInputTheme: AppInputTheme.dark(),
+      appLayoutTheme: AppLayoutTheme.light(),
+      appBadgeTheme: AppBadgeTheme.light(),
+    );
+  }
+
   /// [AppButtonTheme] instance provides configuration of buttons
   final ThemeExtension<AppButtonTheme> appButtonTheme;
 

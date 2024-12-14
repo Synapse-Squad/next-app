@@ -30,13 +30,16 @@ class _NextAppState extends State<NextApp> with WidgetsBindingObserver {
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         locale: Locale('az'),
-        themeMode: ThemeMode.dark,
+        themeMode: theme.themeMode,
         darkTheme: ThemeData(
           useMaterial3: true,
           fontFamily: 'DMSans',
-          extensions: [theme.appTheme],
-          scaffoldBackgroundColor:
-              (theme.appTheme.appLayoutTheme as AppLayoutTheme).pageBackground,
+          extensions: [theme.darkTheme],
+        ),
+        theme: ThemeData(
+          useMaterial3: true,
+          fontFamily: 'DMSans',
+          extensions: [theme.lightTheme],
         ),
         routerConfig: router,
       ),

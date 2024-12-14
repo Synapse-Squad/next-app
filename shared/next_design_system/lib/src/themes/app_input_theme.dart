@@ -38,6 +38,23 @@ class AppInputTheme extends ThemeExtension<AppInputTheme> {
     );
   }
 
+  /// {@macro app_input_theme}
+  factory AppInputTheme.dark() {
+    return AppInputTheme(
+      textColor: AppColors.white,
+      errorTextColor: AppColors.error.shade400,
+      disabledTextColor: AppColors.lightGray,
+      borderColor: AppColors.darkGray,
+      focusedBorderColor: AppColors.brand,
+      errorBorderColor: AppColors.error.shade400,
+      disabledBorderColor: AppColors.lightGray,
+      defaultColor: AppColors.black,
+      disabledColor: AppColors.transparent,
+      cursorColor: AppColors.brand,
+      hintTextColor: AppColors.darkGray,
+    );
+  }
+
   /// The default text color.
   final Color textColor;
 

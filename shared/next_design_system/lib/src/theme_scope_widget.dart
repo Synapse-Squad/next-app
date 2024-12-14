@@ -82,17 +82,17 @@ class ThemeScopeWidgetState extends State<ThemeScopeWidget> {
   @override
   Widget build(BuildContext context) {
     final brightness = MediaQuery.platformBrightnessOf(context);
+    var themeMode = _themeMode;
 
-    final appTheme = switch (_themeMode!) {
-      ThemeMode.light => AppTheme.light(),
-      ThemeMode.dark => AppTheme.light(),
-      ThemeMode.system =>
-        brightness == Brightness.dark ? AppTheme.light() : AppTheme.light(),
-    };
+    if (themeMode == ThemeMode.system) {
+      themeMode =
+          brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light;
+    }
 
     return ThemeScope(
-      themeMode: _themeMode!,
-      appTheme: appTheme,
+      themeMode: themeMode!,
+      lightTheme: AppTheme.light(),
+      darkTheme: AppTheme.dark(),
       child: widget.child,
     );
   }

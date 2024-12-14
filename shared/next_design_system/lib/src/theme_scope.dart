@@ -11,14 +11,18 @@ class ThemeScope extends InheritedWidget {
     super.key,
     required Widget child,
     required this.themeMode,
-    required this.appTheme,
+    required this.lightTheme,
+    required this.darkTheme,
   }) : super(child: child);
 
   /// The current theme mode.
   final ThemeMode themeMode;
 
-  /// The current app theme.
-  final AppTheme appTheme;
+  /// The current light theme.
+  final AppTheme lightTheme;
+
+  /// The current dark theme.
+  final AppTheme darkTheme;
 
   /// The current theme.
   static ThemeScope of(BuildContext context) {
