@@ -26,6 +26,17 @@ class AppTypographyTheme extends ThemeExtension<AppTypographyTheme> {
     );
   }
 
+  /// {@macro app_typography_theme}
+  factory AppTypographyTheme.dark() {
+    return AppTypographyTheme(
+      title: AppColors.white,
+      subTitle: AppColors.white,
+      description: AppColors.white,
+      brand: AppColors.brand[500]!,
+      brandHover: AppColors.brand[600]!,
+    );
+  }
+
   /// The title color.
   final Color title;
 

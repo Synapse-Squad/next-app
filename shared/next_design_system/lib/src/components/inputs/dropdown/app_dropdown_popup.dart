@@ -26,8 +26,8 @@ class _AppDropdownPopupState extends State<AppDropdownPopup> {
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(AppRadius.md),
-          color: context.layoutTheme.sidebarBackground,
-          border: Border.all(color: context.layoutTheme.sidebarBorder),
+          color: context.layoutTheme.pageBackground,
+          border: Border.all(color: context.layoutTheme.pageBackground),
           boxShadow: const [
             BoxShadow(
               color: Color(0x07101828),

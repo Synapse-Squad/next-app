@@ -53,12 +53,12 @@ class AppTheme extends ThemeExtension<AppTheme> {
       appCheckboxTheme: AppCheckboxTheme.dark(),
       appIconTheme: AppIconTheme.light(),
       appToggleTheme: AppToggleTheme.dark(),
-      appTypographyTheme: AppTypographyTheme.light(),
+      appTypographyTheme: AppTypographyTheme.dark(),
       appTypography: AppRegularTypography(),
       appDropdownTheme: AppDropdownTheme.light(),
       appInputTheme: AppInputTheme.dark(),
-      appLayoutTheme: AppLayoutTheme.light(),
-      appBadgeTheme: AppBadgeTheme.light(),
+      appLayoutTheme: AppLayoutTheme.dark(),
+      appBadgeTheme: AppBadgeTheme.dark(),
     );
   }
 

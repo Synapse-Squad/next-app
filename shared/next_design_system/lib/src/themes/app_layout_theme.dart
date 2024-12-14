@@ -7,68 +7,41 @@ import '../atoms/app_colors.dart';
 /// {@endtemplate}
 class AppLayoutTheme extends ThemeExtension<AppLayoutTheme> {
   /// {@macro app_layout_theme}
-  const AppLayoutTheme(
-      {required this.sidebarBorder,
-      required this.cardBorder,
-      required this.sidebarCardBackground,
-      required this.sidebarBackground,
-      required this.bodyCardBackground,
-      required this.navBarBackground,
-      required this.pageBackground});
+  const AppLayoutTheme({
+    required this.pageBackground,
+    required this.textColor,
+  });
 
   /// {@macro app_layout_theme}
   factory AppLayoutTheme.light() {
     return AppLayoutTheme(
-      sidebarBorder: AppColors.brand[200]!,
-      cardBorder: AppColors.brand[200]!,
-      sidebarCardBackground: AppColors.brand[50]!,
-      sidebarBackground: AppColors.white,
-      bodyCardBackground: AppColors.white,
-      navBarBackground: AppColors.brand[900]!,
-      pageBackground: AppColors.black,
+      pageBackground: AppColors.white,
+      textColor: AppColors.black,
     );
   }
 
-  /// The sidebar border color.
-  final Color sidebarBorder;
+  /// {@macro app_layout_theme}
+  factory AppLayoutTheme.dark() {
+    return AppLayoutTheme(
+      pageBackground: AppColors.black,
+      textColor: AppColors.white,
+    );
+  }
 
-  /// The card border color.
-  final Color cardBorder;
-
-  /// The sidebar card background color.
-  final Color sidebarCardBackground;
-
-  /// slider background color
-  final Color sidebarBackground;
-
-  /// The body background color.
-  final Color bodyCardBackground;
-
-  /// The navigation bar background color.
-  final Color navBarBackground;
-
-  /// Th
+  /// background color of page
   final Color pageBackground;
+
+  /// default text color for app
+  final Color textColor;
 
   @override
   ThemeExtension<AppLayoutTheme> copyWith({
-    Color? sidebarBorder,
-    Color? cardBorder,
-    Color? sidebarCardBackground,
-    Color? sidebarBackground,
-    Color? bodyCardBackground,
-    Color? navBarBackground,
     Color? pageBackground,
+    Color? textColor,
   }) {
     return AppLayoutTheme(
-      sidebarBorder: sidebarBorder ?? this.sidebarBorder,
-      cardBorder: cardBorder ?? this.cardBorder,
-      sidebarCardBackground:
-          sidebarCardBackground ?? this.sidebarCardBackground,
-      sidebarBackground: sidebarBackground ?? this.sidebarBackground,
-      bodyCardBackground: bodyCardBackground ?? this.bodyCardBackground,
-      navBarBackground: navBarBackground ?? this.navBarBackground,
       pageBackground: pageBackground ?? this.pageBackground,
+      textColor: textColor ?? this.textColor,
     );
   }
 
@@ -82,17 +55,8 @@ class AppLayoutTheme extends ThemeExtension<AppLayoutTheme> {
     }
 
     return AppLayoutTheme(
-      sidebarBorder: Color.lerp(sidebarBorder, other.sidebarBorder, t)!,
-      cardBorder: Color.lerp(cardBorder, other.cardBorder, t)!,
-      sidebarCardBackground:
-          Color.lerp(sidebarCardBackground, other.sidebarCardBackground, t)!,
-      sidebarBackground:
-          Color.lerp(sidebarBackground, other.sidebarBackground, t)!,
-      bodyCardBackground:
-          Color.lerp(bodyCardBackground, other.bodyCardBackground, t)!,
-      navBarBackground:
-          Color.lerp(navBarBackground, other.navBarBackground, t)!,
       pageBackground: Color.lerp(pageBackground, other.pageBackground, t)!,
+      textColor: Color.lerp(textColor, other.textColor, t)!,
     );
   }
 }

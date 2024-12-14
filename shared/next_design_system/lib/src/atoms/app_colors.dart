@@ -16,10 +16,10 @@ class AppColors {
   static const transparent = Colors.transparent;
 
   /// The color dark gray
-  static const darkGray = Color(0xFF657786);
+  static const darkGray = Color(0xFF212224);
 
   /// The color light gray
-  static const lightGray = Color(0xFFAAB8C2);
+  static const lightGray = Color.fromRGBO(33, 34, 36, 0.1);
 
   /// The color extra-light gray
   static const extraLightGray = Color(0xFFE1E8ED);
