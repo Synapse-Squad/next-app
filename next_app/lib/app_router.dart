@@ -3,7 +3,7 @@ import 'package:next_app/injection/core/core_module.dart';
 import 'package:user_collections/user_collections.dart';
 
 class AppRouter {
-  static configRoutes(CoreModule core) {
+  static GoRouter configRoutes(CoreModule core) {
     return GoRouter(
       initialLocation: CollectionRoutes.collections.path,
       routes: [
