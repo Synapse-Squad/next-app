@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:next_database_service/next_database_service.dart';
 import 'package:next_design_system/next_design_system.dart';
-import 'package:user_collections/user_collections.dart';
 
 class CollectionTypeSelector extends StatefulWidget {
   const CollectionTypeSelector({

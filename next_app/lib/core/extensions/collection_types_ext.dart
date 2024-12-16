@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:user_collections/user_collections.dart';
+import 'package:next_database_service/next_database_service.dart';
 
 extension CollectionTypesExt on CollectionTypes {
   Widget get icon {

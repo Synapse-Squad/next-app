@@ -51,7 +51,8 @@ class CollectionsView extends StatelessWidget {
               CollectionsEmpty() ||
               CollectionsLoadFailure() =>
                 const SizedBox.shrink(),
-              CollectionsLoadInProgress() => const CircularProgressIndicator(),
+              CollectionsLoadInProgress() =>
+                const Center(child: const CircularProgressIndicator()),
               CollectionsLoadSuccess(:var collections) =>
                 CollectionsListView(collections: collections),
             };

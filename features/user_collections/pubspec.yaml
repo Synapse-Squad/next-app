@@ -17,7 +17,7 @@ dependencies:
   flutter_bloc: ^8.1.6
   next_design_system:
     path: ../../shared/next_design_system
-
+  go_router: ^14.6.2
 
 dev_dependencies:
   flutter_test:

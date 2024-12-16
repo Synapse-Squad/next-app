@@ -1,6 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:user_collections/user_collections.dart';
+import 'package:next_database_service/next_database_service.dart';
+
+import '../../../core/exceptions/user_collection_exceptions.dart';
+import '../../../domain/entities/collection_entity.dart';
+import '../../../domain/params/get_collections_params.dart';
+import '../../../domain/use_cases/get_collections_use_case.dart';
 
 part 'collections_event.dart';
 part 'collections_state.dart';

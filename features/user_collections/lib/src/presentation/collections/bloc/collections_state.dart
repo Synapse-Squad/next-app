@@ -1,6 +1,6 @@
 part of 'collections_bloc.dart';
 
- sealed class CollectionsState extends Equatable {
+sealed class CollectionsState extends Equatable {
   const CollectionsState();
 
   @override

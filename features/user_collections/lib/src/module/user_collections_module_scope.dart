@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:next_database_service/next_database_service.dart';
 
-import 'user_collections_module.dart';
+import 'user_collections_module_dependencies.dart';
 import 'user_collections_module_factory.dart';
 
 extension UserCollectionsModuleProviderExt on BuildContext {
-  UserCollectionsModule get userCollectionsModule =>
+  UserCollectionsModuleDependencies get userCollectionsModule =>
       _UserCollectionsModuleProvider.of(this);
 }
 
@@ -26,7 +26,7 @@ class UserCollectionsModuleScope extends StatefulWidget {
 
 class _UserCollectionsModuleScopeState
     extends State<UserCollectionsModuleScope> {
-  UserCollectionsModule? _module;
+  UserCollectionsModuleDependencies? _module;
 
   @override
   void initState() {
@@ -55,9 +55,9 @@ class _UserCollectionsModuleProvider extends InheritedWidget {
     required this.module,
   });
 
-  final UserCollectionsModule module;
+  final UserCollectionsModuleDependencies module;
 
-  static UserCollectionsModule of(BuildContext context) => context
+  static UserCollectionsModuleDependencies of(BuildContext context) => context
       .getInheritedWidgetOfExactType<_UserCollectionsModuleProvider>()!
       .module;
 

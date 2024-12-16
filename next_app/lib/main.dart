@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
 import 'package:next_design_system/next_design_system.dart';
 
+import 'app.dart';
 import 'core/bloc/bloc_observer.dart';
 import 'injection/composition_root.dart';
 import 'injection/config.dart';
-import 'pages/app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

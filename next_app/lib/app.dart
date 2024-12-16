@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:next_app/app_router.dart';
 import 'package:next_design_system/next_design_system.dart';
 
-import '../core/router/router.dart';
-import '../injection/composition_result.dart';
-import '../injection/widget/core_module_scope.dart';
+import 'injection/composition_result.dart';
+import 'injection/widget/core_module_scope.dart';
 
 class NextApp extends StatefulWidget {
   const NextApp({
@@ -41,7 +41,7 @@ class _NextAppState extends State<NextApp> with WidgetsBindingObserver {
           fontFamily: 'DMSans',
           extensions: [theme.lightTheme],
         ),
-        routerConfig: router,
+        routerConfig: AppRouter.configRoutes(widget.result.dependencies),
       ),
     );
   }
