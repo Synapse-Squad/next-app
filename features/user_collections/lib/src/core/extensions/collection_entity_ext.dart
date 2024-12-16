@@ -2,9 +2,8 @@ import 'package:drift/drift.dart';
 import 'package:next_database_service/next_database_service.dart';
 
 import '../../domain/entities/collection_entity.dart';
-import '../../domain/params/create_collection_params.dart';
 
-extension CollectionEntityExt on CollectionParams {
+extension CollectionEntityExt on CollectionEntity {
   UserCollectionsCompanion toCompanion() {
     return UserCollectionsCompanion(
       title: Value(title),

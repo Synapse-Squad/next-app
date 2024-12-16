@@ -15,10 +15,10 @@ final class CollectionRepositoryImpl implements CollectionRepository {
   final UserCollectionsDao collectionsDao;
 
   @override
-  Future<int> createCollection(CollectionParams params) {
+  Future<int> createCollection(CollectionEntity entity) {
     return handleException<int>(
       () {
-        return collectionsDao.add(params.toCompanion());
+        return collectionsDao.add(entity.toCompanion());
       },
     );
   }
@@ -33,10 +33,6 @@ final class CollectionRepositoryImpl implements CollectionRepository {
             collectionType: params?.type,
             orderOption: params?.orderOptions,
           );
-
-          if (collections.isEmpty) {
-            throw const CollectionsNotFoundException();
-          }
 
           return collections.toEntityList();
         },

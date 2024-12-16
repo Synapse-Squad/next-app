@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:next_app/app_router.dart';
 import 'package:next_design_system/next_design_system.dart';
+import 'package:user_collections/user_collections.dart';
 
 import 'injection/composition_result.dart';
 import 'injection/widget/core_module_scope.dart';
@@ -27,7 +28,10 @@ class _NextAppState extends State<NextApp> with WidgetsBindingObserver {
       coreModule: widget.result.dependencies,
       child: MaterialApp.router(
         title: 'Flutter Demo',
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        localizationsDelegates: [
+          ...CollectionLocalizations.localizationsDelegates,
+          ...AppLocalizations.localizationsDelegates,
+        ],
         supportedLocales: AppLocalizations.supportedLocales,
         locale: Locale('az'),
         themeMode: theme.themeMode,
@@ -41,7 +45,7 @@ class _NextAppState extends State<NextApp> with WidgetsBindingObserver {
           fontFamily: 'DMSans',
           extensions: [theme.lightTheme],
         ),
-        routerConfig: AppRouter.configRoutes(widget.result.dependencies),
+        routerConfig: AppRouter.config,
       ),
     );
   }

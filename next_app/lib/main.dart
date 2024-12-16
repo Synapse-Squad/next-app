@@ -5,6 +5,7 @@ import 'package:logging/logging.dart';
 import 'package:next_design_system/next_design_system.dart';
 
 import 'app.dart';
+import 'app_router.dart';
 import 'core/bloc/bloc_observer.dart';
 import 'injection/composition_root.dart';
 import 'injection/config.dart';
@@ -24,6 +25,8 @@ void main() async {
   Bloc.observer = NextBlocObserver();
   const config = Config();
   final compositionResult = await const CompositionRoot(config).compose();
+
+  AppRouter.coreModule = compositionResult.dependencies;
 
   final app = await ThemeScopeWidget.initialize(
     NextApp(result: compositionResult),
