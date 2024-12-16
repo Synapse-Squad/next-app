@@ -2,7 +2,7 @@ library collections;
 
 export 'package:next_database_service/next_database_service.dart';
 
-export 'src/core/failure/same_collection_found_failure.dart';
+export 'src/core/exceptions/user_collection_exceptions.dart';
 export 'src/data/repositories/collection_repository_impl.dart';
 export 'src/domain/entities/collection_entity.dart';
 export 'src/domain/params/create_collection_params.dart';

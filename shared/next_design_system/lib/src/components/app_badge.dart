@@ -61,10 +61,10 @@ class AppBadge extends StatelessWidget {
   final VoidCallback? onTap;
 
   /// dynamic horizontal padding function for title and icon based [AppBadge]
-  double get horizontalPadding => AppSpacing.xl2;
+  double get horizontalPadding => AppSpacing.xl;
 
   /// dynamic vertical padding function for title and icon based [AppBadge]
-  double get verticalPadding => AppSpacing.xs;
+  double get verticalPadding => AppSpacing.xxs;
 
   @override
   Widget build(BuildContext context) {
@@ -88,20 +88,19 @@ class AppBadge extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             if (checked) ...[
-              FittedBox(
-                child: Icon(
-                  Icons.check,
-                  color: checked
-                      ? badgeTheme.selectedTextColor
-                      : badgeTheme.textColor,
-                  size: 16,
-                ),
+              Icon(
+                Icons.check,
+                color: checked
+                    ? badgeTheme.selectedTextColor
+                    : badgeTheme.textColor,
+                size: context.typography.buttonMedium.fontSize,
+                applyTextScaling: true,
               ),
               const SizedBox(width: AppSpacing.md),
             ],
             Text(
               title,
-              style: context.typography.buttonMedium.copyWith(
+              style: context.typography.buttonSmall.copyWith(
                 color: checked
                     ? badgeTheme.selectedTextColor
                     : badgeTheme.textColor,

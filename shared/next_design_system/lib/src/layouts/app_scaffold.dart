@@ -8,10 +8,12 @@ class AppScaffold extends StatelessWidget {
     super.key,
     this.appBar,
     required this.body,
+    this.floatingActionButton,
   });
 
   final PreferredSizeWidget? appBar;
   final Widget body;
+  final Widget? floatingActionButton;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class AppScaffold extends StatelessWidget {
         padding: const EdgeInsets.all(AppSpacing.xl),
         child: body,
       ),
+      floatingActionButton: floatingActionButton,
     );
   }
 }

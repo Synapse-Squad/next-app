@@ -14,8 +14,9 @@ dependencies:
   drift: ^2.21.0
   next_database_service:
     path: ../../shared/next_database_service
-  either:
-    path: ../../shared/either
+  flutter_bloc: ^8.1.6
+  next_design_system:
+    path: ../../shared/next_design_system
 
 
 dev_dependencies:

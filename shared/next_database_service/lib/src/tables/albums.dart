@@ -1,7 +1,6 @@
 import 'package:drift/drift.dart';
 
 import '../../next_database_service.dart';
-import 'user_collections.dart';
 
 @DataClassName('Album')
 class Albums extends Table {

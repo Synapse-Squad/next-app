@@ -14,8 +14,6 @@ dependencies:
   drift: ^2.21.0
   rest_service:
     path: ../../shared/rest_service
-  either:
-    path: ../../shared/either
   next_database_service:
     path: ../../shared/next_database_service
 

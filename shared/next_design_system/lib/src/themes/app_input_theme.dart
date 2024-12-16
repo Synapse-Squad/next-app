@@ -44,14 +44,14 @@ class AppInputTheme extends ThemeExtension<AppInputTheme> {
       textColor: AppColors.white,
       errorTextColor: AppColors.error.shade400,
       disabledTextColor: AppColors.lightGray,
-      borderColor: AppColors.darkGray,
+      borderColor: AppColors.extraLightGray,
       focusedBorderColor: AppColors.brand,
       errorBorderColor: AppColors.error.shade400,
       disabledBorderColor: AppColors.lightGray,
       defaultColor: AppColors.black,
       disabledColor: AppColors.transparent,
       cursorColor: AppColors.brand,
-      hintTextColor: AppColors.darkGray,
+      hintTextColor: AppColors.white,
     );
   }
 

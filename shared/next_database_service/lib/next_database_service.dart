@@ -11,6 +11,7 @@ export 'src/enums/listen_status.dart';
 export 'src/enums/order_options.dart';
 export 'src/enums/read_status.dart';
 export 'src/enums/watch_status.dart';
+export 'src/exceptions/database_exceptions.dart';
 export 'src/next_database.dart';
 export 'src/tables/albums.drift.dart';
 export 'src/tables/user_collections.dart';

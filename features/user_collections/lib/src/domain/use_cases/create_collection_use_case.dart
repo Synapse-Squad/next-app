@@ -1,6 +1,4 @@
-import 'package:either/either.dart';
-
-import '../../core/failure/same_collection_found_failure.dart';
+import '../../core/exceptions/user_collection_exceptions.dart';
 import '../params/create_collection_params.dart';
 import '../repositories/collection_repository.dart';
 
@@ -9,16 +7,11 @@ final class CreateCollectionUseCase {
 
   final CollectionRepository collectionRepository;
 
-  Future<Either<Failure, Unit>> call(CollectionParams param) async {
-    final collection = await collectionRepository.getCollection(param);
+  Future<int> call(CollectionParams param) async {
+    final collection = await collectionRepository.getCollectionOrNull(param);
 
-    if (collection.isRight() && collection.getRight() != null) {
-      return const Left(
-        SameCollectionFoundFailure(
-          debugMessage: 'user can\'t create new collection '
-              'with the same name and type',
-        ),
-      );
+    if (collection != null) {
+      throw SameCollectionFoundException();
     }
 
     return collectionRepository.createCollection(param);

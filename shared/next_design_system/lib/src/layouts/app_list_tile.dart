@@ -35,7 +35,7 @@ class AppListTile extends StatelessWidget {
               ),
               const SizedBox(width: AppSpacing.xxs),
               AppText(
-                title,
+                subtitle,
                 style: context.typography.subtitleSmall,
                 color: context.typographyTheme.subTitle,
               ),

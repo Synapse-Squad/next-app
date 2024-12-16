@@ -1,6 +1,8 @@
-import 'package:either/either.dart';
+import 'dart:async';
+
 import 'package:next_database_service/next_database_service.dart';
 
+import '../../core/exceptions/user_collection_exceptions.dart';
 import '../../core/extensions/collection_entity_ext.dart';
 import '../../domain/entities/collection_entity.dart';
 import '../../domain/params/create_collection_params.dart';
@@ -13,48 +15,74 @@ final class CollectionRepositoryImpl implements CollectionRepository {
   final UserCollectionsDao collectionsDao;
 
   @override
-  Future<Either<Failure, Unit>> createCollection(
-    CollectionParams params,
-  ) async {
-    try {
-      await collectionsDao.add(params.toCompanion());
-      return const Right(unit);
-    } catch (_) {
-      return Left(Failure.database());
-    }
+  Future<int> createCollection(CollectionParams params) {
+    return handleException<int>(
+      () {
+        return collectionsDao.add(params.toCompanion());
+      },
+    );
   }
 
   @override
-  Future<Either<Failure, List<CollectionEntity>>> getCollections({
+  Future<List<CollectionEntity>> getCollections({
     GetCollectionsParams? params,
-  }) async {
-    try {
-      final collections = await collectionsDao.getCollections(
-        collectionType: params?.type,
-        orderOption: params?.orderOptions,
+  }) =>
+      handleException(
+        () async {
+          final collections = await collectionsDao.getCollections(
+            collectionType: params?.type,
+            orderOption: params?.orderOptions,
+          );
+
+          if (collections.isEmpty) {
+            throw const CollectionsNotFoundException();
+          }
+
+          return collections.toEntityList();
+        },
       );
 
-      return Right(collections.toEntityList());
-    } catch (_) {
-      return Left(Failure.database());
+  @override
+  Future<CollectionEntity> getCollection(
+    CollectionParams params,
+  ) {
+    return handleException(
+      () async {
+        final collection = await collectionsDao.getCollection(
+          title: params.title,
+          collectionType: params.type,
+        );
+
+        if (collection == null) {
+          throw const CollectionNotFoundException();
+        }
+
+        return collection.toEntity();
+      },
+    );
+  }
+
+  Future<T> handleException<T>(Future<T> Function() expression) async {
+    try {
+      return await expression();
+    } on DatabaseException catch (error, stackTrace) {
+      Error.throwWithStackTrace(
+        UserCollectionException(error.message),
+        stackTrace,
+      );
+    } catch (error) {
+      throw UserCollectionException(error.toString());
     }
   }
 
   @override
-  Future<Either<Failure, CollectionEntity?>> getCollection(
-    CollectionParams params,
-  ) async {
-    try {
+  Future<CollectionEntity?> getCollectionOrNull(CollectionParams params) async {
+    return handleException(() async {
       final collection = await collectionsDao.getCollection(
         title: params.title,
         collectionType: params.type,
       );
-
-      print('collection: $collection');
-
-      return Right(collection?.toEntity());
-    } catch (_) {
-      return Left(Failure.database());
-    }
+      return collection?.toEntity();
+    });
   }
 }

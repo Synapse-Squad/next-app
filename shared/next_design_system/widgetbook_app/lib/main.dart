@@ -24,7 +24,7 @@ class WidgetbookApp extends StatelessWidget {
 
     final darkThemeData = ThemeData(
       extensions: [AppTheme.dark()],
-      scaffoldBackgroundColor: Colors.black,
+      scaffoldBackgroundColor: Color(0xFF14171A),
     );
 
     return Widgetbook.material(

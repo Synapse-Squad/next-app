@@ -17,6 +17,7 @@ import 'package:widgetbook_app/components/app_text_buttons.dart' as _i6;
 import 'package:widgetbook_app/components/app_text_field.dart' as _i7;
 import 'package:widgetbook_app/components/app_toggle.dart' as _i4;
 import 'package:widgetbook_app/components/app_tooltip.dart' as _i5;
+import 'package:widgetbook_app/layouts/home_page.dart' as _i9;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -107,5 +108,18 @@ final directories = <_i1.WidgetbookNode>[
         ],
       ),
     ],
-  )
+  ),
+  _i1.WidgetbookFolder(
+    name: 'layouts',
+    children: [
+      _i1.WidgetbookLeafComponent(
+        name: 'HomePage',
+        useCase: _i1.WidgetbookUseCase(
+          name: 'HomePage',
+          builder: _i9.homePageUseCase,
+          designLink: '',
+        ),
+      )
+    ],
+  ),
 ];
