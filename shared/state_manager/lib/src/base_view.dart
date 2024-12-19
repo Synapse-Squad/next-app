@@ -58,7 +58,7 @@ abstract class BaseViewState<ViewModel extends BaseViewModel<S>, S>
   }
 
   ViewModel viewModelBuilder(BuildContext context) {
-    return ViewModelProvider.of(context);
+    return ViewModelProvider.of<ViewModel>(context);
   }
 
   void listen(S prev, S next) {}

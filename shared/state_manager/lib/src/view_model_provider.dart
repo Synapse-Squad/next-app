@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'base_view_model.dart';
 
-class ViewModelProvider<ViewModel extends BaseViewModel<State>, State>
+class ViewModelProvider<ViewModel extends BaseViewModel>
     extends InheritedWidget {
   const ViewModelProvider({
     super.key,
@@ -12,10 +12,9 @@ class ViewModelProvider<ViewModel extends BaseViewModel<State>, State>
 
   final ViewModel viewModel;
 
-  static ViewModel of<ViewModel extends BaseViewModel<State>, State>(
-      BuildContext context) {
+  static ViewModel of<ViewModel extends BaseViewModel>(BuildContext context) {
     return context
-        .getInheritedWidgetOfExactType<ViewModelProvider<ViewModel, State>>()!
+        .getInheritedWidgetOfExactType<ViewModelProvider<ViewModel>>()!
         .viewModel;
   }
 
