@@ -72,11 +72,14 @@ final class CollectionRepositoryImpl implements CollectionRepository {
   }
 
   @override
-  Future<CollectionEntity?> getCollectionOrNull(CollectionParams params) async {
+  Future<CollectionEntity?> getCollectionOrNull({
+    required String title,
+    required CollectionTypes type,
+  }) async {
     return handleException(() async {
       final collection = await collectionsDao.getCollection(
-        title: params.title,
-        collectionType: params.type,
+        title: title,
+        collectionType: type,
       );
       return collection?.toEntity();
     });

@@ -9,19 +9,21 @@ final class CreateCollectionUseCase {
   final CollectionRepository collectionRepository;
 
   Future<int> call(CollectionParams param) async {
-    final collection = await collectionRepository.getCollectionOrNull(param);
+    final collection = await collectionRepository.getCollectionOrNull(
+      title: param.title,
+      type: param.type,
+    );
 
     if (collection != null) {
       throw const SameCollectionFoundException();
     }
 
     final entity = CollectionEntity(
-      id: -1,
       title: param.title,
       type: param.type,
-      createdAt: DateTime.now(),
     );
 
     return collectionRepository.createCollection(entity);
   }
 }
+  

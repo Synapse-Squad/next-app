@@ -12,13 +12,17 @@ class CollectionEntity extends Equatable {
   });
 
   factory CollectionEntity({
-    required int id,
+    int? id,
     required String title,
     required CollectionTypes type,
-    required DateTime createdAt,
+    DateTime? createdAt,
   }) {
     if (title.trim().length < 3) {
       throw const InvalidTitleException('Title can not be empty!');
+    }
+
+    if (createdAt != null && createdAt.isBefore(DateTime(1, 1, 2024))) {
+      throw const InvalidDateException('Date shouldn\'t be before (1,1,2024)');
     }
 
     return CollectionEntity._(
@@ -29,10 +33,10 @@ class CollectionEntity extends Equatable {
     );
   }
 
-  final int id;
+  final int? id;
   final String title;
   final CollectionTypes type;
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   @override
   List<Object?> get props => [id, title, type, createdAt];
