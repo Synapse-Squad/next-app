@@ -67,6 +67,7 @@ abstract class BaseViewState<ViewModel extends BaseViewModel<S>, S>
   void dispose() {
     super.dispose();
     _stateListener?.cancel();
+    _viewModel.dispose();
     _stateListener = null;
   }
 }
