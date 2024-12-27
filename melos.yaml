@@ -49,4 +49,8 @@ scripts:
       melos run coverage:merge &&
       open coverage_html/index.html
     description: Run tests, merge coverage, and open HTML report.
+  gen-l10n:
+    run: |
+      melos exec -c 1 -- \
+        'if [ -f "l10n.yaml" ]; then flutter gen-l10n; fi'
     

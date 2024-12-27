@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:next_database_service/next_database_service.dart';
 import 'package:next_design_system/next_design_system.dart';
+import 'package:user_collections/src/core/extensions/collection_localizations_ext.dart';
 
-import '../../../core/l10n/localization/collection_localizations.dart';
 import '../../collections/bloc/collections_bloc.dart';
 import '../bloc/collection_create_bloc.dart';
 
@@ -44,8 +44,7 @@ class _CreateCollectionPageState extends State<CreateCollectionPage> {
                 AppTextField(
                   validator: (value) {
                     if (value == null || value.length < 3) {
-                      return CollectionLocalizations.of(context)
-                          .titleSymbolLengthInvalid;
+                      return context.loc.titleSymbolLengthInvalid;
                     }
 
                     return null;
