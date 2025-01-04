@@ -5,8 +5,6 @@ import 'package:next_database_service/next_database_service.dart';
 import '../../core/exceptions/user_collection_exceptions.dart';
 import '../../core/extensions/collection_entity_ext.dart';
 import '../../domain/entities/collection_entity.dart';
-import '../../domain/params/create_collection_params.dart';
-import '../../domain/params/get_collections_params.dart';
 import '../../domain/repositories/collection_repository.dart';
 
 final class CollectionRepositoryImpl implements CollectionRepository {
@@ -25,38 +23,19 @@ final class CollectionRepositoryImpl implements CollectionRepository {
 
   @override
   Future<List<CollectionEntity>> getCollections({
-    GetCollectionsParams? params,
+    CollectionTypes? type,
+    OrderOptions? orderOptions,
   }) =>
       handleException(
         () async {
           final collections = await collectionsDao.getCollections(
-            collectionType: params?.type,
-            orderOption: params?.orderOptions,
+            collectionType: type,
+            orderOption: orderOptions,
           );
 
           return collections.toEntityList();
         },
       );
-
-  @override
-  Future<CollectionEntity> getCollection(
-    CollectionParams params,
-  ) {
-    return handleException(
-      () async {
-        final collection = await collectionsDao.getCollection(
-          title: params.title,
-          collectionType: params.type,
-        );
-
-        if (collection == null) {
-          throw const CollectionNotFoundException();
-        }
-
-        return collection.toEntity();
-      },
-    );
-  }
 
   Future<T> handleException<T>(Future<T> Function() expression) async {
     try {
@@ -68,6 +47,50 @@ final class CollectionRepositoryImpl implements CollectionRepository {
       );
     } catch (error) {
       throw UserCollectionException(error.toString());
+    }
+  }
+
+  @override
+  Stream<List<CollectionEntity>> listenToCollections({
+    CollectionTypes? type,
+    OrderOptions? orderOptions,
+  }) async* {
+    try {
+      // Listen to the DAO stream and yield each event
+      await for (final collections in collectionsDao.watchCollections(
+        collectionType: type,
+        orderOption: orderOptions,
+      )) {
+        try {
+          // Convert each collection to domain entity
+          final domainCollections = collections.toEntityList();
+          yield domainCollections;
+        } catch (e) {
+          // Handle conversion errors
+          // throw DomainException(
+          //   message: 'Error converting collection data',
+          //   originalError: e,
+          // );
+        }
+      }
+    } catch (e) {
+      // Convert DAO exceptions to domain exceptions
+      // if (e is DatabaseException) {
+      //   throw DomainException(
+      //     message: 'Database error occurred',
+      //     originalError: e,
+      //   );
+      // } else if (e is NetworkException) {
+      //   throw DomainException(
+      //     message: 'Network error occurred',
+      //     originalError: e,
+      //   );
+      // } else {
+      //   throw DomainException(
+      //     message: 'Unexpected error occurred',
+      //     originalError: e,
+      //   );
+      // }
     }
   }
 

@@ -82,4 +82,40 @@ class UserCollectionsDao extends DatabaseAccessor<NextDatabase>
   Future<int> add(UserCollectionsCompanion companion) => handle<int>(() {
         return into(userCollections).insert(companion);
       });
+
+  /// listen to the list of collections by filter
+  Stream<List<UserCollection>> watchCollections({
+    CollectionTypes? collectionType,
+    OrderOptions? orderOption,
+  }) {
+    var selector = select(userCollections);
+    orderOption ??= OrderOptions.newestFirst;
+
+    if (collectionType != null && collectionType != CollectionTypes.all) {
+      selector = selector..where((c) => c.typeId.equals(collectionType.index));
+    }
+
+    selector = selector
+      ..orderBy(
+        [
+          switch (orderOption) {
+            OrderOptions.fromAtoZ => (c) => OrderingTerm(expression: c.title),
+            OrderOptions.fromZtoA => (c) => OrderingTerm(
+                  expression: c.title,
+                  mode: OrderingMode.desc,
+                ),
+            OrderOptions.newestFirst => (c) => OrderingTerm(
+                  expression: c.createdAt,
+                  mode: OrderingMode.desc,
+                ),
+            OrderOptions.oldestFirst => (c) => OrderingTerm(
+                  expression: c.createdAt,
+                ),
+            _ => throw UnimplementedError(),
+          }
+        ],
+      );
+
+    return selector.watch();
+  }
 }

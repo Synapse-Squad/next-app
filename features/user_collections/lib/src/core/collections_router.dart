@@ -52,10 +52,7 @@ class CollectionsRouter {
                 ),
               ),
             ],
-            child: UserCollectionsModuleScope(
-              database: database,
-              builder: (context) => const CreateCollectionPage(),
-            ),
+            child: const CreateCollectionPage(),
           );
         },
       ),

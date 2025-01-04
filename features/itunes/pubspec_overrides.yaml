@@ -1,4 +1,4 @@
-# melos_managed_dependency_overrides: rest_service,testing_utils,next_database_service
+# melos_managed_dependency_overrides: next_database_service,rest_service,testing_utils
 dependency_overrides:
   next_database_service:
     path: ../../shared/next_database_service

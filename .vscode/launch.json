@@ -14,5 +14,11 @@
                 "config.json",
             ]
         },
+        {
+            "name": "design-system [widgetbook]",
+            "request": "launch",
+            "type": "dart",
+            "program": "shared/next_design_system/widgetbook_app/lib/main.dart",
+        },
     ]
 }

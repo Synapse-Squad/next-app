@@ -9,13 +9,27 @@ import '../bloc/collections_bloc.dart';
 import 'collection_type_selector.dart';
 import 'collections_list_view.dart';
 
-class CollectionsPage extends StatelessWidget {
+class CollectionsPage extends StatefulWidget {
   const CollectionsPage({
     super.key,
     this.action,
   });
 
   final Widget? action;
+
+  @override
+  State<CollectionsPage> createState() => _CollectionsPageState();
+}
+
+class _CollectionsPageState extends State<CollectionsPage>
+    with SingleTickerProviderStateMixin {
+  late final ScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,26 +67,30 @@ class CollectionsPage extends StatelessWidget {
               CollectionsLoadInitial() ||
               CollectionsEmpty() ||
               CollectionsLoadFailure() =>
-                const SizedBox.shrink(),
-              CollectionsLoadInProgress() =>
-                const Center(child: const CircularProgressIndicator()),
+                const SliverToBoxAdapter(child: SizedBox.shrink()),
+              CollectionsLoadInProgress() => const SliverToBoxAdapter(
+                  child: Center(child: CircularProgressIndicator()),
+                ),
               CollectionsLoadSuccess(:var collections) =>
                 CollectionsListView(collections: collections),
             };
 
-            return Column(
-              children: [
-                CollectionTypeSelector(
-                  onChanged: (value) {
-                    if (value != null) {
-                      context
-                          .read<CollectionsBloc>()
-                          .add(CollectionsRequired(type: value));
-                    }
-                  },
+            return CustomScrollView(
+              physics: const ClampingScrollPhysics(),
+              controller: _scrollController,
+              slivers: [
+                SliverToBoxAdapter(
+                  child: CollectionTypeSelector(
+                    onChanged: (value) {
+                      if (value != null) {
+                        context
+                            .read<CollectionsBloc>()
+                            .add(CollectionsRequired(type: value));
+                      }
+                    },
+                  ),
                 ),
-                const SizedBox(height: AppSpacing.xl3),
-                Expanded(child: body),
+                body,
               ],
             );
           },
@@ -97,5 +115,11 @@ class CollectionsPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 }

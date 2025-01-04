@@ -9,15 +9,14 @@ class AppRouter {
   static late final CoreModule coreModule;
 
   static final config = GoRouter(
+    initialLocation: '/',
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) {
-          return ViewModelProvider(
-            viewModel: CounterViewModel(),
-            child: CounterPage(),
-          );
-        },
+        builder: (context, state) => ViewModelProvider(
+          viewModel: CounterViewModel(),
+          child: CounterPage(),
+        ),
       ),
       ...CollectionsRouter.configRoutes(coreModule.nextDatabase),
     ],

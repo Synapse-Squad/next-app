@@ -9,8 +9,10 @@ final class GetCollectionsUseCase {
   final CollectionRepository collectionRepository;
 
   Future<List<CollectionEntity>> call(GetCollectionsParams? param) async {
-    final collections =
-        await collectionRepository.getCollections(params: param);
+    final collections = await collectionRepository.getCollections(
+      type: param?.type,
+      orderOptions: param?.orderOptions,
+    );
 
     if (collections.isEmpty) {
       throw const CollectionsNotFoundException();

@@ -1,6 +1,8 @@
-# melos_managed_dependency_overrides: next_database_service,next_design_system
+# melos_managed_dependency_overrides: next_database_service,next_design_system,state_manager
 dependency_overrides:
   next_database_service:
     path: ../../shared/next_database_service
   next_design_system:
     path: ../../shared/next_design_system
+  state_manager:
+    path: ../../shared/state_manager
