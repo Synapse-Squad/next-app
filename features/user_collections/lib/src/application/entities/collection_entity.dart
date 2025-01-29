@@ -5,14 +5,27 @@ import '../../core/exceptions/input_validation_exceptions.dart';
 
 class CollectionEntity extends Equatable {
   const CollectionEntity._({
-    required this.id,
+    this.id,
     required this.title,
     required this.type,
     required this.createdAt,
   });
 
   factory CollectionEntity({
-    int? id,
+    required int id,
+    required String title,
+    required CollectionTypes type,
+    DateTime? createdAt,
+  }) {
+    return CollectionEntity._(
+      id: id,
+      title: title,
+      type: type,
+      createdAt: createdAt,
+    );
+  }
+
+  factory CollectionEntity.create({
     required String title,
     required CollectionTypes type,
     DateTime? createdAt,
@@ -22,11 +35,10 @@ class CollectionEntity extends Equatable {
     }
 
     if (createdAt != null && createdAt.isBefore(DateTime(1, 1, 2024))) {
-      throw const InvalidDateException('Date shouldn\'t be before (1,1,2024)');
+      throw const InvalidDateException('Date should not be before (1,1,2024)');
     }
 
     return CollectionEntity._(
-      id: id,
       title: title,
       type: type,
       createdAt: createdAt,

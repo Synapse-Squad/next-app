@@ -2,8 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:next_database_service/next_database_service.dart';
 
-import '../domain/use_cases/create_collection_use_case.dart';
-import '../module/user_collections_module_scope.dart';
+import '../application/use_cases/create_collection_use_case.dart';
+import '../framework/di/user_collections_module_scope.dart';
 import '../presentation/collections/bloc/collections_bloc.dart';
 import '../presentation/collections/views/collections_page.dart';
 import '../presentation/create_collection/bloc/collection_create_bloc.dart';

@@ -30,6 +30,8 @@ abstract class BaseViewState<ViewModel extends BaseViewModel<S>, S>
 
   bool buildWhen(S prev, S next) => true;
 
+  @internal
+  @protected
   @override
   void handleStateChanges(S newState) {
     if (!mounted) return;

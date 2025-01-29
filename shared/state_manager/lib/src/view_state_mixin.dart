@@ -25,6 +25,8 @@ mixin ViewStateMixin<ViewModel extends BaseViewModel<S>, S, Selected> {
     _stateListener = _viewModel.stateStream.listen(handleStateChanges);
   }
 
+  @protected
+  @visibleForTesting
   void listen(void Function(S state) callback) {
     if (_listenerCallback != null) return;
     _listenerCallback = callback;

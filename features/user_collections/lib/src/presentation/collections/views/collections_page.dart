@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:next_design_system/next_design_system.dart';
-import 'package:user_collections/src/module/user_collections_module_scope.dart';
+import 'package:user_collections/src/framework/di/user_collections_module_scope.dart';
 
 import '../../../core/collections_router.dart';
 import '../bloc/collections_bloc.dart';

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -81,6 +82,7 @@ class ThemeScopeWidgetState extends State<ThemeScopeWidget> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrintThrottled('rebuilding...');
     final brightness = MediaQuery.platformBrightnessOf(context);
     var themeMode = _themeMode;
 

@@ -18,60 +18,56 @@ class UserCollectionsDao extends DatabaseAccessor<NextDatabase>
   Future<List<UserCollection>> getCollections({
     CollectionTypes? collectionType,
     OrderOptions? orderOption,
-  }) =>
-      handle<List<UserCollection>>(() async {
-        var selector = select(userCollections);
-        orderOption ??= OrderOptions.newestFirst;
+  }) async {
+    var selector = select(userCollections);
+    orderOption ??= OrderOptions.newestFirst;
 
-        if (collectionType != null && collectionType != CollectionTypes.all) {
-          selector = selector
-            ..where((c) => c.typeId.equals(collectionType.index));
-        }
+    if (collectionType != null && collectionType != CollectionTypes.all) {
+      selector = selector..where((c) => c.typeId.equals(collectionType.index));
+    }
 
-        selector = selector
-          ..orderBy(
-            [
-              switch (orderOption) {
-                OrderOptions.fromAtoZ => (c) =>
-                    OrderingTerm(expression: c.title),
-                OrderOptions.fromZtoA => (c) => OrderingTerm(
-                      expression: c.title,
-                      mode: OrderingMode.desc,
-                    ),
-                OrderOptions.newestFirst => (c) => OrderingTerm(
-                      expression: c.createdAt,
-                      mode: OrderingMode.desc,
-                    ),
-                OrderOptions.oldestFirst => (c) => OrderingTerm(
-                      expression: c.createdAt,
-                    ),
-                _ => throw UnimplementedError(),
-              }
-            ],
-          );
+    selector = selector
+      ..orderBy(
+        [
+          switch (orderOption) {
+            OrderOptions.fromAtoZ => (c) => OrderingTerm(expression: c.title),
+            OrderOptions.fromZtoA => (c) => OrderingTerm(
+                  expression: c.title,
+                  mode: OrderingMode.desc,
+                ),
+            OrderOptions.newestFirst => (c) => OrderingTerm(
+                  expression: c.createdAt,
+                  mode: OrderingMode.desc,
+                ),
+            OrderOptions.oldestFirst => (c) => OrderingTerm(
+                  expression: c.createdAt,
+                ),
+            _ => throw UnimplementedError(),
+          }
+        ],
+      );
 
-        final collections = await selector.get();
-        return collections;
-      });
+    final collections = await selector.get();
+    return collections;
+  }
 
   Future<UserCollection?> getCollection({
     required String title,
     required CollectionTypes collectionType,
-  }) =>
-      handle<UserCollection?>(() async {
-        final collection = await (select(userCollections)
-              ..where(
-                (c) {
-                  return Expression.and([
-                    c.title.equals(title),
-                    c.typeId.equals(collectionType.index),
-                  ]);
-                },
-              ))
-            .getSingleOrNull();
+  }) async {
+    final collection = await (select(userCollections)
+          ..where(
+            (c) {
+              return Expression.and([
+                c.title.equals(title),
+                c.typeId.equals(collectionType.index),
+              ]);
+            },
+          ))
+        .getSingleOrNull();
 
-        return collection;
-      });
+    return collection;
+  }
 
   Future<int> deleteById(int collectionId) => handle<int>(() {
         return (delete(userCollections)
@@ -79,9 +75,8 @@ class UserCollectionsDao extends DatabaseAccessor<NextDatabase>
             .go();
       });
 
-  Future<int> add(UserCollectionsCompanion companion) => handle<int>(() {
-        return into(userCollections).insert(companion);
-      });
+  Future<int> add(UserCollectionsCompanion companion) =>
+      into(userCollections).insert(companion);
 
   /// listen to the list of collections by filter
   Stream<List<UserCollection>> watchCollections({

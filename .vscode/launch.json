@@ -15,6 +15,17 @@
             ]
         },
         {
+            "name": "next-app [profile]",
+            "request": "launch",
+            "type": "dart",
+            "program": "next_app/lib/main.dart",
+            "args": [
+                "--dart-define-from-file",
+                "config.json",
+                "--profile",
+            ]
+        },
+        {
             "name": "design-system [widgetbook]",
             "request": "launch",
             "type": "dart",

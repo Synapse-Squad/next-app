@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:next_database_service/next_database_service.dart';
 import 'package:next_design_system/next_design_system.dart';
 
-import '../../../domain/entities/collection_entity.dart';
+import '../../../application/entities/collection_entity.dart';
 
 class CollectionsListView extends StatelessWidget {
   const CollectionsListView({
